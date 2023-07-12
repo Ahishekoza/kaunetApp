@@ -1,0 +1,10 @@
+version: '3'
+services:
+  frontend:
+    container_name: kaunet_app
+    build: 
+      dockerfile: httpd.Dockerfile
+    volumes:
+      - ./httpd.conf:/usr/local/apache2/conf/httpd.conf:ro
+    ports:
+      - "8081:8080"

@@ -1,0 +1,541 @@
+body{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    position: relative;
+    width: 100%;
+   
+    overflow-x: hidden;
+}
+.container{
+    width: 100%;
+}
+.container-fluid{
+    width: 100%;
+}
+.flex-row{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.displayNAN{
+    position: fixed;
+    left: 20%;
+    z-index: 1;
+    visibility: hidden;
+}
+.displayToast{
+    visibility: visible;
+    transition: all 0.9s ease-in-out;
+    z-index: 10;
+    position: fixed;
+    height: fit-content;
+    width: 600px;
+    left: 30% !important;
+}
+
+.input_error{
+    background-color: rgb(228, 180, 187);
+}
+
+.scrollbar{
+    overflow-y: scroll;
+    height: 150px;
+    width: 100%;
+    word-wrap: break-word;    
+}
+/* hiding the Arrow buttons  present in Input Type Number  */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+/* .scrollbar::-webkit-scrollbar {
+    display: none;
+} */
+
+/* --reduced the margin for P tag   */
+p{
+    margin: 0px 0px 8px;
+}
+
+
+/* Abbrevation (クラスになのる) button font size */
+.bfsize{
+    font-weight: 600 !important;
+    font-size: 0.9rem !important;
+}
+/* Card */
+.card{
+    width: 100%;
+    max-width: 100%;
+}
+
+.spinnerCenter{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    position:absolute;
+    width: 100%;
+    z-index: 10;
+}
+/* Border-outlinig (bbO) border box outline*/
+.bbO{
+    border: 0.9px solid black;
+    border-radius: 1px;
+    overflow: hidden;
+}
+
+/* Border-Left (bL) Border-Right (bR)*/
+.bL{
+    border-left: 0.9px solid black;
+}
+.bR{
+    border-right: 0.9px solid black;
+}
+
+
+/* font size inside the textarea */
+.fsizetextarea {
+    font-size: 0.9rem !important;
+}
+
+
+
+/* Bordering Card*/
+.borderCard{
+    outline: 1px solid black;
+    outline-offset: 10px;
+    position: relative;
+}
+
+/* PopUp */
+.PopContainer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    z-index: 1000;
+    top: 0;
+    left: 0;
+    right: 0;
+    position: absolute;
+    transition: all 0.9s ease-in-out;
+    
+}
+
+/*  */
+.q-textarea .q-field__control {
+    min-height: 65px !important;
+}
+.q-field__control{
+    height: 65px !important;
+}
+
+
+/* --検索 button width */
+
+
+/* --custom checkBox */
+.custom-table .q-checkbox__inner{
+    width: 10px !important;
+    height: 25px;
+    font-size: 20px !important;
+}
+
+
+/* --- Info Table Width */
+.tableWidth{
+    width: 600px!important;
+}
+
+
+/* ----display table sticky and virtual scroll */
+.my-sticky-header-column-table{
+    height: 100%;
+    width: 100%;
+}
+  /* height or max-height is important */
+
+  /* specifying max-width so the example can
+    highlight the sticky column on any browser window */
+
+    .my-sticky-header-column-table td:nth-child(1),
+    .my-sticky-header-column-table td:nth-child(2),
+    .my-sticky-header-column-table td:nth-child(3),
+    .my-sticky-header-column-table td:nth-child(4) {
+
+      background-color: white
+  }
+    /* bg color is important for td; just specify one */
+
+ .my-sticky-header-column-table tr th{
+      position: sticky;
+      /* higher than z-index for td below */
+      z-index: 2;
+      /* bg color is important; just specify one */
+      background: #00b4ff
+
+  }
+
+  /* this will be the loading indicator */
+.my-sticky-header-column-table  thead tr:last-child th{
+    top: -3px !important;
+      /* highest z-index */
+      z-index: 3
+  }
+    /* height of all previous header rows */
+ .my-sticky-header-column-table thead tr:first-child th{
+      top: 0;
+      z-index: 1;
+      
+
+  }
+ .my-sticky-header-column-table tr:first-child th:first-child{
+
+      z-index: 3;
+      
+  }
+    /* highest z-index */
+ .my-sticky-header-column-table tr:first-child th:nth-child(1),
+.my-sticky-header-column-table tr:first-child th:nth-child(2),
+.my-sticky-header-column-table tr:first-child th:nth-child(3),
+.my-sticky-header-column-table tr:first-child th:nth-child(4)  {
+      /* highest z-index */
+      z-index: 3; 
+    }
+    .my-sticky-header-column-table td:nth-child(1),
+    .my-sticky-header-column-table td:nth-child(2),
+    .my-sticky-header-column-table td:nth-child(3), 
+    .my-sticky-header-column-table td:nth-child(4) {
+          z-index: 1; 
+        }
+    .my-sticky-header-column-table td:nth-child(1), .my-sticky-header-column-table th:nth-child(1) {
+          position: sticky;
+          left: 0; 
+        }
+    
+    .my-sticky-header-column-table td:nth-child(2), .my-sticky-header-column-table th:nth-child(2){
+          position: sticky;
+          left: 50px;
+        }
+    
+    .my-sticky-header-column-table td:nth-child(3), .my-sticky-header-column-table th:nth-child(3){
+          position: sticky;
+          left: 100px;
+        }
+    
+    .my-sticky-header-column-table td:nth-child(4), .my-sticky-header-column-table th:nth-child(4){
+          position: sticky;
+          left: 180px;
+        }
+  .my-sticky-header-column-table td:first-child, th:first-child{
+
+      position: sticky;
+      left: 0
+  }
+
+  /* prevent scrolling behind sticky top row on focus */
+  .my-sticky-header-column-table tbody{
+
+      scroll-margin-top: 48px
+  }
+    /* height of all previous header rows */
+
+
+/* --- vitual scroll sticky header */
+.my-sticky-virtscroll-table{
+
+    height:fit-content;
+    font-weight: bold;
+}
+  .q-table__top,
+  
+  thead tr:first-child th{
+      font-weight: bolder;
+      background-color: #96cde5
+  }
+
+  thead tr th{
+      position: sticky;
+      z-index: 1
+
+  }
+  thead tr:last-child th{
+
+      top: 48px
+  }
+  thead tr:first-child th{
+
+      top: 0
+  }  
+  tbody{
+
+      scroll-margin-top: 48px
+  }
+/* ----Button inside the table */
+.tableButton{
+    font-size: 10px !important;
+    padding: 0.5px !important;
+    margin: 0 2px;
+    background-color: grey !important;
+   }
+
+
+/* ----- custom font size of pagination */
+.custom-size .q-field{
+    font-size: 21px !important;
+}
+
+/*---- Import Table  header size */
+.informationHeader .q-table th{
+    font-size: small !important;
+    width:  50px !important;
+    text-align: center;
+    overflow-wrap: break-word !important;
+}
+
+.informationHeader .q-table td:nth-child(1){
+    text-align: left !important;
+}
+
+.informationHeader .q-table td{
+    text-align: right !important;
+}
+
+ .q-table th , .informationHeader .q-table td{
+    padding: 3px 3px !important;
+}
+
+/* Display Table  */
+.customHeader .q-table th{
+    font-size: small;
+    text-align: center;
+    padding: 3px 3px !important;
+    overflow-wrap: break-word !important;
+    white-space: break-spaces !important;
+}
+
+.customHeader .q-table th:nth-child(5){    
+    min-width: 100px !important;
+    padding: 0px 2px !important;
+}
+
+.customHeader .q-table th:nth-child(11) ,
+.customHeader .q-table th:nth-child(18),
+.customHeader .q-table th:nth-child(19)
+.customHeader .q-table th:nth-child(38),
+.customHeader .q-table th:nth-child(37)
+{    
+    min-width: 40px !important;
+}
+
+.customHeader .q-table th:nth-child(8),
+.customHeader .q-table th:nth-child(9),
+.customHeader .q-table th:nth-child(10),
+.customHeader .q-table th:nth-child(12),
+.customHeader .q-table th:nth-child(13),
+.customHeader .q-table th:nth-child(14),
+.customHeader .q-table th:nth-child(15),
+.customHeader .q-table th:nth-child(28),
+.customHeader .q-table th:nth-child(29),
+.customHeader .q-table th:nth-child(30),
+.customHeader .q-table th:nth-child(31){
+
+    min-width: 40px !important;
+  
+}
+
+.customHeader .q-table th:nth-child(27){
+    min-width: 45px !important;
+}
+
+/* -----  */
+.customHeader .q-table th:nth-child(1),
+.customHeader .q-table th:nth-child(2),
+.customHeader .q-table th:nth-child(7),
+.customHeader .q-table th:nth-child(17){
+    min-width :50px !important;
+}
+
+
+.customHeader .q-table td:nth-child(2),
+.customHeader .q-table td:nth-child(3),
+.customHeader .q-table td:nth-child(4),
+.customHeader .q-table td:nth-child(5),
+.customHeader .q-table td:nth-child(6){
+    text-align: left !important;
+
+}
+
+
+
+.customHeader .q-table td:nth-child(8),
+.customHeader .q-table td:nth-child(9),
+.customHeader .q-table td:nth-child(10),
+.customHeader .q-table td:nth-child(12),
+.customHeader .q-table td:nth-child(13),
+.customHeader .q-table td:nth-child(14),
+.customHeader .q-table td:nth-child(15),
+.customHeader .q-table td:nth-child(21),
+.customHeader .q-table td:nth-child(22),
+.customHeader .q-table td:nth-child(23),
+.customHeader .q-table td:nth-child(24),
+.customHeader .q-table td:nth-child(25),
+.customHeader .q-table td:nth-child(27),
+.customHeader .q-table td:nth-child(28),
+.customHeader .q-table td:nth-child(29),
+.customHeader .q-table td:nth-child(30),
+.customHeader .q-table td:nth-child(31),
+.customHeader .q-table td:nth-child(34),
+.customHeader .q-table td:nth-child(35)
+.customHeader .q-table td:nth-child(36),
+.customHeader .q-table td:nth-child(38){
+
+    text-align: right !important;
+ 
+}
+
+.customHeader  .q-table td {
+    padding: 0px 5px !important;
+    text-align: center;
+    /* min-width:100px !important ; */
+    
+}
+
+.customHeader .q-table td:nth-child(6){
+    min-width: 350px !important;
+    overflow-wrap: break-word !important;
+    white-space: break-spaces !important;
+}
+
+
+.customHeader .q-table thead tr, .q-table tbody td {
+    height: 0px !important;
+}
+
+
+@media (min-width: 820px) {
+    
+    body{
+        line-height: 1.2;
+    }
+
+    .container{
+        width: 100%;
+        
+    } 
+    .tableWidth{
+        width: 500px ;
+    }
+    .customWidth{
+        width: 100px!important;
+    }
+
+    .PopContainer{
+       
+    
+        position: absolute; 
+        left: 0;
+        height: 50vh;
+        right: 0; 
+        left: 0;
+        top: 20%;  
+        z-index: 1000;
+        display: flex;
+        justify-content: center;
+        align-items: center; 
+        transition:0.4s ease-in-out ;
+        
+    }
+
+
+    .my-sticky-header-column-table {
+        /* height or max-height is important */
+        height: 600px !important;
+        /* specifying max-width so the example can
+          highlight the sticky column on any browser window */
+        width: 100%;
+        /* this will be the loading indicator */
+        /* prevent scrolling behind sticky top row on focus */
+    }
+
+    .customHeader .q-table th{
+        font-size: small !important;
+        min-width: 80px !important;
+        text-align: center;
+        padding: 3px 3px !important;
+        overflow-wrap: break-word !important;
+        white-space: break-spaces !important;
+    }
+
+   
+ 
+    
+    
+
+}
+
+@media (min-width:1920px){
+    body{
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        position: relative;
+        width: 100%;
+       
+        overflow-x: hidden;
+    }
+    .container{
+        width: 95%;
+        margin: 0% auto;    
+    }
+    .PopContainer{
+       
+    
+        position: absolute; 
+        left: 0;
+        height: 50vh;
+        right: 0; 
+        top: 0%;  
+        z-index: 1000;
+        display: flex;
+        justify-content: center;
+        align-items: center; 
+        transition:0.4s ease-in-out ;
+        
+    }
+    .tableWidth{
+        width: 600px;
+    }
+    .customWidth{
+        width: 100px!important;
+    }
+
+    .spinnerCenter{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        top: 0%;
+        left: 0%;
+        position:absolute;
+        width: 100%;
+        z-index: 10;
+    }
+    .customHeader .q-table th:nth-child(27){
+        min-width: 54px !important;
+    }
+    .displayToast{
+        visibility: visible;
+        transition: all 0.9s ease-in-out;
+        z-index: 10;
+        position: fixed;
+        left: 40% !important;
+    }
+}
+
+
+
