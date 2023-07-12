@@ -33,7 +33,11 @@
             </q-card-actions>
           </q-card>
         </q-dialog>
-
+     
+        {{ this.deleteRows }}
+        {{ this.insertedData }}
+        {{ this.showChangedRowData }}
+        <!-- 
         <Toast label="すでに更新 " show="true" :itemsArray="this.baseCheck">
           <template v-slot:default>
             <p v-for="row in this.baseCheck">
@@ -49,9 +53,9 @@
               :handleEffect="handleToast"
             />
           </template>
-        </Toast>
+        </Toast> -->
 
-        <Toast label="削除" show="true" :itemsArray="this.selectedRows">
+        <!-- <Toast label="削除" show="true" :itemsArray="this.selectedRows">
           <template v-slot:default>
             <p v-for="row in this.selectedRows">
               <span>{{ row.index }}</span
@@ -70,15 +74,15 @@
               class="q-mx-sm"
               :handleEffect="handleToast"
             />
-            <!-- <Button
+             <Button
               label="いいえ"
               color="cyan"
               textColor="black"
               InputClass="bfsize"
               :handleEffect="handleselectedDelete"
-            /> -->
+            /> 
           </template>
-        </Toast>
+        </Toast> -->
 
         <Toast
           label="入力に誤りがあります。"
@@ -105,7 +109,7 @@
           </template>
         </Toast>
 
-        <Toast
+        <!-- <Toast
           label="更新したデータ"
           show="true"
           :itemsArray="this.showChangedRowData"
@@ -128,7 +132,7 @@
               :handleEffect="handleToast"
             />
           </template>
-        </Toast>
+        </Toast> -->
 
         <div :class="[this.noChange ? 'displayToast' : 'displayNAN']">
           <q-card style="height: 120px; width: 500px">
