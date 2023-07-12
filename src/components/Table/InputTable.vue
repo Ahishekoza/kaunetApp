@@ -728,8 +728,6 @@ export default {
       // check for deletion if any row is selected or not
       else if (this.selectRows.length > 0 && this.checkDate.length === 0) {
         this.selectedRows = this.selectRows;
-
-        this.handleDelete(this.handleUpdate())
       }
 
       //  also && validation for 発注バラ数
@@ -1029,6 +1027,7 @@ export default {
     },
 
     async handleDelete() {
+     const deleteRows = new Promise((resolve, reject) => {
       this.selectedRows.map(async (row) => {
         await deleteApi({
           削除: "削除",
@@ -1049,11 +1048,15 @@ export default {
             console.log(error);
           });
       });
-
       this.deleteRows = true;
+     })
+
     
 
+     Promise.all([deleteRows]).then(()=>{
       this.handleUpdate();
+     })
+      
     },
 
     handleselectedDelete() {
