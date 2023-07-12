@@ -681,7 +681,7 @@ export default {
       // If we have selected rows then it will get deleted or else it will get updatwe
 
       this.show = !this.show;
-      this.changedRowData = [];
+    
       
       //need to check whether we require this or not
 
