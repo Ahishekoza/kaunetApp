@@ -1003,7 +1003,6 @@ export default {
             }
 
             this.rowIndex;
-            this.updatedRows;
             this.spinner = false;
             this.checkExcelData = false;
             this.deleteRows = false;
@@ -1081,6 +1080,14 @@ export default {
 
     async handleUpdate() {
       if (this.deleteRows) {
+
+        console.log(this.rows.filter(
+          (row) =>
+            !this.proxyRows.some(
+              (row2) =>
+                row2.発注バラ数 === row.発注バラ数 && row2.納品日 === row.納品日
+            )
+        ))
         this.data = this.rows.filter(
           (row) =>
             !this.proxyRows.some(
@@ -1139,6 +1146,13 @@ export default {
         }
       }
        else {
+        console.log(this.rows.filter(
+          (row) =>
+            !this.proxyRows.some(
+              (row2) =>
+                row2.発注バラ数 === row.発注バラ数 && row2.納品日 === row.納品日
+            )
+        ))
         this.data = this.rows.filter(
           (row) =>
             !this.proxyRows.some(
