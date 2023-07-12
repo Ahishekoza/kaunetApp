@@ -682,7 +682,7 @@ export default {
 
       this.show = !this.show;
       this.changedRowData = [];
-      this.showChangedRowData=[]
+      
       //need to check whether we require this or not
 
       this.rows.filter((row) => {
@@ -969,7 +969,7 @@ export default {
             }
 
             this.rowIndex;
-            this.updatedRows;
+      
             this.spinner = false;
             this.checkExcelData = false;
             this.deleteRows = false;
@@ -1023,7 +1023,6 @@ export default {
       this.checkDate = [];
       this.noChange = false;
       this.show = false;
-      this.changedRowData = [];
       this.showChangedRowData=[]
       this.MatchDate;
     },
@@ -1138,7 +1137,8 @@ export default {
         } else {
           this.show = false;
         }
-      } else {
+      }
+       else {
         this.data = this.rows.filter(
           (row) =>
             !this.proxyRows.some(
@@ -1146,6 +1146,9 @@ export default {
                 row2.発注バラ数 === row.発注バラ数 && row2.納品日 === row.納品日
             )
         );
+
+        console.log
+
         if (this.data.length) {
           this.data.filter(async (row) => {
             await updateApi({
