@@ -1163,7 +1163,7 @@ export default {
             resolve();
           });
 
-            Promise.all(updateRows).then(async () => {
+            Promise.all([updateRows]).then(async () => {
             this.show = false;
 
             this.spinner = true;
