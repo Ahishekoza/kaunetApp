@@ -728,6 +728,7 @@ export default {
       // check for deletion if any row is selected or not
       else if (this.selectRows.length > 0 && this.checkDate.length === 0) {
         this.selectedRows = this.selectRows;
+        this.handleDelete()
       }
 
       //  also && validation for 発注バラ数
