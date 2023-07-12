@@ -70,13 +70,13 @@
               class="q-mx-sm"
               :handleEffect="handleToast"
             />
-            <Button
+            <!-- <Button
               label="いいえ"
               color="cyan"
               textColor="black"
               InputClass="bfsize"
               :handleEffect="handleselectedDelete"
-            />
+            /> -->
           </template>
         </Toast>
 
@@ -1006,7 +1006,6 @@ export default {
       this.checkDate = [];
       this.noChange = false;
       this.show = false;
-      this.deleteRows = true;
       this.selectedRows = [];
       this.$store.state.selectRows = [];
       this.changedRowData = [];
@@ -1051,7 +1050,8 @@ export default {
           });
       });
 
-      
+      this.deleteRows = true;
+    
 
       this.handleUpdate();
     },
