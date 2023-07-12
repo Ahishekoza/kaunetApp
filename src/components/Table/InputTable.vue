@@ -1005,7 +1005,6 @@ export default {
       this.noChange = false;
       this.show = false;
       this.selectedRows = [];
-      this.$store.state.selectRows = [];
       this.changedRowData = [];
       this.showChangedRowData = []
       this.MatchDate;
@@ -1049,6 +1048,7 @@ export default {
           });
       });
       this.deleteRows = true;
+      this.$store.state.selectRows = [];
      })
 
     
