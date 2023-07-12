@@ -68,7 +68,7 @@
               textColor="black"
               InputClass="bfsize"
               class="q-mx-sm"
-              :handleEffect="handleDelete"
+              :handleEffect="handleToast"
             />
             <Button
               label="いいえ"
@@ -728,6 +728,8 @@ export default {
       // check for deletion if any row is selected or not
       else if (this.selectRows.length > 0 && this.checkDate.length === 0) {
         this.selectedRows = this.selectRows;
+
+        this.handleDelete(this.handleUpdate())
       }
 
       //  also && validation for 発注バラ数
@@ -1004,6 +1006,9 @@ export default {
       this.checkDate = [];
       this.noChange = false;
       this.show = false;
+      this.deleteRows = true;
+      this.selectedRows = [];
+      this.$store.state.selectRows = [];
       this.changedRowData = [];
       this.showChangedRowData = []
       this.MatchDate;
@@ -1046,9 +1051,7 @@ export default {
           });
       });
 
-      this.deleteRows = true;
-      this.selectedRows = [];
-      this.$store.state.selectRows = [];
+      
 
       this.handleUpdate();
     },
