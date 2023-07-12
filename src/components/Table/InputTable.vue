@@ -1139,7 +1139,7 @@ export default {
 
         if (this.data.length) {
           const updateRows = new Promise((resolve, reject) => {
-            this.changedRowData = this.data.filter(async (row) => {
+            this.data.filter(async (row) => {
               await updateApi({
                 更新: "更新",
                 発注バラ数: row.発注バラ数,
@@ -1152,9 +1152,11 @@ export default {
               }).then((response) => {
                 const updatedRow = JSON.parse(response.data.body)[0];
                 console.log("更新した行", updatedRow);
+                this.changedRowData.push(row);
                 // if (updatedRow.納品日 || updatedRow.調整後発注数量) {
                 //   row.発注バラ数 = updatedRow.調整後発注数量;
                 //   row.納品日 = updatedRow.納品日;
+
                 // }
               });
             });
