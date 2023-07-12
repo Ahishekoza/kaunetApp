@@ -1182,7 +1182,7 @@ export default {
             });
           });
           this.show = false;
-          this.showChangedRowData=this.changedRowData
+          this.changedRowData=[]
           this.spinner = true;
           await checkApi({ ...this.body })
             .then((response) => {
