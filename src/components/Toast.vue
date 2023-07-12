@@ -1,6 +1,6 @@
 <template>
-   
-        <q-card style="height: 270px; width: 100%">
+    <div :class="[itemsArray.length ? 'displayToast' : 'displayNAN']">
+        <q-card style="height: 270px; width: 500px">
             <q-card-section style="margin: 0 auto">
               <div class="text-h6">{{label}}</div>
             </q-card-section>
@@ -18,7 +18,7 @@
             </q-card-actions>
             
           </q-card>
-
+    </div>
 </template>
 <script>
 export default{
