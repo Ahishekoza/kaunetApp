@@ -973,14 +973,13 @@ export default {
             this.spinner = false;
             this.checkExcelData = false;
             this.deleteRows = false;
-            this.body = {};
+            
 
             // ---Input Table Show
             this.icon = "arrow_drop_up";
             tableId.style.display = "block";
             this.showMiddleBody = true;
 
-            console.log("Display Rows", this.updatedRows);
           })
           .catch((err) => {
             console.log(err);
@@ -1008,13 +1007,11 @@ export default {
             this.spinner = false;
             this.checkExcelData = false;
             this.deleteRows = false;
-            this.body = {};
             // ---Input Table Show
             this.icon = "arrow_drop_up";
             tableId.style.display = "block";
             this.showMiddleBody = true;
 
-            console.log("Display Rows", this.updatedRows);
           })
           .catch((err) => {
             console.log(err);
