@@ -951,6 +951,28 @@ export default {
           ],
         };
       }
+      if (
+        this.InputClass.混載グループ名称.length===0 &&
+        this.InputClass.未達混載グループ名称.length
+      ) {
+        this.body = {
+          ...this.body,
+          混載グループ名: [
+            ...this.InputClass.未達混載グループ名称[0].split("\n"),
+          ],
+        };
+      }
+      if (
+        this.InputClass.混載グループ名称.length &&
+        this.InputClass.未達混載グループ名称.length===0
+      ) {
+        this.body = {
+          ...this.body,
+          混載グループ名: [
+            ...this.InputClass.混載グループ名称[0].split("\n"),
+          ],
+        };
+      }
 
       this.spinner = true;
       // ---Input Table Hide
