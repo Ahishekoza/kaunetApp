@@ -489,6 +489,8 @@ export default {
     const changedRowData = ref([]); // 更新した行を出せるようにします
     const showChangedRowData = ref([]);
 
+    const insertedData = ref([]); //  登録に関する配列
+
     const noChange = ref(false);
 
     const body = ref({}); // passing the data by creating a object of required variables
@@ -504,6 +506,7 @@ export default {
 
     // select
     const selectedRows = ref([]);
+    const deletedRows = ref([]);
 
     // ---updated data
     const data = ref([]);
@@ -524,6 +527,8 @@ export default {
       proxyRows,
       changedRowData,
       showChangedRowData,
+
+      insertedData,
 
       noChange,
       body,
@@ -559,6 +564,7 @@ export default {
       deleteRows,
 
       selectedRows, // for delection
+      deletedRows, //for display
 
       dataExcel,
 
@@ -676,6 +682,14 @@ export default {
     async handleEffect() {
       //Writing Delete Functionality
       // If we have selected rows then it will get deleted or else it will get updatwe
+ 
+
+      // collect all the rows and throws at onces 
+      // 更新 // showChangedRows
+      // 登録 // insertedData
+      // 削除 // selectedRows
+      // すでに更新 // baseCheck
+      
 
       this.show = !this.show;
 
@@ -717,7 +731,7 @@ export default {
             if (response.data.message) {
               this.baseCheck.push(response.data.message);
             } else {
-              console.log(response.data);
+              this.insertedData.push(row)
             }
           });
         });
@@ -964,6 +978,7 @@ export default {
             this.spinner = false;
             this.checkExcelData = false;
             this.deleteRows = false;
+            this.body={}
 
            
           })
@@ -992,7 +1007,7 @@ export default {
             this.spinner = false;
             this.checkExcelData = false;
             this.deleteRows = false;
-            // ---Input Table Show
+            this.body={}
         
           })
           .catch((err) => {
@@ -1005,12 +1020,13 @@ export default {
       this.checkDate = [];
       this.noChange = false;
       this.show = false;
-      this.selectedRows = [];
-      this.changedRowData = [];
+      this.deletedRows = [];
       this.showChangedRowData = []
+      this.baseCheck = [];
+      this.insertedData=[]
       this.MatchDate;
     },
-
+ 
     handleClear() {
       (this.InputClass.担当者 = ""),
         (this.InputClass.商品区分 = []),
@@ -1041,15 +1057,14 @@ export default {
             if (response.data.message) {
               this.baseCheck.push(response.data.message);
             } else {
-              console.log(response.data.body);
+              this.deletedRows.push(row)
             }
           })
           .catch((error) => {
             console.log(error);
           });
       });
-      this.deleteRows = true;
-      this.$store.state.selectRows = [];
+      
 
       resolve();
      })
@@ -1057,6 +1072,9 @@ export default {
     
 
      Promise.all([deletedRows]).then(()=>{
+      this.deleteRows = true;
+      this.selectedRows=[]
+      this.$store.state.selectRows = [];
       this.handleUpdate();
      })
       
@@ -1088,14 +1106,15 @@ export default {
                 更新担当者: "abhishek",
                 更新日時: row.更新日時,
               }).then((response) => {
-                const updatedRow = JSON.parse(response.data.body)[0];
-                console.log("更新した行", updatedRow);
-                this.changedRowData.push(row);
-                // if (updatedRow.納品日 || updatedRow.調整後発注数量) {
-                //   row.発注バラ数 = updatedRow.調整後発注数量;
-                //   row.納品日 = updatedRow.納品日;
 
-                // }
+                if(response.data.message){
+                  this.baseCheck.push(response.data.message)
+                }
+                else{
+                  const updatedRow = JSON.parse(response.data.body)[0];
+                  console.log("更新した行", updatedRow);
+                  this.changedRowData.push(row);
+                }
               });
             });
 
@@ -1103,46 +1122,16 @@ export default {
           });
 
             this.showChangedRowData =  this.changedRowData
+            this.changedRowData = [];
 
             Promise.all([updateRows]).then(async () => {
             this.show = false;
 
-            this.spinner = true;
-            await checkApi({ ...this.body })
-              .then((response) => {
-                if (response.status === 200) {
-                  let parsedData = JSON.parse(response.data.body);
-                  this.proxyRows = JSON.parse(response.data.body);
-
-                  this.rows = parsedData;
-                }
-                this.rowIndex;
-              })
-              .catch((err) => {
-                console.log(err);
-              });
-
-            this.spinner = false;
             this.data=[]
           });
         } else {
           this.show = false;
-          this.spinner = true;
-            await checkApi({ ...this.body })
-              .then((response) => {
-                if (response.status === 200) {
-                  let parsedData = JSON.parse(response.data.body);
-                  this.proxyRows = JSON.parse(response.data.body);
-
-                  this.rows = parsedData;
-                }
-                this.rowIndex;
-              })
-              .catch((err) => {
-                console.log(err);
-              });
-
-            this.spinner = false;
+          
         }
       } else {
        
@@ -1167,14 +1156,14 @@ export default {
                 更新担当者: "abhishek",
                 更新日時: row.更新日時,
               }).then((response) => {
-                const updatedRow = JSON.parse(response.data.body)[0];
-                console.log("更新した行", updatedRow);
-                this.changedRowData.push(row);
-                // if (updatedRow.納品日 || updatedRow.調整後発注数量) {
-                //   row.発注バラ数 = updatedRow.調整後発注数量;
-                //   row.納品日 = updatedRow.納品日;
-
-                // }
+                if(response.data.message){
+                  this.baseCheck.push(response.data.message)
+                }
+                else{
+                  const updatedRow = JSON.parse(response.data.body)[0];
+                  console.log("更新した行", updatedRow);
+                  this.changedRowData.push(row);
+                }
               });
             });
 
@@ -1182,26 +1171,13 @@ export default {
           });
 
             this.showChangedRowData =  this.changedRowData
+            this.changedRowData = [];
+
 
             Promise.all([updateRows]).then(async () => {
             this.show = false;
 
-            this.spinner = true;
-            await checkApi({ ...this.body })
-              .then((response) => {
-                if (response.status === 200) {
-                  let parsedData = JSON.parse(response.data.body);
-                  this.proxyRows = JSON.parse(response.data.body);
-
-                  this.rows = parsedData;
-                }
-                this.rowIndex;
-              })
-              .catch((err) => {
-                console.log(err);
-              });
-
-            this.spinner = false;
+           
             this.data=[]
           });
         } else {
