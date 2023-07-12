@@ -34,7 +34,7 @@
           </q-card>
         </q-dialog>
      
-        {{ this.deleteRows }}
+        {{ this.deletedRows }}
         {{ this.insertedData }}
         {{ this.showChangedRowData }}
         <!-- 
