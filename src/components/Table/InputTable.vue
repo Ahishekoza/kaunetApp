@@ -964,10 +964,7 @@ export default {
             this.checkExcelData = false;
             this.deleteRows = false;
 
-            // ---Input Table Show
-            this.icon = "arrow_drop_up";
-            tableId.style.display = "block";
-            this.showMiddleBody = true;
+          
           })
           .catch((err) => {
             console.log(err);
@@ -994,10 +991,7 @@ export default {
             this.spinner = false;
             this.checkExcelData = false;
             this.deleteRows = false;
-            // ---Input Table Show
-            this.icon = "arrow_drop_up";
-            tableId.style.display = "block";
-            this.showMiddleBody = true;
+            
           })
           .catch((err) => {
             console.log(err);
@@ -1103,26 +1097,12 @@ export default {
             Promise.all([updateRows]).then(async () => {
             this.show = false;
 
-            this.spinner = true;
-            await checkApi({ ...this.body })
-              .then((response) => {
-                if (response.status === 200) {
-                  let parsedData = JSON.parse(response.data.body);
-                  this.proxyRows = JSON.parse(response.data.body);
-
-                  this.rows = parsedData;
-                }
-                this.rowIndex;
-              })
-              .catch((err) => {
-                console.log(err);
-              });
-
-            this.spinner = false;
+           this.handleFileData()
             this.data=[]
           });
         } else {
           this.show = false;
+          this.handleFileData()
         }
       } else {
        
@@ -1166,22 +1146,7 @@ export default {
             Promise.all([updateRows]).then(async () => {
             this.show = false;
 
-            this.spinner = true;
-            await checkApi({ ...this.body })
-              .then((response) => {
-                if (response.status === 200) {
-                  let parsedData = JSON.parse(response.data.body);
-                  this.proxyRows = JSON.parse(response.data.body);
-
-                  this.rows = parsedData;
-                }
-                this.rowIndex;
-              })
-              .catch((err) => {
-                console.log(err);
-              });
-
-            this.spinner = false;
+            this.handleFileData()
             this.data=[]
           });
         } else {
