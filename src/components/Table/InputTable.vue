@@ -49,7 +49,6 @@
               :handleEffect="handleToast"
             />
           </template>
-          
         </Toast>
 
         <Toast label="削除" show="true" :itemsArray="this.selectedRows">
@@ -59,7 +58,7 @@
               >行目 倉庫:<span>{{ row.倉庫 }}</span> SKU:<span>{{
                 row.sku
               }}</span>
-              品名:<span>"{{ row.品名 }}"</span> 
+              品名:<span>"{{ row.品名 }}"</span>
             </p>
           </template>
           <template v-slot:button>
@@ -92,9 +91,7 @@
               >行目 倉庫:<span>{{ row.倉庫 }}</span> SKU:<span>{{
                 row.sku
               }}</span>
-              品名:<span>"{{ row.品名 }}"</span>   の:<span>{{
-                row.error
-              }}</span>
+              品名:<span>"{{ row.品名 }}"</span> の:<span>{{ row.error }}</span>
             </p>
           </template>
           <template v-slot:button>
@@ -119,7 +116,7 @@
               >行目 倉庫:<span>{{ row.倉庫 }}</span> SKU:<span>{{
                 row.sku
               }}</span>
-              品名:<span>"{{ row.品名 }}"</span> 
+              品名:<span>"{{ row.品名 }}"</span>
             </p>
           </template>
           <template v-slot:button>
@@ -513,7 +510,7 @@ export default {
 
     const dataExcel = ref([]);
 
-    const baseCheck = ref([]);  // base check will check whether the person doing the editing, deleting and updating is same as in the database
+    const baseCheck = ref([]); // base check will check whether the person doing the editing, deleting and updating is same as in the database
 
     return {
       // showMiddleBody
@@ -681,8 +678,7 @@ export default {
       // If we have selected rows then it will get deleted or else it will get updatwe
 
       this.show = !this.show;
-    
-      
+
       //need to check whether we require this or not
 
       this.rows.filter((row) => {
@@ -714,23 +710,19 @@ export default {
             単価: row.単価,
             発注バラ数: row.発注バラ数,
             納品日: row.納品日,
-            発注区分:row.発注区分,
+            発注区分: row.発注区分,
             更新担当者: row.更新担当者,
-            更新日時:row.更新日時,
+            更新日時: row.更新日時,
           }).then((response) => {
-
-            if(response.data.message){
-              this.baseCheck.push(response.data.message)
-            }
-            else{
-
+            if (response.data.message) {
+              this.baseCheck.push(response.data.message);
+            } else {
               console.log(response.data);
             }
-
           });
         });
-        this.checkExcelData=false
-        this.show=false
+        this.checkExcelData = false;
+        this.show = false;
       }
 
       // check for deletion if any row is selected or not
@@ -871,7 +863,6 @@ export default {
       // --- so rows present before will get null
 
       if (this.checkExcelData) {
-        
       } else {
         this.rows = [];
         this.dataExcel = [];
@@ -947,7 +938,6 @@ export default {
       this.icon = "arrow_drop_down";
       tableId.style.display = "none";
       this.showMiddleBody = false;
-      
 
       if (this.InputClass.発注計画有無 > 0) {
         this.body = { ...this.body, 発注計画有無: "発注計画有無" };
@@ -969,17 +959,15 @@ export default {
             }
 
             this.rowIndex;
-      
+
             this.spinner = false;
             this.checkExcelData = false;
             this.deleteRows = false;
-            
 
             // ---Input Table Show
             this.icon = "arrow_drop_up";
             tableId.style.display = "block";
             this.showMiddleBody = true;
-
           })
           .catch((err) => {
             console.log(err);
@@ -1010,7 +998,6 @@ export default {
             this.icon = "arrow_drop_up";
             tableId.style.display = "block";
             this.showMiddleBody = true;
-
           })
           .catch((err) => {
             console.log(err);
@@ -1022,7 +1009,7 @@ export default {
       this.checkDate = [];
       this.noChange = false;
       this.show = false;
-      this.changedRowData=[]
+      this.changedRowData = [];
       this.MatchDate;
     },
 
@@ -1047,16 +1034,14 @@ export default {
           削除: "削除",
           倉庫: row.倉庫,
           sku: row.sku,
-          発注区分:row.発注区分,
+          発注区分: row.発注区分,
           更新担当者: "abhishek",
-          更新日時:row.更新日時,
+          更新日時: row.更新日時,
         })
           .then((response) => {
-            if(response.data.message){
-              this.baseCheck.push(response.data.message)
-            }
-            else{
-
+            if (response.data.message) {
+              this.baseCheck.push(response.data.message);
+            } else {
               console.log(response.data.body);
             }
           })
@@ -1080,14 +1065,16 @@ export default {
 
     async handleUpdate() {
       if (this.deleteRows) {
-
-        console.log(this.rows.filter(
-          (row) =>
-            !this.proxyRows.some(
-              (row2) =>
-                row2.発注バラ数 === row.発注バラ数 && row2.納品日 === row.納品日
-            )
-        ))
+        console.log(
+          this.rows.filter(
+            (row) =>
+              !this.proxyRows.some(
+                (row2) =>
+                  row2.発注バラ数 === row.発注バラ数 &&
+                  row2.納品日 === row.納品日
+              )
+          )
+        );
         this.data = this.rows.filter(
           (row) =>
             !this.proxyRows.some(
@@ -1096,23 +1083,20 @@ export default {
             )
         );
         if (this.data.length) {
-            this.changedRowData=this.data.filter(async (row) => {
+          this.changedRowData = this.data.filter(async (row) => {
             await updateApi({
               更新: "更新",
               発注バラ数: row.発注バラ数,
               納品日: row.納品日,
               倉庫: row.倉庫,
               sku: row.sku,
-              発注区分:row.発注区分,
+              発注区分: row.発注区分,
               更新担当者: "abhishek",
-              更新日時:row.更新日時,
+              更新日時: row.更新日時,
             }).then((response) => {
-
-              if(response.data.message){
-              this.baseCheck.push(response.data.message)
-            }
-              else{
-
+              if (response.data.message) {
+                this.baseCheck.push(response.data.message);
+              } else {
                 const updatedRow = JSON.parse(response.data.body)[0];
                 console.log("更新した行", updatedRow);
                 if (updatedRow.納品日 || updatedRow.調整後発注数量) {
@@ -1123,7 +1107,7 @@ export default {
             });
           });
           this.show = false;
-          this.changedRowData=[]
+          this.changedRowData = [];
           this.spinner = true;
           await checkApi({ ...this.body })
             .then((response) => {
@@ -1143,9 +1127,7 @@ export default {
         } else {
           this.show = false;
         }
-      }
-       else {
-        
+      } else {
         this.data = this.rows.filter(
           (row) =>
             !this.proxyRows.some(
@@ -1154,51 +1136,53 @@ export default {
             )
         );
 
-        console.log(this.data)
+        console.log(this.data);
 
         if (this.data.length) {
-          this.changedRowData=this.data.filter(async (row) => {
-            await updateApi({
-              更新: "更新",
-              発注バラ数: row.発注バラ数,
-              納品日: row.納品日,
-              倉庫: row.倉庫,
-              sku: row.sku,
-              発注区分:row.発注区分,
-              更新担当者: "abhishek",
-              更新日時:row.更新日時,
-            }).then((response) => {
-
-                
+          const updateRows = new Promise((resolve, reject) => {
+            this.changedRowData = this.data.filter(async (row) => {
+              await updateApi({
+                更新: "更新",
+                発注バラ数: row.発注バラ数,
+                納品日: row.納品日,
+                倉庫: row.倉庫,
+                sku: row.sku,
+                発注区分: row.発注区分,
+                更新担当者: "abhishek",
+                更新日時: row.更新日時,
+              }).then((response) => {
                 const updatedRow = JSON.parse(response.data.body)[0];
                 console.log("更新した行", updatedRow);
-                if (updatedRow.納品日 || updatedRow.調整後発注数量) {
-                  row.発注バラ数 = updatedRow.調整後発注数量;
-                  row.納品日 = updatedRow.納品日;
-                }
-               
-              
-
+                // if (updatedRow.納品日 || updatedRow.調整後発注数量) {
+                //   row.発注バラ数 = updatedRow.調整後発注数量;
+                //   row.納品日 = updatedRow.納品日;
+                // }
+              });
             });
+
+            resolve();
           });
-          this.show = false;
-      
-          this.spinner = true;
-          await checkApi({ ...this.body })
-            .then((response) => {
-              if (response.status === 200) {
-                let parsedData = JSON.parse(response.data.body);
-                this.proxyRows = JSON.parse(response.data.body);
 
-                this.rows = parsedData;
-              }
-              this.rowIndex;
-            })
-            .catch((err) => {
-              console.log(err);
-            });
+            Promise.all(updateRows).then(async () => {
+            this.show = false;
 
-          this.spinner = false;
+            this.spinner = true;
+            await checkApi({ ...this.body })
+              .then((response) => {
+                if (response.status === 200) {
+                  let parsedData = JSON.parse(response.data.body);
+                  this.proxyRows = JSON.parse(response.data.body);
+
+                  this.rows = parsedData;
+                }
+                this.rowIndex;
+              })
+              .catch((err) => {
+                console.log(err);
+              });
+
+            this.spinner = false;
+          });
         } else {
           this.show = false;
           this.noChange = true;
