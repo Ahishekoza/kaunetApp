@@ -108,10 +108,10 @@
         <Toast
           label="更新したデータ"
           show="true"
-          :itemsArray="this.changedRowData"
+          :itemsArray="this.showChangedRowData"
         >
           <template v-slot:default>
-            <p v-for="row in this.changedRowData">
+            <p v-for="row in this.showChangedRowData">
               <span>{{ row.index }}</span
               >行目 倉庫:<span>{{ row.倉庫 }}</span> SKU:<span>{{
                 row.sku
@@ -1010,6 +1010,7 @@ export default {
       this.noChange = false;
       this.show = false;
       this.changedRowData = [];
+      this.showChangedRowData = []
       this.MatchDate;
     },
 
@@ -1065,65 +1066,61 @@ export default {
 
     async handleUpdate() {
       if (this.deleteRows) {
-        console.log(
-          this.rows.filter(
-            (row) =>
-              !this.proxyRows.some(
-                (row2) =>
-                  row2.発注バラ数 === row.発注バラ数 &&
-                  row2.納品日 === row.納品日
-              )
-          )
-        );
-        this.data = this.rows.filter(
-          (row) =>
-            !this.proxyRows.some(
-              (row2) =>
-                row2.発注バラ数 === row.発注バラ数 && row2.納品日 === row.納品日
-            )
-        );
+        for(let i = 0; i < this.rows.length ; i++) {
+            if(this.rows[i].発注バラ数 !== this.proxyRows[i].発注バラ数 || this.proxyRows[i].納品日 !== this.rows[i].納品日){
+              this.data.push(this.rows[i])
+            }
+        }
         if (this.data.length) {
-          this.changedRowData = this.data.filter(async (row) => {
-            await updateApi({
-              更新: "更新",
-              発注バラ数: row.発注バラ数,
-              納品日: row.納品日,
-              倉庫: row.倉庫,
-              sku: row.sku,
-              発注区分: row.発注区分,
-              更新担当者: "abhishek",
-              更新日時: row.更新日時,
-            }).then((response) => {
-              if (response.data.message) {
-                this.baseCheck.push(response.data.message);
-              } else {
+          const updateRows = new Promise((resolve, reject) => {
+            this.data.filter(async (row) => {
+              await updateApi({
+                更新: "更新",
+                発注バラ数: row.発注バラ数,
+                納品日: row.納品日,
+                倉庫: row.倉庫,
+                sku: row.sku,
+                発注区分: row.発注区分,
+                更新担当者: "abhishek",
+                更新日時: row.更新日時,
+              }).then((response) => {
                 const updatedRow = JSON.parse(response.data.body)[0];
                 console.log("更新した行", updatedRow);
-                if (updatedRow.納品日 || updatedRow.調整後発注数量) {
-                  row.発注バラ数 = updatedRow.調整後発注数量;
-                  row.納品日 = updatedRow.納品日;
-                }
-              }
+                this.changedRowData.push(row);
+                // if (updatedRow.納品日 || updatedRow.調整後発注数量) {
+                //   row.発注バラ数 = updatedRow.調整後発注数量;
+                //   row.納品日 = updatedRow.納品日;
+
+                // }
+              });
             });
+
+            resolve();
           });
-          this.show = false;
-          this.changedRowData = [];
-          this.spinner = true;
-          await checkApi({ ...this.body })
-            .then((response) => {
-              if (response.status === 200) {
-                let parsedData = JSON.parse(response.data.body);
-                this.proxyRows = JSON.parse(response.data.body);
 
-                this.rows = parsedData;
-              }
-              this.rowIndex;
-            })
-            .catch((err) => {
-              console.log(err);
-            });
+            this.showChangedRowData =  this.changedRowData
 
-          this.spinner = false;
+            Promise.all([updateRows]).then(async () => {
+            this.show = false;
+
+            this.spinner = true;
+            await checkApi({ ...this.body })
+              .then((response) => {
+                if (response.status === 200) {
+                  let parsedData = JSON.parse(response.data.body);
+                  this.proxyRows = JSON.parse(response.data.body);
+
+                  this.rows = parsedData;
+                }
+                this.rowIndex;
+              })
+              .catch((err) => {
+                console.log(err);
+              });
+
+            this.spinner = false;
+            this.data=[]
+          });
         } else {
           this.show = false;
         }
@@ -1163,6 +1160,8 @@ export default {
 
             resolve();
           });
+
+            this.showChangedRowData =  this.changedRowData
 
             Promise.all([updateRows]).then(async () => {
             this.show = false;
