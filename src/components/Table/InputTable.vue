@@ -35,9 +35,9 @@
         </q-dialog>
 
         <q-card
-          :class="[this.baseCheck || this.MatchDate || this.showChangedRowData ? 'displayToast' : 'displayNAN']"
+          :class="[this.baseCheck.length>0 || this.MatchDate.length>0 || this.showChangedRowData.length>0 ? 'displayToast' : 'displayNAN']"
         >
-          <div v-if="this.showChangedRowData">
+          <div v-if="this.showChangedRowData.length">
             <q-card-section>
               <div class="text-h6">更新したデータ</div>
             </q-card-section>
@@ -55,7 +55,7 @@
             </q-card-section>
           </div>
 
-          <div v-if="this.selectedRows">
+          <div v-if="this.selectedRows/length">
             <q-card-section>
               <div class="text-h6">削除</div>
             </q-card-section>
@@ -74,7 +74,7 @@
           </div>
 
 
-          <div v-if="this.MatchDate">
+          <div v-if="this.MatchDate.length">
             <q-card-section>
               <div class="text-h6">入力</div>
             </q-card-section>
@@ -90,19 +90,9 @@
                 </p>
               </div>
             </q-card-section>
-
-            <q-card-actions align="right">
-              <Button
-              label="はい"
-              color="cyan"
-              textColor="black"
-              InputClass="bfsize"
-              :handleEffect="handleToast"
-            />
-            </q-card-actions>
           </div>
 
-          <div v-if="this.baseCheck">
+          <div v-if="this.baseCheck.length">
             <q-card-section>
               <div class="text-h6">すでに更新されています</div>
             </q-card-section>
@@ -119,6 +109,16 @@
               </div>
             </q-card-section>
           </div>
+
+          <q-card-actions align="right">
+              <Button
+              label="はい"
+              color="cyan"
+              textColor="black"
+              InputClass="bfsize"
+              :handleEffect="handleToast"
+            />
+            </q-card-actions>
 
         </q-card>
 
