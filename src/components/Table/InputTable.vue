@@ -1022,7 +1022,7 @@ export default {
       this.checkDate = [];
       this.noChange = false;
       this.show = false;
-      this.showChangedRowData=[]
+      this.changedRowData=[]
       this.MatchDate;
     },
 
@@ -1119,12 +1119,11 @@ export default {
                   row.発注バラ数 = updatedRow.調整後発注数量;
                   row.納品日 = updatedRow.納品日;
                 }
-                this.changedRowData.push(row);
               }
             });
           });
           this.show = false;
-          this.showChangedRowData=this.changedRowData
+          this.changedRowData=[]
           this.spinner = true;
           await checkApi({ ...this.body })
             .then((response) => {
@@ -1146,13 +1145,7 @@ export default {
         }
       }
        else {
-        console.log(this.rows.filter(
-          (row) =>
-            !this.proxyRows.some(
-              (row2) =>
-                row2.発注バラ数 === row.発注バラ数 && row2.納品日 === row.納品日
-            )
-        ))
+        
         this.data = this.rows.filter(
           (row) =>
             !this.proxyRows.some(
@@ -1176,10 +1169,6 @@ export default {
               更新日時:row.更新日時,
             }).then((response) => {
 
-              if(response.data.message){
-              this.baseCheck.push(response.data.message)
-            }
-              else{
                 
                 const updatedRow = JSON.parse(response.data.body)[0];
                 console.log("更新した行", updatedRow);
@@ -1188,7 +1177,7 @@ export default {
                   row.納品日 = updatedRow.納品日;
                 }
                
-              }
+              
 
             });
           });
