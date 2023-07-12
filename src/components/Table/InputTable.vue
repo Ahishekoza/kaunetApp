@@ -37,7 +37,8 @@
         <q-card
           :class="[this.baseCheck.length>0 || this.MatchDate.length>0 || this.showChangedRowData.length>0 ? 'displayToast' : 'displayNAN']"
         >
-          <div v-if="this.showChangedRowData.length">
+          <div 
+          >
             <q-card-section>
               <div class="text-h6">更新したデータ</div>
             </q-card-section>
@@ -55,7 +56,8 @@
             </q-card-section>
           </div>
 
-          <div v-if="this.selectedRows/length">
+          <div
+          >
             <q-card-section>
               <div class="text-h6">削除</div>
             </q-card-section>
@@ -74,7 +76,7 @@
           </div>
 
 
-          <div v-if="this.MatchDate.length">
+          <div >
             <q-card-section>
               <div class="text-h6">入力</div>
             </q-card-section>
@@ -92,7 +94,7 @@
             </q-card-section>
           </div>
 
-          <div v-if="this.baseCheck.length">
+          <div >
             <q-card-section>
               <div class="text-h6">すでに更新されています</div>
             </q-card-section>
