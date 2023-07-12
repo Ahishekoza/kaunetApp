@@ -35,7 +35,7 @@
         </q-dialog>
 
         <q-card
-          :class="[this.baseCheck || this.MatchDate || this.showChangedRowData]"
+          :class="[this.baseCheck || this.MatchDate || this.showChangedRowData ? 'displayToast' : 'displayNAN']"
         >
           <div v-if="this.showChangedRowData">
             <q-card-section>
