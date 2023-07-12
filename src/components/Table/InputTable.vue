@@ -1089,7 +1089,7 @@ export default {
             )
         );
         if (this.data.length) {
-            this.data.filter(async (row) => {
+            this.changedRowData=this.data.filter(async (row) => {
             await updateApi({
               更新: "更新",
               発注バラ数: row.発注バラ数,
@@ -1147,10 +1147,10 @@ export default {
             )
         );
 
-        console.log
+        console.log(this.data)
 
         if (this.data.length) {
-          this.data.filter(async (row) => {
+          this.changedRowData=this.data.filter(async (row) => {
             await updateApi({
               更新: "更新",
               発注バラ数: row.発注バラ数,
@@ -1173,7 +1173,7 @@ export default {
                   row.発注バラ数 = updatedRow.調整後発注数量;
                   row.納品日 = updatedRow.納品日;
                 }
-                this.changedRowData.push(row);
+               
               }
 
             });
