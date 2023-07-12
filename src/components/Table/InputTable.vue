@@ -1128,13 +1128,12 @@ export default {
           this.show = false;
         }
       } else {
-        this.data = this.rows.filter(
-          (row) =>
-            !this.proxyRows.some(
-              (row2) =>
-                row2.発注バラ数 === row.発注バラ数 && row2.納品日 === row.納品日
-            )
-        );
+       
+        for(let i = 0; i < this.rows.length ; i++) {
+            if(this.rows[i].発注バラ数 !== this.proxyRows[i].発注バラ数 || this.proxyRows[i].納品日 !== this.rows[i].納品日){
+              this.data.push(this.rows[i])
+            }
+        }
 
         console.log(this.data);
 
