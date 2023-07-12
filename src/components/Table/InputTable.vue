@@ -1182,6 +1182,7 @@ export default {
               });
 
             this.spinner = false;
+            this.data=[]
           });
         } else {
           this.show = false;
