@@ -1027,7 +1027,7 @@ export default {
     },
 
     async handleDelete() {
-     const deleteRows = new Promise((resolve, reject) => {
+     const deletedRows = new Promise((resolve, reject) => {
       this.selectedRows.map(async (row) => {
         await deleteApi({
           削除: "削除",
@@ -1050,11 +1050,13 @@ export default {
       });
       this.deleteRows = true;
       this.$store.state.selectRows = [];
+
+      resolve();
      })
 
     
 
-     Promise.all([deleteRows]).then(()=>{
+     Promise.all([deletedRows]).then(()=>{
       this.handleUpdate();
      })
       
