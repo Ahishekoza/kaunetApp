@@ -38,7 +38,7 @@
 
 
 
-        <div :class="[this.deleteRows.length>0 || this.insertedData.length>0 || this.showChangedRowData.length>0 ? 'displayToast' : 'displayNAN' ]">
+        <div :class="[this.showChangedRowData.length>0 ? 'displayToast' : 'displayNAN' ]">
           <q-card style="height: 600px; ">
             <q-card-section style="height: 90%; width: 600px; box-sizing: border-box; overflow-wrap: break-word;">
               <div class="q-mb-md" v-if="this.showChangedRowData" style="overflow-y: scroll; height: 160px;">
