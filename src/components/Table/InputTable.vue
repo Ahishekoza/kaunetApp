@@ -38,7 +38,7 @@
 
 
 
-        <div :class="[customClass ? 'displayToast' : 'displayNAN' ]">
+        <div :class="[this.customClass ? 'displayToast' : 'displayNAN' ]">
           <q-card style="height: fit-content; ">
             <q-card-section style="height: 90%; width: 600px; box-sizing: border-box; overflow-wrap: break-word;">
               <div class="q-mb-md" v-if="this.showChangedRowData.length" style="overflow-y: scroll; height: 160px;">
