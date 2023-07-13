@@ -35,7 +35,7 @@ body{
 }
 
 .input_error{
-    background-color: rgb(228, 180, 187);
+    background-color: yellow
 }
 
 .scrollbar{

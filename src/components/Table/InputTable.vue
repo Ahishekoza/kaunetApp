@@ -753,7 +753,9 @@ export default {
       });
 
       if(this.checkDate.length===0){
-        await this.handleProcess()
+        await this.handleDelete()
+        await this.handleUpdate();
+        await this.handleFileData()
       }
       else{
         this.noChange=false;
@@ -800,22 +802,6 @@ export default {
       // else if (this.checkDate.length === 0 && this.selectRows.length === 0) {
       //   this.handleUpdate();
       // }
-    },
-
-    async handleProcess(){
-
-      if(this.selectRows.length>0){
-        await this.handleDelete()
-        await this.handleUpdate();
-        await this.handleInsert()
-        await this.handleFileData()
-      }
-      else{
-        await this.handleUpdate();
-        await this.handleInsert()
-        await this.handleFileData()
-      }
-
     },
 
     async handleDelete() {
@@ -879,6 +865,9 @@ export default {
             this.changedRowData=[]
             this.show = false;
             this.data=[]
+          }
+          else{
+            this.noChange=true
           }
 
 
@@ -979,6 +968,13 @@ export default {
 
     async handleInsert(){
       this.dataExcel.map(async (row) => {
+
+        // ---check if the data in the row of 発注バラ数 is number or word
+        if(typeof(row.発注バラ数)===String){
+
+          // collect the rows and then display it with the common msg
+        }
+        else{
           await updateApi({
             登録: "登録",
             倉庫: row.倉庫,
@@ -995,11 +991,12 @@ export default {
             if (response.data.message) {
               this.baseCheck.push(response.data.message);
             } else {
-              this.insertedData.push(row)
+              //this.insertedData.push(row)
             }
           });
+        }
         });
-        this.checkExcelData = false;
+        // this.checkExcelData = false;
         this.show = false;
       
     },
@@ -1119,10 +1116,10 @@ export default {
     handleExcelData(event) {
       if (event.length > 0) {
         this.dataExcel = [...this.dataExcel, ...event];
-        console.log(this.dataExcel);
-        this.rows = [...this.rows, ...event];
-        this.rowIndex;
-        this.checkExcelData = true;
+        // console.log(this.dataExcel);
+        // this.rows = [...this.rows, ...event];
+        // this.rowIndex;
+        // this.checkExcelData = true;
       }
     },
 
@@ -1131,13 +1128,11 @@ export default {
       // --- if checkExcelData is true then rows coming from database will be added directly and if its false means user is changing the values
       // --- so rows present before will get null
 
-      this.insertedData=[]
-
-      if (this.checkExcelData) {
-      } else {
+    
+      
         this.rows = [];
         this.dataExcel = [];
-      }
+      
 
       let tableId = document.getElementById("inputTable");
 
@@ -1319,8 +1314,6 @@ export default {
         this.InputClass.混載グループ名称 = [];
         this.InputClass.未達混載グループ名称 = [];
     },
-
-   
 
     handleselectedDelete() {
       this.deleteRows = true;
