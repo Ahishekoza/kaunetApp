@@ -1292,10 +1292,10 @@ export default {
     selectedRows(newValue) {
       this.selectedRows = newValue;
     },
-    changedRowData(newValue) {
-      this.showChangedRowData = newValue;
-      console.log(this.showChangedRowData)
-    },
+    // changedRowData(newValue) {
+    //   this.showChangedRowData = newValue;
+    //   console.log(this.showChangedRowData)
+    // },
     rows(newValue) {
       if (newValue) {
         this.rows = newValue;
