@@ -728,6 +728,7 @@ export default {
             単価: row.単価,
             発注バラ数: row.発注バラ数,
             納品日: row.納品日,
+            取込区分:row.取込区分,
             発注区分: row.発注区分,
             更新担当者: row.更新担当者,
             更新日時: row.更新日時,
@@ -880,6 +881,8 @@ export default {
     async handleFileData() {
       // --- if checkExcelData is true then rows coming from database will be added directly and if its false means user is changing the values
       // --- so rows present before will get null
+
+      this.insertedData=[]
 
       if (this.checkExcelData) {
       } else {
