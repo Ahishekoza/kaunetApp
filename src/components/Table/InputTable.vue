@@ -875,6 +875,7 @@ export default {
             }
             // --- if deleteRows is false then show the small display
             else{
+              this.deleteRows=false;
               this.noChange=true
             }
           }
@@ -1259,7 +1260,7 @@ export default {
 
             this.spinner = false;
             // this.checkExcelData = false;
-            this.deleteRows = false;
+            // this.deleteRows = false;
             this.body={}
 
            
@@ -1288,7 +1289,7 @@ export default {
             this.rowIndex;
             this.spinner = false;
             // this.checkExcelData = false;
-            this.deleteRows = false;
+            // this.deleteRows = false;
             this.body={}
         
           })
