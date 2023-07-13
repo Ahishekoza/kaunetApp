@@ -756,7 +756,7 @@ export default {
         this.noChange = false;
       }
       // ----add the values or overwrite the values
-      else if (this.dataExcel.length) {
+      if (this.dataExcel.length) {
         this.dataExcel.map(async (row) => {
           await updateApi({
             登録: "登録",
@@ -780,6 +780,7 @@ export default {
         });
         this.checkExcelData = false;
         this.show = false;
+        this.handleUpdate()
       }
 
       // check for deletion if any row is selected or not
