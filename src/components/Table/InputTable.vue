@@ -34,11 +34,11 @@
           </q-card>
         </q-dialog>
      
-       
+       {{ customClass }}
 
 
 
-        <div :class="[this.customClass ? 'displayToast' : 'displayNAN' ]">
+        <div :class="customClass">
           <q-card style="height: fit-content; ">
             <q-card-section style="height: 90%; width: 600px; box-sizing: border-box; overflow-wrap: break-word;">
               <div class="q-mb-md" v-if="this.showChangedRowData.length" style="overflow-y: scroll; height: 160px;">
@@ -1281,10 +1281,10 @@ export default {
     customClass(){
 
       if(this.showChangedRowData.length> 0 || this.insertedData.length> 0 || this.deletedRows.length> 0) {
-        return true
+        return 'displayToast'
       }
       else{
-        return false
+        return 'displayNAN'
       }
 
     }
