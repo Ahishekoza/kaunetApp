@@ -33,11 +33,7 @@
             </q-card-actions>
           </q-card>
         </q-dialog>
-     
-       {{ customClass }}
-
-
-
+        
         <div :class="customClass">
           <q-card style="height: fit-content; ">
             <q-card-section style="height: 90%; width: 600px; box-sizing: border-box; overflow-wrap: break-word;">
@@ -61,7 +57,7 @@
                 <p class="text-h7">削除したデータ</p>
                 <q-separator/>
                 <ul>
-                  <li v-for="row in this.deleteRows"><span>{{ row.index }}</span>行目 倉庫:<span>{{ row.倉庫 }}</span> SKU:<span>{{row.sku}}</span> 品名:<span>"{{ row.品名 }}"</span></li>
+                  <li v-for="row in this.deletedRows"><span>{{ row.index }}</span>行目 倉庫:<span>{{ row.倉庫 }}</span> SKU:<span>{{row.sku}}</span> 品名:<span>"{{ row.品名 }}"</span></li>
                 </ul>
               </div>
             </q-card-section>
