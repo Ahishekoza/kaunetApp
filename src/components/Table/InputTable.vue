@@ -869,7 +869,14 @@ export default {
             this.data=[]
           }
           else{
-            this.noChange=true
+            // ---if deleteRows is true then dont show the small display
+            if(this.deleteRows){
+
+            }
+            // --- if deleteRows is false then show the small display
+            else{
+              this.noChange=true
+            }
           }
 
 
