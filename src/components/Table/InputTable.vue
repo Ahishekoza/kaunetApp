@@ -36,7 +36,7 @@
 
         <div :class="customClass">
           <q-card style="height: fit-content; ">
-            <q-card-section style="height: 90%; width: 600px; box-sizing: border-box; overflow-wrap: break-word;">
+            <q-card-section style="height: 90%; width: 650px; box-sizing: border-box; overflow-wrap: break-word;">
               <div class="q-mb-md" v-if="this.showChangedRowData.length" style="overflow-y: scroll; height: 160px;">
                 <p class="text-h7">更新したデータ</p>
                 <q-separator/>
@@ -1088,7 +1088,8 @@ export default {
       this.noChange = false;
       this.show = false;
       this.deletedRows = [];
-      this.showChangedRowData = []
+      this.showChangedRowData = [];
+      this.changedRowData = [];
       this.baseCheck = [];
       this.insertedData=[]
       this.MatchDate;
@@ -1131,16 +1132,16 @@ export default {
           });
       });
       
-
+      this.deleteRows = true;
+      this.selectedRows=[]
+      this.$store.state.selectRows = [];
       resolve();
      })
 
     
 
      Promise.all([deletedRows]).then(()=>{
-      this.deleteRows = true;
-      this.selectedRows=[]
-      this.$store.state.selectRows = [];
+     
       this.handleUpdate();
      })
       
@@ -1191,7 +1192,7 @@ export default {
             
 
             Promise.all([updateRows]).then(async () => {
-            this.changedRowData = [];
+            
             this.show = false;
             this.data=[]
           });
@@ -1241,7 +1242,7 @@ export default {
 
             Promise.all([updateRows]).then(async () => {
             
-            this.changedRowData = [];
+           
             this.show = false;
             this.data=[]
           });
@@ -1291,7 +1292,7 @@ export default {
     selectedRows(newValue) {
       this.selectedRows = newValue;
     },
-    showChangedRowData(newValue) {
+    changedRowData(newValue) {
       this.showChangedRowData = newValue;
       console.log(this.showChangedRowData)
     },
