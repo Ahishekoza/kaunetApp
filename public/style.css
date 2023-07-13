@@ -532,7 +532,7 @@ p{
         transition: all 0.9s ease-in-out;
         z-index: 10;
         position: fixed;
-        left: 40% !important;
+        left: 34% !important;
     }
 }
 
