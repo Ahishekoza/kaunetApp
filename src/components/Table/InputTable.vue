@@ -1162,7 +1162,7 @@ export default {
             }
         }
         if (this.data.length) {
-          const updateRows = new Promise((resolve, reject) => {
+          
             this.data.filter(async (row) => {
               await updateApi({
                 更新: "更新",
@@ -1186,17 +1186,10 @@ export default {
               });
             });
             this.showChangedRowData =  this.changedRowData
-
-            resolve();
-          });
-
-            
-
-            Promise.all([updateRows]).then(async () => {
             
             this.show = false;
             this.data=[]
-          });
+          
         } else {
           this.show = false;
           
@@ -1212,7 +1205,8 @@ export default {
         console.log(this.data);
 
         if (this.data.length) {
-          const updateRows = new Promise((resolve, reject) => {
+         
+          
             this.data.filter(async (row) => {
               await updateApi({
                 更新: "更新",
@@ -1234,19 +1228,12 @@ export default {
                 }
               });
             });
-            this.showChangedRowData =  this.changedRowData
-            resolve();
-          });
+            this.showChangedRowData =  this.changedRowData            
 
-          
-
-
-            Promise.all([updateRows]).then(async () => {
-            
-           
             this.show = false;
             this.data=[]
-          });
+       
+            
         } else {
           this.show = false;
           this.noChange = true;
