@@ -36,7 +36,7 @@
 
         <div :class="customClass">
           <q-card style="height: fit-content; ">
-            <q-card-section style="height: 90%; width: 650px; box-sizing: border-box; overflow-wrap: break-word;">
+            <q-card-section style="height: 90%; width: 700px; box-sizing: border-box; overflow-wrap: break-word;">
               <div class="q-mb-md" v-if="this.showChangedRowData.length" style="overflow-y: scroll; height: 160px;">
                 <p class="text-h7">更新したデータ</p>
                 <q-separator/>
