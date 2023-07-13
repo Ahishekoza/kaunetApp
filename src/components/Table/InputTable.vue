@@ -1294,6 +1294,7 @@ export default {
     },
     showChangedRowData(newValue) {
       this.showChangedRowData = newValue;
+      console.log(this.showChangedRowData)
     },
     rows(newValue) {
       if (newValue) {
