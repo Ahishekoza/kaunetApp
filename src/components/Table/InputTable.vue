@@ -756,7 +756,7 @@ export default {
         await this.handleProcess()
       }
       else{
-        this.noChange=true;
+        this.noChange=false;
       }
 
       // if (this.checkDate.length) {
@@ -819,6 +819,7 @@ export default {
     },
 
     async handleDelete() {
+      this.selectedRows=this.selectRows
       this.selectedRows.map(async (row) => {
         await deleteApi({
           削除: "削除",
