@@ -1187,12 +1187,12 @@ export default {
             resolve();
           });
 
-            this.showChangedRowData =  this.changedRowData
-            this.changedRowData = [];
+            
 
             Promise.all([updateRows]).then(async () => {
+            this.showChangedRowData =  this.changedRowData
+            this.changedRowData = [];
             this.show = false;
-
             this.data=[]
           });
         } else {
@@ -1236,14 +1236,13 @@ export default {
             resolve();
           });
 
-            this.showChangedRowData =  this.changedRowData
-            this.changedRowData = [];
+          
 
 
             Promise.all([updateRows]).then(async () => {
+            this.showChangedRowData =  this.changedRowData
+            this.changedRowData = [];
             this.show = false;
-
-           
             this.data=[]
           });
         } else {
