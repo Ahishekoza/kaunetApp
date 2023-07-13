@@ -33,7 +33,7 @@
             </q-card-actions>
           </q-card>
         </q-dialog>
-        
+
         <div :class="customClass">
           <q-card style="height: fit-content; ">
             <q-card-section style="height: 90%; width: 600px; box-sizing: border-box; overflow-wrap: break-word;">
@@ -1291,6 +1291,9 @@ export default {
     },
     selectedRows(newValue) {
       this.selectedRows = newValue;
+    },
+    showChangedRowData(newValue) {
+      this.showChangedRowData = newValue;
     },
     rows(newValue) {
       if (newValue) {
