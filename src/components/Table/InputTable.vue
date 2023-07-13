@@ -190,7 +190,7 @@
             </q-card-actions>
           </q-card>
         </div>
-
+{{ customClass }}
         <div class="q-my-md">
           <div class="container">
             <div class="row">
@@ -739,22 +739,23 @@ export default {
 
       this.rows.filter((row) => {
         const validate = isDateValid(row.納品日);
-        const reminder = row.発注バラ数 % row.発注ロット !== 0;
-        if (!validate && reminder) {
-          this.checkDate.push({ ...row, error: "納品日,発注バラ数" });
-        } else {
+        // const reminder = row.発注バラ数 % row.発注ロット !== 0;
+        // if (!validate && reminder) {
+        //   this.checkDate.push({ ...row, error: "納品日,発注バラ数" });
+        // } else {
           if (!validate) {
             this.checkDate.push({ ...row, error: "納品日" });
           }
-          if (reminder) {
-            this.checkDate.push({ ...row, error: "発注バラ数" });
-          }
-        }
+          // if (reminder) {
+          //   this.checkDate.push({ ...row, error: "発注バラ数" });
+          // }
+        // }
       });
 
       if(this.checkDate.length===0){
         await this.handleDelete()
-        await this.handleUpdate();
+        await this.handleUpdate()
+        await this.handleInsert()
         await this.handleFileData()
       }
       else{
@@ -861,8 +862,9 @@ export default {
                 }
               });
             });
+            console.log(this.changedRowData)
             this.showChangedRowData =  this.changedRowData
-            this.changedRowData=[]
+            // this.changedRowData=[]
             this.show = false;
             this.data=[]
           }
@@ -1249,7 +1251,7 @@ export default {
             this.rowIndex;
 
             this.spinner = false;
-            this.checkExcelData = false;
+            // this.checkExcelData = false;
             this.deleteRows = false;
             this.body={}
 
@@ -1278,7 +1280,7 @@ export default {
 
             this.rowIndex;
             this.spinner = false;
-            this.checkExcelData = false;
+            // this.checkExcelData = false;
             this.deleteRows = false;
             this.body={}
         
