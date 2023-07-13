@@ -807,7 +807,8 @@ export default {
 
     async handleDelete() {
       this.selectedRows=this.selectRows
-      this.selectedRows.map(async (row) => {
+      if(this.selectedRows.length){
+        this.selectedRows.map(async (row) => {
         await deleteApi({
           削除: "削除",
           倉庫: row.倉庫,
@@ -830,6 +831,11 @@ export default {
       this.deleteRows = true;
       this.selectedRows=[]
       this.$store.state.selectRows = [];
+      }
+      else{
+        this.deleteRows=false
+      }
+   
     },
 
     async handleUpdate() {
@@ -875,7 +881,7 @@ export default {
             }
             // --- if deleteRows is false then show the small display
             else{
-              this.deleteRows=false;
+            
               this.noChange=true
             }
           }
