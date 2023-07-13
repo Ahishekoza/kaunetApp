@@ -38,63 +38,31 @@
 
 
 
-        <div :class="[this.showChangedRowData.length>0 ? 'displayToast' : 'displayNAN' ]">
-          <q-card style="height: 600px; ">
+        <div :class="[customClass ? 'displayToast' : 'displayNAN' ]">
+          <q-card style="height: fit-content; ">
             <q-card-section style="height: 90%; width: 600px; box-sizing: border-box; overflow-wrap: break-word;">
-              <div class="q-mb-md" v-if="this.showChangedRowData" style="overflow-y: scroll; height: 160px;">
+              <div class="q-mb-md" v-if="this.showChangedRowData.length" style="overflow-y: scroll; height: 160px;">
                 <p class="text-h7">更新したデータ</p>
-                <ul>
-                  <li v-for="row in this.showChangedRowData">{{ row }}</li>
-                </ul>
                 <q-separator/>
+                <ul>
+                  <li v-for="row in this.showChangedRowData"><span>{{ row.index }}</span>行目 倉庫:<span>{{ row.倉庫 }}</span> SKU:<span>{{row.sku}}</span> 品名:<span>"{{ row.品名 }}"</span></li>
+                </ul>
               </div>
               <q-separator/>
-              <div class="q-mb-md" v-if="this.showChangedRowData" style="overflow-y: scroll; height: 160px;">
-abhishek..........................................................................................
-Lorem ipsum dolor sit amet, consectetur adipisicing elit. Saepe sunt, recusandae non consequatur ab magni! Provident optio inventore quisquam esse! Cumque est beatae placeat suscipit aliquid, exercitationem sequi rem fugit!
-Mollitia error cupiditate quasi sunt molestiae, vitae voluptatum ipsam optio ducimus rem laudantium nostrum. Officia laboriosam sint delectus voluptates eius quod excepturi itaque! Pariatur amet, provident vel molestiae nesciunt autem?
-Blanditiis nihil officiis voluptates a in nam fuga eaque dolorem facere sapiente vel reprehenderit aperiam nemo, et quam eum sit voluptatum nobis voluptas deserunt. Nesciunt labore neque nulla veritatis illo.
-Culpa voluptas totam neque magnam placeat molestiae iusto, repellat sit excepturi consequatur quod facilis aut dolorum sequi officiis eveniet, qui rem omnis a et ducimus maiores consectetur vero obcaecati! Quidem!
-Esse tempora commodi in dolore molestiae saepe, adipisci assumenda non deleniti iusto eaque tempore obcaecati doloribus? Omnis molestiae ex amet voluptatem totam illum. Aspernatur dolorem voluptates possimus! Totam, earum laudantium?
-Unde eos dolore nisi in omnis odit assumenda? Consequuntur, consequatur enim aperiam laborum exercitationem reiciendis officiis ipsum voluptatum corporis fuga sapiente. Placeat voluptate molestias totam fugiat doloremque aut a ipsum.
-Libero pariatur sit architecto dolorum quis, delectus odit, repudiandae eos tempora ea saepe debitis dolor doloribus ut nostrum voluptates consequatur expedita ratione. Mollitia delectus eum natus consequuntur nemo, aut asperiores?
-Molestias at labore saepe voluptatem aliquam tempore minus quisquam veritatis maxime, quo eveniet quia ex cumque nemo doloribus quibusdam aperiam harum quidem facere, quod, adipisci error quis. Mollitia, aliquid pariatur.
-Magnam eos qui debitis sit sequi natus nemo illo doloremque a, numquam et amet porro dolores doloribus magni dolorem ex sed. Animi beatae maxime aspernatur deleniti illum quod est natus?
-Ratione mollitia ducimus deserunt magnam animi possimus laudantium doloribus vitae. Minus sed nihil odio doloribus assumenda dolore laboriosam harum aut cum unde distinctio fugiat esse, ratione saepe maxime earum ipsam.
-At hic impedit quos quam aspernatur repudiandae dolore, rerum aliquam natus dolor quia laborum sapiente nam illo quas harum non earum aliquid nesciunt! Ut aliquid illum perferendis vero porro nobis.
-Recusandae reprehenderit, est cumque molestiae obcaecati eum incidunt exercitationem, ducimus dolorum enim voluptate cum minus natus possimus delectus repellendus esse assumenda repudiandae. Culpa facere et provident magni officiis! Accusantium, nostrum?
-Esse quae, natus sequi repellat facilis unde beatae consequatur, asperiores aliquid expedita sapiente ullam? Eligendi accusantium ut voluptates doloribus voluptas libero. Quos esse iure perspiciatis magnam eius, enim delectus corrupti.
-Iusto provident totam veniam quisquam aperiam sit asperiores debitis consequuntur soluta! Optio hic doloremque, ullam iste ducimus adipisci cupiditate officiis, sint velit, mollitia quo culpa libero. Officia, veritatis? Voluptas, laboriosam.
-Laboriosam quo quasi odio explicabo ratione sint, fuga omnis in voluptatem earum deleniti nisi sed tenetur impedit non mollitia distinctio minus expedita, iusto alias ad tempora. Blanditiis voluptates doloremque laborum!
-Ea voluptas similique deleniti consectetur. Libero dolorem quidem corrupti cupiditate ipsa laboriosam quisquam harum nemo eum quos veniam quae sint voluptas sunt est voluptate provident, quis explicabo officiis, excepturi consectetur?
-Pariatur quaerat cumque provident in magnam id perferendis laboriosam rem eos, tempore, error quidem corrupti alias maxime, magni ducimus. Laboriosam iure sunt earum amet voluptates dolorem numquam. Dolor, voluptate debitis!
-Laboriosam natus est error dignissimos quasi exercitationem odio tempore magni architecto corporis, dolorum et, libero eius numquam qui praesentium. Harum blanditiis excepturi a beatae saepe suscipit, nemo dignissimos ducimus illo?
-Excepturi autem tempore laboriosam necessitatibus ipsam asperiores vel reiciendis inventore distinctio neque odit nemo debitis dolore sint quam eaque facere expedita rerum impedit numquam, nostrum dicta adipisci nobis? Repellendus, non?
-Voluptatum eius, quisquam aliquid debitis at possimus, incidunt voluptate fugit officia repellendus laudantium dolorem, adipisci illum atque quibusdam eligendi! Quam dolore optio sequi quos? Illo natus similique itaque quidem. Obcaecati.
+              <div class="q-mb-md" v-if="this.insertedData.length" style="overflow-y: scroll; height: 160px;">
+                <p class="text-h7">登録したデータ</p>
+                <q-separator/>
+                <ul>
+                  <li v-for="row in this.insertedData"><span>{{ row.index }}</span>行目 倉庫:<span>{{ row.倉庫 }}</span> SKU:<span>{{row.sku}}</span> 品名:<span>"{{ row.品名 }}"</span></li>
+                </ul>
               </div>
               <q-separator/>
-              <div  v-if="this.showChangedRowData" style="overflow-y: scroll; height: 160px;">
-abhishek..........................................................................................
-Lorem ipsum dolor sit amet, consectetur adipisicing elit. Saepe sunt, recusandae non consequatur ab magni! Provident optio inventore quisquam esse! Cumque est beatae placeat suscipit aliquid, exercitationem sequi rem fugit!
-Mollitia error cupiditate quasi sunt molestiae, vitae voluptatum ipsam optio ducimus rem laudantium nostrum. Officia laboriosam sint delectus voluptates eius quod excepturi itaque! Pariatur amet, provident vel molestiae nesciunt autem?
-Blanditiis nihil officiis voluptates a in nam fuga eaque dolorem facere sapiente vel reprehenderit aperiam nemo, et quam eum sit voluptatum nobis voluptas deserunt. Nesciunt labore neque nulla veritatis illo.
-Culpa voluptas totam neque magnam placeat molestiae iusto, repellat sit excepturi consequatur quod facilis aut dolorum sequi officiis eveniet, qui rem omnis a et ducimus maiores consectetur vero obcaecati! Quidem!
-Esse tempora commodi in dolore molestiae saepe, adipisci assumenda non deleniti iusto eaque tempore obcaecati doloribus? Omnis molestiae ex amet voluptatem totam illum. Aspernatur dolorem voluptates possimus! Totam, earum laudantium?
-Unde eos dolore nisi in omnis odit assumenda? Consequuntur, consequatur enim aperiam laborum exercitationem reiciendis officiis ipsum voluptatum corporis fuga sapiente. Placeat voluptate molestias totam fugiat doloremque aut a ipsum.
-Libero pariatur sit architecto dolorum quis, delectus odit, repudiandae eos tempora ea saepe debitis dolor doloribus ut nostrum voluptates consequatur expedita ratione. Mollitia delectus eum natus consequuntur nemo, aut asperiores?
-Molestias at labore saepe voluptatem aliquam tempore minus quisquam veritatis maxime, quo eveniet quia ex cumque nemo doloribus quibusdam aperiam harum quidem facere, quod, adipisci error quis. Mollitia, aliquid pariatur.
-Magnam eos qui debitis sit sequi natus nemo illo doloremque a, numquam et amet porro dolores doloribus magni dolorem ex sed. Animi beatae maxime aspernatur deleniti illum quod est natus?
-Ratione mollitia ducimus deserunt magnam animi possimus laudantium doloribus vitae. Minus sed nihil odio doloribus assumenda dolore laboriosam harum aut cum unde distinctio fugiat esse, ratione saepe maxime earum ipsam.
-At hic impedit quos quam aspernatur repudiandae dolore, rerum aliquam natus dolor quia laborum sapiente nam illo quas harum non earum aliquid nesciunt! Ut aliquid illum perferendis vero porro nobis.
-Recusandae reprehenderit, est cumque molestiae obcaecati eum incidunt exercitationem, ducimus dolorum enim voluptate cum minus natus possimus delectus repellendus esse assumenda repudiandae. Culpa facere et provident magni officiis! Accusantium, nostrum?
-Esse quae, natus sequi repellat facilis unde beatae consequatur, asperiores aliquid expedita sapiente ullam? Eligendi accusantium ut voluptates doloribus voluptas libero. Quos esse iure perspiciatis magnam eius, enim delectus corrupti.
-Iusto provident totam veniam quisquam aperiam sit asperiores debitis consequuntur soluta! Optio hic doloremque, ullam iste ducimus adipisci cupiditate officiis, sint velit, mollitia quo culpa libero. Officia, veritatis? Voluptas, laboriosam.
-Laboriosam quo quasi odio explicabo ratione sint, fuga omnis in voluptatem earum deleniti nisi sed tenetur impedit non mollitia distinctio minus expedita, iusto alias ad tempora. Blanditiis voluptates doloremque laborum!
-Ea voluptas similique deleniti consectetur. Libero dolorem quidem corrupti cupiditate ipsa laboriosam quisquam harum nemo eum quos veniam quae sint voluptas sunt est voluptate provident, quis explicabo officiis, excepturi consectetur?
-Pariatur quaerat cumque provident in magnam id perferendis laboriosam rem eos, tempore, error quidem corrupti alias maxime, magni ducimus. Laboriosam iure sunt earum amet voluptates dolorem numquam. Dolor, voluptate debitis!
-Laboriosam natus est error dignissimos quasi exercitationem odio tempore magni architecto corporis, dolorum et, libero eius numquam qui praesentium. Harum blanditiis excepturi a beatae saepe suscipit, nemo dignissimos ducimus illo?
-Excepturi autem tempore laboriosam necessitatibus ipsam asperiores vel reiciendis inventore distinctio neque odit nemo debitis dolore sint quam eaque facere expedita rerum impedit numquam, nostrum dicta adipisci nobis? Repellendus, non?
-Voluptatum eius, quisquam aliquid debitis at possimus, incidunt voluptate fugit officia repellendus laudantium dolorem, adipisci illum atque quibusdam eligendi! Quam dolore optio sequi quos? Illo natus similique itaque quidem. Obcaecati.
+              <div  v-if="this.deletedRows.length" style="overflow-y: scroll; height: 160px;">
+                <p class="text-h7">削除したデータ</p>
+                <q-separator/>
+                <ul>
+                  <li v-for="row in this.deleteRows"><span>{{ row.index }}</span>行目 倉庫:<span>{{ row.倉庫 }}</span> SKU:<span>{{row.sku}}</span> 品名:<span>"{{ row.品名 }}"</span></li>
+                </ul>
               </div>
             </q-card-section>
             <q-card-actions align="right">
@@ -1309,6 +1277,17 @@ export default {
     errorShow() {
       return this.error;
     },
+    // --- computed class for msgs displaying ---
+    customClass(){
+
+      if(this.showChangedRowData.length> 0 || this.insertedData.length> 0 || this.deletedRows.length> 0) {
+        return true
+      }
+      else{
+        return false
+      }
+
+    }
   },
   watch: {
     error(newValue) {
