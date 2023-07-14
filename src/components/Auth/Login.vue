@@ -97,8 +97,10 @@ export default {
       await authApi({...this.loginUser}).then((response)=>{
         if(response.status===200) {
             const user =  JSON.parse(response.data.body)
-            console.log(user[0])
-            console.log({...user[0],パスワード:''})
+            const parsedUser =  {...user[0],パスワード:''}
+
+            localStorage.setItem('kaunet_user_data',JSON.stringify(parsedUser))
+
             this.$router.push({name:'InputTable'})
         }
       }).catch((error)=>{

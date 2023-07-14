@@ -17,14 +17,15 @@ const routes = [
   {
     path: '/main',
     name: 'InputTable',
-    beforeEnter:guardRoute,
+    beforeEnter: guardRoute,
     component: InputTable
   },
 ]
 
 
 function guardRoute (req,res,next){
-  if(localStorage.getItem('session')){
+  if(localStorage.getItem('kaunet_user_data')){
+    console.log("hi")
     next()
   }
   else{
