@@ -26,7 +26,7 @@ const routes = [
 async function guardRoute (req,res,next){
   if(localStorage.getItem('kaunet_user_data') && localStorage.getItem('kaunet_user_token')){
      await authApi({token:localStorage.getItem('kaunet_user_token')}).then((response)=>{
-      if(response.data.message === "OK"){
+      if(response.data.message === "OKkkk"){
         next()
       }
      }).catch((error)=>{
