@@ -65,6 +65,7 @@ export default {
   },
   methods: {
     async handleSubmit() {
+        this.user= {...this.user,ログイン:"ログイン"}
       await authApi({...this.user}).then((response)=>{
         console.log(response);
       }).catch((error)=>{
