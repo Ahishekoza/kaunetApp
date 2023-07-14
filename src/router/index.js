@@ -24,8 +24,8 @@ const routes = [
 
 
 function guardRoute (req,res,next){
-  if(localStorage.getItem('kaunet_user_data')){
-    
+  if(localStorage.getItem('kaunet_user_data') && localStorage.getItem('kaunet_user_token')){
+    console.log(typeof(localStorage.getItem('kaunet_user_token')))    
     next()
   }
   else{

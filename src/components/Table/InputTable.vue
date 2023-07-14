@@ -597,7 +597,8 @@ export default {
     };
   },
   async mounted() {
-    this.layoutSpinner = true;
+    if(localStorage.getItem("kaunet_user_data") && localStorage.getItem("kaunet_user_token")){
+      this.layoutSpinner = true;
     // ---担当者
     await commonApi("v_発注管理_担当者", "GET", {})
       .then((response) => {
@@ -668,6 +669,10 @@ export default {
       });
 
     this.layoutSpinner = false;
+    }
+    else{
+      this.$router.push({name:'home'})
+    }
   },
   methods: {
     handleDropdown() {
