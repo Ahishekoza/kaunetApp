@@ -47,7 +47,6 @@
 </template>
 <script>
 import Layout from "@/components/Layout/Layout.vue";
-import Button from "@/components/Button.vue";
 import { authApi } from "../../services/apiCreation";
 import { User } from "../../InputClass";
 import { ref } from "vue";
@@ -86,7 +85,6 @@ export default {
   },
   components: {
     Layout,
-    Button,
   },
 };
 </script>
