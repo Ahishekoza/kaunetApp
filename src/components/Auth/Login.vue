@@ -99,6 +99,8 @@ export default {
             const user =  JSON.parse(response.data.body)
             const parsedUser =  {...user[0],パスワード:''}
 
+            localStorage.setItem("kaunet_user_token",response.data.token)
+
             localStorage.setItem('kaunet_user_data',JSON.stringify(parsedUser))
 
             this.$router.push({name:'InputTable'})

@@ -2,7 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 import Register from  '../components/Auth/Register.vue'
 import InputTable from '../components/Table/InputTable.vue'
-import { getSession } from '@/session'
+import { authApi } from '@/services/apiCreation'
 const routes = [
   {
     path: '/',
@@ -25,7 +25,7 @@ const routes = [
 
 function guardRoute (req,res,next){
   if(localStorage.getItem('kaunet_user_data')){
-    console.log("hi")
+    
     next()
   }
   else{
