@@ -4,41 +4,42 @@
       <q-toolbar-title>
         {{ title }}
       </q-toolbar-title>
-      <Button color="deep-orange" label="ログアウト" textColor="white"/>
-      
+      <div v-if="user">
+      Welcome , {{ user.担当者 }}
+      <Button color="deep-orange" :handleEffect="handleLogout" label="ログアウト" textColor="white"/>
+      </div>
+      <div v-else>
+        <Button color="deep-orange" :handleEffect="handleLogin"  label="ログイン" textColor="white"/>
+      </div>
     </q-toolbar>
   </div>
 </template>
 <script>
 
 import Button from '../Button.vue';
-import { ref } from 'vue';
 export default{
     name:'Header',
     components:{
         Button
     },
-    
-    setup(){
-      
-       return{
-           
-       }
-   },
-
-   beforeCreate(){
-
-   const  user = JSON.parse(localStorage.getItem('kaunet_user_data'));
-
-   },
-
     props:{
       title:{
         type:String,
         default:()=> "KOLOR-FIX"
       }
+    },
+    setup(){
+       
+        return{
+            
+        }
+    },
+    computed:{
+      user(){
+        const user =  localStorage.getItem('kaunet_user_data')
+        return user ? JSON.parse(user) : 'KO'
+      }
     }
-    
 
 }
 </script>
