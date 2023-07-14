@@ -97,7 +97,8 @@ export default {
       await authApi({...this.loginUser}).then((response)=>{
         if(response.status===200) {
             const user =  JSON.parse(response.data.body)
-            console.log(user)
+            console.log(user[0])
+            console.log({...user[0],パスワード:''})
             this.$router.push({name:'InputTable'})
         }
       }).catch((error)=>{
