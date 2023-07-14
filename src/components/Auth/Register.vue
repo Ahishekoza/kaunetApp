@@ -67,7 +67,9 @@ export default {
     async handleSubmit() {
         this.user= {...this.user,登録:"登録"}
       await authApi({...this.user}).then((response)=>{
-        console.log(response);
+        if(response.status === 200) {
+            this.$router.push({name: 'Login'})
+        }
       }).catch((error)=>{
         console.log(error);
       })
