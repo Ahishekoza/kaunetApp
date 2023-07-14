@@ -5,11 +5,8 @@
         {{ title }}
       </q-toolbar-title>
       <div v-if="user" class="row justify-evenly items-center">
-      <p>Welcome , {{ user.担当者 }}</p>
+      <p class="q-mr-md">Welcome , {{ user.担当者 }}</p>
       <Button color="deep-orange" :handleEffect="handleLogout" label="ログアウト" textColor="white"/>
-      </div>
-      <div v-else>
-        <Button color="deep-orange" :handleEffect="handleLogin"  label="ログイン" textColor="white"/>
       </div>
     </q-toolbar>
   </div>

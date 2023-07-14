@@ -72,8 +72,7 @@
 <script>
 import Layout from "@/components/Layout/Layout.vue";
 import { authApi } from "../../services/apiCreation";
-import {setSession} from '../../session'
-import { ref, toHandlerKey } from "vue";
+import { ref} from "vue";
 export default {
   name: "Login",
   components: {
