@@ -39,7 +39,11 @@
                   </template>
                 </q-input>
               </q-card-section>
-              <q-card-actions align="center" style="height: 60%">
+
+              <div class="text-center q-mt-lg">
+                <router-link class="routerlink" :to="{name:'Register'}" style="text-decoration: none;"><span>まだ、登録をやっていない場いは、最初やりましょう</span></router-link>
+              </div>
+              <q-card-actions align="center" style="height: 40%">
                 <div>
                   <q-btn
                     label="ログイン"
@@ -68,7 +72,7 @@
 <script>
 import Layout from "@/components/Layout/Layout.vue";
 import { authApi } from "../../services/apiCreation";
-
+import { $q } from 'quasar'
 import { ref } from "vue";
 export default {
   name: "Login",
@@ -78,9 +82,11 @@ export default {
   setup(){
     const loginUser =  ref({ユーザid:'',パスワード:''})
     const showPassword = ref(false)
+    
     return {
         loginUser,
-        showPassword
+        showPassword,
+       
     }
   },
   methods: {
@@ -90,7 +96,10 @@ export default {
 
       await authApi({...this.loginUser}).then((response)=>{
         if(response.status===200) {
-            console.log(JSON.parse(response.data))
+            $q.LocalStorage.set("Kaunet_user_data", response.data.body)
+            $q.SessionStorage.set("Kaunet_user_data", response.data.body)
+            $q.LocalStorage.getItem("Kaunet_user_data")
+
         }
       }).catch((error)=>{
         console.log(error)
@@ -109,3 +118,10 @@ export default {
   },
 };
 </script>
+<style>
+.routerlink{
+
+    display: block;
+    color: black
+}
+</style>

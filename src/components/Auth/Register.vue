@@ -19,7 +19,10 @@
                 </template>
                 </q-input>
               </q-card-section>
-              <q-card-actions align="center" style="height: 60%;">
+              <div class="text-center q-mt-lg">
+                <router-link class="routerlink" :to="{name:'home'}" style="text-decoration: none;"><span>もう登録されていますか。ログインしましょう</span></router-link>
+              </div>
+              <q-card-actions align="center" style="height: 30%;">
                 <div>
                   <q-btn
                     label="登録"
