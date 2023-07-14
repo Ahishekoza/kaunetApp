@@ -37,7 +37,7 @@ export default{
     computed:{
       user(){
         const user =  localStorage.getItem('kaunet_user_data')
-        return user ? JSON.parse(user) : 'KO'
+        return JSON.parse(user) 
       }
     }
 
