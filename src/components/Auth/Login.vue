@@ -90,7 +90,7 @@ export default {
 
       await authApi({...this.loginUser}).then((response)=>{
         if(response.status===200) {
-            console.log(JSON.parse(response.data.body))
+            console.log(JSON.parse(response.data))
         }
       }).catch((error)=>{
         console.log(error)
