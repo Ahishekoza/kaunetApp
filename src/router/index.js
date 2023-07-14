@@ -1,8 +1,8 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
-import Login from  '../components/Auth/Login.vue'
 import Register from  '../components/Auth/Register.vue'
 import InputTable from '../components/Table/InputTable.vue'
+import { getSession } from '@/session'
 const routes = [
   {
     path: '/',
@@ -17,9 +17,20 @@ const routes = [
   {
     path: '/main',
     name: 'InputTable',
+    beforeEnter:guardRoute,
     component: InputTable
   },
 ]
+
+
+function guardRoute (req,res,next){
+  if(localStorage.getItem('session')){
+    next()
+  }
+  else{
+    next({name: 'home'})
+  }
+}
 
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),

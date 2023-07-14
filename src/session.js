@@ -5,8 +5,8 @@ export const getSession=()=>{
     return session ?  JSON.parse(session) : null
 }
 
-export const setSession=(sessionData)=>{
-    localStorage.setItem(SESSION_KEY, sessionData)
+export const setSession=(sessionData,token)=>{
+    localStorage.setItem(SESSION_KEY, sessionData,token)
 }
 
 export const clearSession=()=>{

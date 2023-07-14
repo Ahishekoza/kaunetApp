@@ -72,8 +72,8 @@
 <script>
 import Layout from "@/components/Layout/Layout.vue";
 import { authApi } from "../../services/apiCreation";
-import { $q } from 'quasar'
-import { ref } from "vue";
+import {setSession} from '../../session'
+import { ref, toHandlerKey } from "vue";
 export default {
   name: "Login",
   components: {
@@ -96,10 +96,9 @@ export default {
 
       await authApi({...this.loginUser}).then((response)=>{
         if(response.status===200) {
-            $q.LocalStorage.set("Kaunet_user_data", response.data.body)
-            $q.SessionStorage.set("Kaunet_user_data", response.data.body)
-            $q.LocalStorage.getItem("Kaunet_user_data")
-
+            const user =  JSON.parse(response.data.body[0])
+            console.log(user)
+            this.$router.push({name:'InputTable'})
         }
       }).catch((error)=>{
         console.log(error)
