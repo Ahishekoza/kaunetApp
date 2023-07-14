@@ -21,3 +21,8 @@ export const deleteApi=(body)=>{
     return HTTP.post('apigw/update',{body:body})
 
 }
+
+export const authApi = async(body)=>{
+    console.log(body)
+    return HTTP.post('apigw/auth',{body:body})
+}

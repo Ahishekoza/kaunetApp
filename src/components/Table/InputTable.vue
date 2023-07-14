@@ -35,93 +35,81 @@
         </q-dialog>
 
         <div :class="customClass">
-          <q-card style="height: fit-content; ">
-            <q-card-section style="height: 90%; width: 700px; box-sizing: border-box; overflow-wrap: break-word;">
-              <div class="q-mb-md" v-if="this.showChangedRowData.length" style="overflow-y: scroll; height: 160px;">
+          <q-card style="height: fit-content">
+            <q-card-section
+              style="
+                height: 90%;
+                width: 700px;
+                box-sizing: border-box;
+                overflow-wrap: break-word;
+              "
+            >
+              <div
+                class="q-mb-md"
+                v-if="this.showChangedRowData.length"
+                style="overflow-y: scroll; height: 160px"
+              >
                 <p class="text-h7">更新したデータ</p>
-                <q-separator/>
+                <q-separator />
                 <ul>
-                  <li v-for="row in this.showChangedRowData"><span>{{ row.index }}</span>行目 倉庫:<span>{{ row.倉庫 }}</span> SKU:<span>{{row.sku}}</span> 品名:<span>"{{ row.品名 }}"</span></li>
+                  <li v-for="row in this.showChangedRowData">
+                    <span>{{ row.index }}</span
+                    >行目 倉庫:<span>{{ row.倉庫 }}</span> SKU:<span>{{
+                      row.sku
+                    }}</span>
+                    品名:<span>"{{ row.品名 }}"</span>
+                  </li>
                 </ul>
               </div>
-              <q-separator/>
-              <div class="q-mb-md" v-if="this.insertedData.length" style="overflow-y: scroll; height: 160px;">
+              <q-separator />
+              <div
+                class="q-mb-md"
+                v-if="this.insertedData.length"
+                style="overflow-y: scroll; height: 160px"
+              >
                 <p class="text-h7">登録したデータ</p>
-                <q-separator/>
+                <q-separator />
                 <ul>
-                  <li v-for="row in this.insertedData"><span>{{ row.index }}</span>行目 倉庫:<span>{{ row.倉庫 }}</span> SKU:<span>{{row.sku}}</span> 品名:<span>"{{ row.品名 }}"</span></li>
+                  <li v-for="row in this.insertedData">
+                    <span>{{ row.index }}</span
+                    >行目 倉庫:<span>{{ row.倉庫 }}</span> SKU:<span>{{
+                      row.sku
+                    }}</span>
+                    品名:<span>"{{ row.品名 }}"</span>
+                  </li>
                 </ul>
               </div>
-              <q-separator/>
-              <div  v-if="this.deletedRows.length" style="overflow-y: scroll; height: 160px;">
+              <q-separator />
+              <div
+                v-if="this.deletedRows.length"
+                style="overflow-y: scroll; height: 160px"
+              >
                 <p class="text-h7">削除したデータ</p>
-                <q-separator/>
+                <q-separator />
                 <ul>
-                  <li v-for="row in this.deletedRows"><span>{{ row.index }}</span>行目 倉庫:<span>{{ row.倉庫 }}</span> SKU:<span>{{row.sku}}</span> 品名:<span>"{{ row.品名 }}"</span></li>
+                  <li v-for="row in this.deletedRows">
+                    <span>{{ row.index }}</span
+                    >行目 倉庫:<span>{{ row.倉庫 }}</span> SKU:<span>{{
+                      row.sku
+                    }}</span>
+                    品名:<span>"{{ row.品名 }}"</span>
+                  </li>
                 </ul>
               </div>
             </q-card-section>
             <q-card-actions align="right">
               <Button
-              label="はい"
-              color="cyan"
-              textColor="black"
-              InputClass="bfsize"
-              class="q-mx-sm"
-              :handleEffect="handleToast"
-            />
+                label="はい"
+                color="cyan"
+                textColor="black"
+                InputClass="bfsize"
+                class="q-mx-sm"
+                :handleEffect="handleToast"
+              />
             </q-card-actions>
           </q-card>
         </div>
-
-
-        <!-- 
-        <Toast label="すでに更新 " show="true" :itemsArray="this.baseCheck">
-          <template v-slot:default>
-            <p v-for="row in this.baseCheck">
-              {{ row }}
-            </p>
-          </template>
-          <template v-slot:button>
-            <Button
-              label="はい"
-              color="cyan"
-              textColor="black"
-              InputClass="bfsize"
-              :handleEffect="handleToast"
-            />
-          </template>
-        </Toast> -->
-
-        <!-- <Toast label="削除" show="true" :itemsArray="this.selectedRows">
-          <template v-slot:default>
-            <p v-for="row in this.selectedRows">
-              <span>{{ row.index }}</span
-              >行目 倉庫:<span>{{ row.倉庫 }}</span> SKU:<span>{{
-                row.sku
-              }}</span>
-              品名:<span>"{{ row.品名 }}"</span>
-            </p>
-          </template>
-          <template v-slot:button>
-            <Button
-              label="はい"
-              color="cyan"
-              textColor="black"
-              InputClass="bfsize"
-              class="q-mx-sm"
-              :handleEffect="handleToast"
-            />
-             <Button
-              label="いいえ"
-              color="cyan"
-              textColor="black"
-              InputClass="bfsize"
-              :handleEffect="handleselectedDelete"
-            /> 
-          </template>
-        </Toast> -->
-
+        
         <Toast
           label="入力に誤りがあります。"
           show="true"
@@ -147,31 +135,6 @@
           </template>
         </Toast>
 
-        <!-- <Toast
-          label="更新したデータ"
-          show="true"
-          :itemsArray="this.showChangedRowData"
-        >
-          <template v-slot:default>
-            <p v-for="row in this.showChangedRowData">
-              <span>{{ row.index }}</span
-              >行目 倉庫:<span>{{ row.倉庫 }}</span> SKU:<span>{{
-                row.sku
-              }}</span>
-              品名:<span>"{{ row.品名 }}"</span>
-            </p>
-          </template>
-          <template v-slot:button>
-            <Button
-              label="はい"
-              color="cyan"
-              textColor="black"
-              InputClass="bfsize"
-              :handleEffect="handleToast"
-            />
-          </template>
-        </Toast> -->
-
         <div :class="[this.noChange ? 'displayToast' : 'displayNAN']">
           <q-card style="height: 120px; width: 500px">
             <q-card-section style="margin: 0 auto">
@@ -190,7 +153,7 @@
             </q-card-actions>
           </q-card>
         </div>
-{{ customClass }}
+
         <div class="q-my-md">
           <div class="container">
             <div class="row">
@@ -724,14 +687,12 @@ export default {
     async handleEffect() {
       //Writing Delete Functionality
       // If we have selected rows then it will get deleted or else it will get updatwe
- 
 
-      // collect all the rows and throws at onces 
+      // collect all the rows and throws at onces
       // 更新 // showChangedRows
       // 登録 // insertedData
       // 削除 // selectedRows
       // すでに更新 // baseCheck
-      
 
       this.show = !this.show;
 
@@ -743,23 +704,22 @@ export default {
         // if (!validate && reminder) {
         //   this.checkDate.push({ ...row, error: "納品日,発注バラ数" });
         // } else {
-          if (!validate) {
-            this.checkDate.push({ ...row, error: "納品日" });
-          }
-          // if (reminder) {
-          //   this.checkDate.push({ ...row, error: "発注バラ数" });
-          // }
+        if (!validate) {
+          this.checkDate.push({ ...row, error: "納品日" });
+        }
+        // if (reminder) {
+        //   this.checkDate.push({ ...row, error: "発注バラ数" });
+        // }
         // }
       });
 
-      if(this.checkDate.length===0){
-        await this.handleDelete()
-        await this.handleUpdate()
-        await this.handleInsert()
-        await this.handleFileData()
-      }
-      else{
-        this.noChange=false;
+      if (this.checkDate.length === 0) {
+        await this.handleDelete();
+        await this.handleUpdate();
+        await this.handleInsert();
+        await this.handleFileData();
+      } else {
+        this.noChange = false;
       }
 
       // if (this.checkDate.length) {
@@ -806,88 +766,80 @@ export default {
     },
 
     async handleDelete() {
-      this.selectedRows=this.selectRows
-      if(this.selectedRows.length){
+      this.selectedRows = this.selectRows;
+      if (this.selectedRows.length) {
         this.selectedRows.map(async (row) => {
-        await deleteApi({
-          削除: "削除",
-          倉庫: row.倉庫,
-          sku: row.sku,
-          発注区分: row.発注区分,
-          更新担当者: "abhishek",
-          更新日時: row.更新日時,
-        })
-          .then((response) => {
-            if (response.data.message) {
-              this.baseCheck.push(response.data.message);
-            } else {
-              this.deletedRows.push(row)
-            }
+          await deleteApi({
+            削除: "削除",
+            倉庫: row.倉庫,
+            sku: row.sku,
+            発注区分: row.発注区分,
+            更新担当者: "abhishek",
+            更新日時: row.更新日時,
           })
-          .catch((error) => {
-            console.log(error);
-          });
-      });
-      this.deleteRows = true;
-      this.selectedRows=[]
-      this.$store.state.selectRows = [];
+            .then((response) => {
+              if (response.data.message) {
+                this.baseCheck.push(response.data.message);
+              } else {
+                this.deletedRows.push(row);
+              }
+            })
+            .catch((error) => {
+              console.log(error);
+            });
+        });
+        this.deleteRows = true;
+        this.selectedRows = [];
+        this.$store.state.selectRows = [];
+      } else {
+        this.deleteRows = false;
       }
-      else{
-        this.deleteRows=false
-      }
-   
     },
 
     async handleUpdate() {
-
-      for(let i = 0; i < this.rows.length ; i++) {
-            if(this.rows[i].発注バラ数 !== this.proxyRows[i].発注バラ数 || this.proxyRows[i].納品日 !== this.rows[i].納品日){
-              this.data.push(this.rows[i])
-            }
+      for (let i = 0; i < this.rows.length; i++) {
+        if (
+          this.rows[i].発注バラ数 !== this.proxyRows[i].発注バラ数 ||
+          this.proxyRows[i].納品日 !== this.rows[i].納品日
+        ) {
+          this.data.push(this.rows[i]);
         }
-        if (this.data.length) {
-            this.data.filter(async (row) => {
-              await updateApi({
-                更新: "更新",
-                発注バラ数: row.発注バラ数,
-                納品日: row.納品日,
-                倉庫: row.倉庫,
-                sku: row.sku,
-                発注区分: row.発注区分,
-                更新担当者: "abhishek",
-                更新日時: row.更新日時,
-              }).then((response) => {
-
-                if(response.data.message){
-                  this.baseCheck.push(response.data.message)
-                }
-                else{
-                  const updatedRow = JSON.parse(response.data.body)[0];
-                  console.log("更新した行", updatedRow);
-                  this.changedRowData.push(row);
-                }
-              });
-            });
-            console.log(this.changedRowData)
-            this.showChangedRowData =  this.changedRowData
-            // this.changedRowData=[]
-            this.show = false;
-            this.data=[]
-          }
-          else{
-            // ---if deleteRows is true then dont show the small display
-            if(this.deleteRows){
-
+      }
+      if (this.data.length) {
+        this.data.filter(async (row) => {
+          await updateApi({
+            更新: "更新",
+            発注バラ数: row.発注バラ数,
+            納品日: row.納品日,
+            倉庫: row.倉庫,
+            sku: row.sku,
+            発注区分: row.発注区分,
+            更新担当者: "abhishek",
+            更新日時: row.更新日時,
+          }).then((response) => {
+            if (response.data.message) {
+              this.baseCheck.push(response.data.message);
+            } else {
+              const updatedRow = JSON.parse(response.data.body)[0];
+              console.log("更新した行", updatedRow);
+              this.changedRowData.push(row);
             }
-            // --- if deleteRows is false then show the small display
-            else{
-            
-              this.noChange=true
-            }
-          }
-
-
-
+          });
+        });
+        console.log(this.changedRowData);
+        this.showChangedRowData = this.changedRowData;
+        // this.changedRowData=[]
+        this.show = false;
+        this.data = [];
+      } else {
+        // ---if deleteRows is true then dont show the small display
+        if (this.deleteRows) {
+        }
+        // --- if deleteRows is false then show the small display
+        else {
+          this.noChange = true;
+        }
+      }
 
       // if (this.deleteRows) {
       //   for(let i = 0; i < this.rows.length ; i++) {
@@ -961,7 +913,7 @@ export default {
       //           }
       //         });
       //       });
-      //       this.showChangedRowData =  this.changedRowData            
+      //       this.showChangedRowData =  this.changedRowData
       //       this.changedRowData=[]
       //       this.show = false;
       //       this.data=[]
@@ -981,16 +933,12 @@ export default {
       // }
     },
 
-
-    async handleInsert(){
+    async handleInsert() {
       this.dataExcel.map(async (row) => {
-
         // ---check if the data in the row of 発注バラ数 is number or word
-        if(typeof(row.発注バラ数)===String){
-
+        if (typeof row.発注バラ数 === String) {
           // collect the rows and then display it with the common msg
-        }
-        else{
+        } else {
           await updateApi({
             登録: "登録",
             倉庫: row.倉庫,
@@ -999,7 +947,7 @@ export default {
             単価: row.単価,
             発注バラ数: row.発注バラ数,
             納品日: row.納品日,
-            取込区分:row.取込区分,
+            取込区分: row.取込区分,
             発注区分: row.発注区分,
             更新担当者: row.更新担当者,
             更新日時: row.更新日時,
@@ -1011,12 +959,10 @@ export default {
             }
           });
         }
-        });
-        // this.checkExcelData = false;
-        this.show = false;
-      
+      });
+      // this.checkExcelData = false;
+      this.show = false;
     },
-
 
     // ------ Calling Api on the bases of Name (POPUP handleClose and handlePopUp)
     async handlePopUp() {
@@ -1144,11 +1090,8 @@ export default {
       // --- if checkExcelData is true then rows coming from database will be added directly and if its false means user is changing the values
       // --- so rows present before will get null
 
-    
-      
-        this.rows = [];
-        this.dataExcel = [];
-      
+      this.rows = [];
+      this.dataExcel = [];
 
       let tableId = document.getElementById("inputTable");
 
@@ -1215,7 +1158,7 @@ export default {
         };
       }
       if (
-        this.InputClass.混載グループ名称.length===0 &&
+        this.InputClass.混載グループ名称.length === 0 &&
         this.InputClass.未達混載グループ名称.length
       ) {
         this.body = {
@@ -1227,13 +1170,11 @@ export default {
       }
       if (
         this.InputClass.混載グループ名称.length &&
-        this.InputClass.未達混載グループ名称.length===0
+        this.InputClass.未達混載グループ名称.length === 0
       ) {
         this.body = {
           ...this.body,
-          混載グループ名: [
-            ...this.InputClass.混載グループ名称[0].split("\n"),
-          ],
+          混載グループ名: [...this.InputClass.混載グループ名称[0].split("\n")],
         };
       }
 
@@ -1267,9 +1208,7 @@ export default {
             this.spinner = false;
             // this.checkExcelData = false;
             // this.deleteRows = false;
-            this.body={}
-
-           
+            this.body = {};
           })
           .catch((err) => {
             console.log(err);
@@ -1296,8 +1235,7 @@ export default {
             this.spinner = false;
             // this.checkExcelData = false;
             // this.deleteRows = false;
-            this.body={}
-        
+            this.body = {};
           })
           .catch((err) => {
             console.log(err);
@@ -1313,22 +1251,22 @@ export default {
       this.showChangedRowData = [];
       this.changedRowData = [];
       this.baseCheck = [];
-      this.insertedData=[]
+      this.insertedData = [];
       this.MatchDate;
     },
- 
+
     handleClear() {
-        this.InputClass.担当者 = "",
-        this.InputClass.商品区分 = [],
-        this.InputClass.倉庫 = "",
-        this.InputClass.発注区分 = [],
-        this.InputClass.サプライヤ = "",
-        this.InputClass.メーカー = "",
-        this.InputClass.品番Sku = [],
-        this.InputClass.サプライヤ品番 = [],
-        this.InputClass.商品名 = [],
-        this.InputClass.混載グループ名称 = [];
-        this.InputClass.未達混載グループ名称 = [];
+      (this.InputClass.担当者 = ""),
+        (this.InputClass.商品区分 = []),
+        (this.InputClass.倉庫 = ""),
+        (this.InputClass.発注区分 = []),
+        (this.InputClass.サプライヤ = ""),
+        (this.InputClass.メーカー = ""),
+        (this.InputClass.品番Sku = []),
+        (this.InputClass.サプライヤ品番 = []),
+        (this.InputClass.商品名 = []),
+        (this.InputClass.混載グループ名称 = []);
+      this.InputClass.未達混載グループ名称 = [];
     },
 
     handleselectedDelete() {
@@ -1336,8 +1274,6 @@ export default {
       this.$store.state.selectRows = [];
       this.selectedRows = [];
     },
-
-   
   },
   computed: {
     ...mapState(["showPopup", "name", "selectRows"]),
@@ -1360,16 +1296,17 @@ export default {
       return this.error;
     },
     // --- computed class for msgs displaying ---
-    customClass(){
-
-      if(this.showChangedRowData.length> 0 || this.insertedData.length> 0 || this.deletedRows.length> 0) {
-        return 'displayToast'
+    customClass() {
+      if (
+        this.showChangedRowData.length > 0 ||
+        this.insertedData.length > 0 ||
+        this.deletedRows.length > 0
+      ) {
+        return "displayToast";
+      } else {
+        return "displayNAN";
       }
-      else{
-        return 'displayNAN'
-      }
-
-    }
+    },
   },
   watch: {
     error(newValue) {

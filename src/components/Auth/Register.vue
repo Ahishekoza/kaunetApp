@@ -1,0 +1,90 @@
+<template>
+  <div>
+    <Layout>
+      <template v-slot:body>
+        <div class="row justify-center items-center">
+          <q-card style="height: 500px; width: 500px" class="q-my-md bg-grey-6">
+            <q-card-section>
+              <div class="text-h5">登録</div>
+            </q-card-section>
+            <q-separator class="bg-white" style="width: 90%; margin: 0 auto" />
+            <q-form @submit.prevent="handleSubmit" @reset="handleReset" style="height: 80%;" >
+              <q-card-section >
+                
+                <q-input v-model="this.user.ユーザid"  label="ユーザーID" outlined square class="q-mb-sm" />
+                <q-input v-model="this.user.担当者"  label="担当者" outlined square class="q-mb-sm" />
+                <q-input v-model="this.user.パスワード" label="パスワード" :type="this.showPassword ?  'text' : 'password' "  outlined square >
+                <template v-slot:append>
+                    <q-icon @click="()=>this.showPassword=!this.showPassword" :name="this.showPassword ? 'visibility' : 'visibility_off'"/>
+                </template>
+                </q-input>
+              </q-card-section>
+              <q-card-actions align="center" style="height: 60%;">
+                <div>
+                  <q-btn
+                    label="登録"
+                    type="submit"
+                    color="primary"
+                    glossy
+                    style="font-size: large"
+                  />
+                  <q-btn
+                    label="レセト"
+                    type="reset"
+                    color="primary"
+                    glossy
+                    class="q-ml-sm"
+                    style="font-size: large"
+                  />
+                </div>
+              </q-card-actions>
+            </q-form>
+          </q-card>
+        </div>
+      </template>
+    </Layout>
+  </div>
+</template>
+<script>
+import Layout from "@/components/Layout/Layout.vue";
+import Button from "@/components/Button.vue";
+import { authApi } from "../../services/apiCreation";
+import { User } from "../../InputClass";
+import { ref } from "vue";
+export default {
+  name: "Register",
+  setup(){
+   
+    const user = ref(User)
+    const showPassword = ref(false)
+
+    return{
+        user,
+        showPassword
+    }
+  },
+  methods: {
+    async handleSubmit() {
+      await authApi({...this.user}).then((response)=>{
+        console.log(response);
+      }).catch((error)=>{
+        console.log(error);
+      })
+    },
+    handleReset(){
+        this.user = []
+        this.showPassword=false
+    }
+  },
+  computed:{
+    showPasswordIcon(){
+        return this.showPassword ? 'visibility' : 'visibility' 
+    }
+  },
+  components: {
+    Layout,
+    Button,
+  },
+};
+</script>
+<style scoped></style>
