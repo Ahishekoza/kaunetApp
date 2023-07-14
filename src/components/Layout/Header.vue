@@ -4,8 +4,8 @@
       <q-toolbar-title>
         {{ title }}
       </q-toolbar-title>
-      <div v-if="user">
-      Welcome , {{ user.担当者 }}
+      <div v-if="user" class="row justify-evenly items-center">
+      <p>Welcome , {{ user.担当者 }}</p>
       <Button color="deep-orange" :handleEffect="handleLogout" label="ログアウト" textColor="white"/>
       </div>
       <div v-else>
@@ -33,6 +33,14 @@ export default{
         return{
             
         }
+    },
+    methods:{
+      handleLogout(){
+        localStorage.removeItem('kaunet_user_data')
+        localStorage.removeItem('kaunet_user_token')
+
+        this.$router.push({name:'home'})
+      }
     },
     computed:{
       user(){
