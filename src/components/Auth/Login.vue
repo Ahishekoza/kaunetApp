@@ -23,7 +23,7 @@
 
 
         <div class="row justify-center items-center">
-          <q-card style="height: 400px; width: 500px ;overflow: hidden;" class="q-my-md bg-grey-6">
+          <q-card style="height: 450px; width: 500px ;overflow: hidden;" class="q-my-md bg-grey-6">
             <q-card-section>
               <div class="text-h5">ログイン</div>
             </q-card-section>
@@ -40,7 +40,7 @@
             <q-form
               @submit.prevent="handleSubmit"
               @reset="handleReset"
-              style="height: 90%"
+              style="height: 70%"
               
             >
               <q-card-section>
@@ -50,6 +50,7 @@
                   outlined
                   square
                   class="q-mb-sm"
+                  :rules="[ val => val && val.length > 0 || 'ユーザーIDが必要です']"
                 />
 
                 <q-input
@@ -58,6 +59,7 @@
                   :type="this.showPassword ? 'text' : 'password'"
                   outlined
                   square
+                  :rules="[ val => val && val.length > 0 || 'パスワードが必要です']"
                 >
                   <template v-slot:append>
                     <q-icon
@@ -78,7 +80,7 @@
                   ><span>（開発・検証用）ユーザIDの登録がない場合、事前にこちらをクリック</span>
                 </router-link>
               </div>
-              <q-card-actions align="center" style="height: 40%">
+              <q-card-actions align="center" style="height: 45%">
                 <div>
                   <q-btn
                     label="ログイン"

@@ -249,8 +249,34 @@ export default {
             ...this.exportExcelData[i],
             取込区分: "上書き",
           };
+
+          await updateApi({
+            登録: "登録",
+            倉庫: this.exportExcelData[i].倉庫,
+            sku: this.exportExcelData[i].sku,
+            仕入先名: this.exportExcelData[i].仕入先名,
+            単価: this.exportExcelData[i].単価,
+            発注バラ数: this.exportExcelData[i].発注バラ数,
+            納品日: this.exportExcelData[i].納品日,
+            取込区分: this.exportExcelData[i].取込区分,
+            発注区分: this.exportExcelData[i].発注区分,
+            更新担当者: this.exportExcelData[i].更新担当者, // created a state for user and then always check with the mounted
+            更新日時: this.exportExcelData[i].更新日時,
+          }).then((response) => {
+              this.insertedData.push(this.exportExcelData[i]);
+              // changed rows
+          });
+
+          console.log(this.exportExcelData[i]);
         }
-        this.$emit("excelData", this.exportExcelData);
+
+        this.$emit("excelData", this.insertedData);
+        this.$emit("stringType発注バラ数" , this.typeOf発注バラ数)
+
+
+        this.insertedData=[];
+        this.typeOf発注バラ数=[]
+
         this.fileName = "";
         this.exportExcelData = [];
 
