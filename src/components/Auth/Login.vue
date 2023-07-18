@@ -2,10 +2,10 @@
   <div>
     <Layout>
       <template v-slot:body>
-        <q-dialog v-if="this.error"  >
+        <q-dialog v-if="this.showerror"  >
           <q-card>
             <q-card-section class="q-py-sm">
-              
+              {{ this.error }}
             </q-card-section>
 
             <q-card-actions align="right">
@@ -116,13 +116,14 @@ export default {
     const loginUser = ref({ ユーザid: "", パスワード: "" });
     const showPassword = ref(false);
     const show = ref(false)
-    const error = ref('')
+    const showerror = ref(false)
 
     return {
       loginUser,
       showPassword,
       show,
-      error
+      error,
+      showerror
     };
   },
   methods: {
@@ -132,6 +133,7 @@ export default {
       this.show=true
       await authApi({ ...this.loginUser })
         .then((response) => {
+          console.log(response)
           if (response.data.statusCode === 200) {
             const user = JSON.parse(response.data.body);
             const parsedUser = { ...user[0], パスワード: "" };
@@ -147,7 +149,9 @@ export default {
             this.$router.push({ name: "InputTable" });
           }
           else{
+            this.showerror=true;
             this.error = response.data.message
+            this.show=false
           }
         })
         .catch((error) => {
