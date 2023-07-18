@@ -68,7 +68,7 @@ import { ref } from "vue";
 import { commonApi } from "@/services/apiCreation";
 import Button from "../Button.vue";
 import * as XLSX from "xlsx";
-import { updateApi } from "../../services/apiCreation";
+import { updateApi } from "@/services/apiCreation";
 export default {
   name: "ImportTable",
   props: {
