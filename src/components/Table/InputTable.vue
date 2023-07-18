@@ -517,6 +517,7 @@ export default {
     const data = ref([]);
 
     const dataExcel = ref([]);
+    const typeOf発注バラ数  = ref([]);
 
     const baseCheck = ref([]); // base check will check whether the person doing the editing, deleting and updating is same as in the database
 
@@ -572,6 +573,7 @@ export default {
       deletedRows, //for display
 
       dataExcel,
+      typeOf発注バラ数,
 
       baseCheck,
 
@@ -941,8 +943,12 @@ export default {
     async handleInsert() {
       this.dataExcel.map(async (row) => {
         // ---check if the data in the row of 発注バラ数 is number or word
-        if (typeof row.発注バラ数 === String) {
+        if (typeof(row.発注バラ数) === String) {
           // collect the rows and then display it with the common msg
+          // ----create a new array to display not update rows number
+
+          this.typeOf発注バラ数.push(row)
+
         } else {
           await updateApi({
             登録: "登録",
@@ -960,7 +966,7 @@ export default {
             if (response.data.message) {
               this.baseCheck.push(response.data.message);
             } else {
-              //this.insertedData.push(row)
+              this.insertedData.push(row)
             }
           });
         }
@@ -1083,7 +1089,7 @@ export default {
     handleExcelData(event) {
       if (event.length > 0) {
         this.dataExcel = [...this.dataExcel, ...event];
-        // console.log(this.dataExcel);
+        console.log(this.dataExcel);
         // this.rows = [...this.rows, ...event];
         // this.rowIndex;
         // this.checkExcelData = true;

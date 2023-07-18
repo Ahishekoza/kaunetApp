@@ -170,6 +170,9 @@ export default {
             await commonApi("v_発注管理_all","EXCELDATA",{倉庫: obj.倉庫,sku: obj.sku}).then((response)=>{
             if(response.status===200){
               let parsedData = JSON.parse(response.data.body)[0]
+
+              // ---check the type of 発注バラ数 type here and if string  type is present then store the sku of that row in an array
+
              parsedData = {...parsedData,発注バラ数:obj.発注バラ数,納品日:obj.納品日}
              this.exportExcelData.push(parsedData)
             }
@@ -195,9 +198,12 @@ export default {
                
                 
                 for(let i=0; i<this.exportExcelData.length; i++){
+                  
                   this.exportExcelData[i]= {...this.exportExcelData[i],"取込区分":"追加"}
+                  console.log(this.exportExcelData[i])
                 }
-                console.log(this.exportExcelData)
+
+                // ---perform the UpdateApi Function call
                 this.$emit('excelData', this.exportExcelData)
                 
                 this.fileName=""
