@@ -35,7 +35,7 @@
         </q-dialog>
 
         <div :class="customClass">
-          <q-card style="height: fit-content">
+          <q-card style="height: fit-content; " >
             <q-card-section
               style="
                 height: 90%;
@@ -599,7 +599,7 @@ export default {
     };
   },
   async mounted() {
-    if(localStorage.getItem("kaunet_user_data") && localStorage.getItem("kaunet_user_token")){
+    // if(localStorage.getItem("kaunet_user_data") && localStorage.getItem("kaunet_user_token")){
       this.layoutSpinner = true;
     // ---担当者
     await commonApi("v_発注管理_担当者", "GET", {})
@@ -671,10 +671,10 @@ export default {
       });
 
     this.layoutSpinner = false;
-    }
-    else{
-      this.$router.push({name:'home'})
-    }
+    // }
+    // else{
+    //   this.$router.push({name:'home'})
+    // }
   },
   methods: {
     handleDropdown() {

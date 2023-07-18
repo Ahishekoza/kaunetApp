@@ -23,22 +23,22 @@ const routes = [
 ]
 
 
-async function guardRoute (req,res,next){
-  if(localStorage.getItem('kaunet_user_data') && localStorage.getItem('kaunet_user_token')){
-     await authApi({token:localStorage.getItem('kaunet_user_token')}).then((response)=>{
-      if(response.data.message === "OK"){
-        next()
-      }
-     }).catch((error)=>{
-      alert(`Error: ${error.message}`)
-      next({name: 'home'})
-     }) 
+// async function guardRoute (req,res,next){
+//   if(localStorage.getItem('kaunet_user_data') && localStorage.getItem('kaunet_user_token')){
+//      await authApi({token:localStorage.getItem('kaunet_user_token')}).then((response)=>{
+//       if(response.data.message === "OK"){
+//         next()
+//       }
+//      }).catch((error)=>{
+//       alert(`Error: ${error.message}`)
+//       next({name: 'home'})
+//      }) 
    
-  }
-  else{
-    next({name: 'home'})
-  }
-}
+//   }
+//   else{
+//     next({name: 'home'})
+//   }
+// }
 
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),

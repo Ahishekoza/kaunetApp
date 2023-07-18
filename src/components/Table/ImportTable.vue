@@ -5,7 +5,7 @@
         <a class="text-weight-bold q-my-md text-h6">【発注情報】</a>
         <div class="tableWidth">
           <q-table
-            :class="['my-sticky-virtscroll-table','informationHeader']"
+            :class="['my-sticky-virtscroll-table', 'informationHeader']"
             :rows="rows"
             :columns="columns"
             separator="cell"
@@ -16,12 +16,12 @@
           />
         </div>
       </div>
-  
-      <div class="col-md-5 col-sm-5 offset-sm-2 offset-md-2 ">
+
+      <div class="col-md-5 col-sm-5 offset-sm-2 offset-md-2">
         <div class="q-my-lg">
           <q-card class="borderCard card">
             <q-card-section>
-              <div class="row ">
+              <div class="row">
                 <div style="max-width: 300px" class="col-5">
                   <q-file
                     @input="handleFileUpload"
@@ -40,7 +40,7 @@
                 <div class="col-4">
                   <q-option-group
                     :model-value="modelValue"
-                     @update:model-value="$emit('update:model-value',$event)"
+                    @update:model-value="$emit('update:model-value', $event)"
                     :options="options"
                     class="text-weight-bold"
                     inline
@@ -48,7 +48,12 @@
                   />
                 </div>
                 <div class="col-3">
-                  <Button InputClass="bfsize" label="読込" color="cyan" :handleEffect="handleFileImport"></Button>
+                  <Button
+                    InputClass="bfsize"
+                    label="読込"
+                    color="cyan"
+                    :handleEffect="handleFileImport"
+                  ></Button>
                 </div>
               </div>
             </q-card-section>
@@ -62,14 +67,14 @@
 import { ref } from "vue";
 import { commonApi } from "@/services/apiCreation";
 import Button from "../Button.vue";
-import * as XLSX from "xlsx"
+import * as XLSX from "xlsx";
 export default {
   name: "ImportTable",
-  props:{
-    modelValue:{
-      type:String,
-      default:""
-    }
+  props: {
+    modelValue: {
+      type: String,
+      default: "",
+    },
   },
   setup() {
     const options = ref([
@@ -109,8 +114,9 @@ export default {
       },
     ]);
     const rows = ref([]);
-    const fileName = ref(null)
-    const exportExcelData = ref([])
+    const fileName = ref(null);
+    const exportExcelData = ref([]);
+    const typeOf発注バラ数 = ref([]);
     return {
       columns,
       rows,
@@ -120,6 +126,7 @@ export default {
       pagination: ref({
         rowsPerPage: 0,
       }),
+      typeOf発注バラ数,
     };
   },
   async mounted() {
@@ -136,11 +143,10 @@ export default {
         console.log(error);
       });
   },
-  methods:{
-
-    handleFileUpload(event){
+  methods: {
+    handleFileUpload(event) {
       this.xlsxfileread = event.target.files ? event.target.files[0] : null;
-      
+
       const read = new FileReader();
       read.onload = (e) => {
         const parse_data = e.target.result;
@@ -148,92 +154,107 @@ export default {
         const worksheet_name = workbook.SheetNames[0];
         const worksheetspresent = workbook.Sheets[worksheet_name];
         const data = XLSX.utils.sheet_to_json(worksheetspresent, { header: 1 });
-     
+
         // ---ヘッダー バリュー
         const headers = data.shift();
 
-        const tableData = data.map(async row=>{
-          const obj={}
-          headers.forEach((header,index)=>{
+        const tableData = data.map(async (row) => {
+          const obj = {};
+          headers.forEach((header, index) => {
             obj[header] = row[index];
-            
-          })
+          });
 
-          
           // ここに行によって一個一個必要となっている倉庫とSKU_Valueを取って,APIを投げって,もらっているデータはEXCELにある発注バラ数と納品日と一緒に追加する
           // we have to add two parameters in to an object which and then  push it in to exportExcelData array
-         
-          if(obj.sku === undefined && obj.倉庫 === undefined){
 
+          if (obj.sku === undefined && obj.倉庫 === undefined) {
+          } else {
+            await commonApi("v_発注管理_all", "EXCELDATA", {
+              倉庫: obj.倉庫,
+              sku: obj.sku,
+            }).then((response) => {
+              if (response.status === 200) {
+                let parsedData = JSON.parse(response.data.body)[0];
+
+                if (typeof(obj.発注バラ数) === String) {
+                  this.typeOf発注バラ数.push({ 倉庫: obj.倉庫, sku: obj.sku });
+                } else {
+                  parsedData = {
+                    ...parsedData,
+                    発注バラ数: obj.発注バラ数,
+                    納品日: obj.納品日,
+                  };
+                  this.exportExcelData.push(parsedData);
+                }
+
+                // ---check the type of 発注バラ数 type here and if string  type is present then store the sku of that row in an array
+              }
+            });
           }
-          else{
-            await commonApi("v_発注管理_all","EXCELDATA",{倉庫: obj.倉庫,sku: obj.sku}).then((response)=>{
-            if(response.status===200){
-              let parsedData = JSON.parse(response.data.body)[0]
-
-              // ---check the type of 発注バラ数 type here and if string  type is present then store the sku of that row in an array
-
-             parsedData = {...parsedData,発注バラ数:obj.発注バラ数,納品日:obj.納品日}
-             this.exportExcelData.push(parsedData)
-            }
-          })
-          }
-
-          
-          
-        })
-        
-        
+        });
       };
-
-      
-      
       read.readAsBinaryString(this.xlsxfileread);
     },
 
+    async handleFileImport() {
+      if (this.modelValue === "追加") {
+        console.log("We can add the file to the parent");
 
-    handleFileImport(){
-        if (this.modelValue === '追加') {
-                console.log("We can add the file to the parent")
-               
-                
-                for(let i=0; i<this.exportExcelData.length; i++){
-                  
-                  this.exportExcelData[i]= {...this.exportExcelData[i],"取込区分":"追加"}
-                  // ---perform the UpdateApi Function call
-                  console.log(this.exportExcelData[i])
-                }
+        for (let i = 0; i < this.exportExcelData.length; i++) {
+          this.exportExcelData[i] = {
+            ...this.exportExcelData[i],
+            取込区分: "追加",
+          };
 
-                
-                this.$emit('excelData', this.exportExcelData)
-                
-                this.fileName=""
-                this.exportExcelData=[]
-                
-                // Use to null the modelValue of file once loaded
-                // document.getElementById('emptyFileName').modelValue = ''
+          await updateApi({
+            登録: "登録",
+            倉庫: this.exportExcelData[i].倉庫,
+            sku: this.exportExcelData[i].sku,
+            仕入先名: this.exportExcelData[i].仕入先名,
+            単価: this.exportExcelData[i].単価,
+            発注バラ数: this.exportExcelData[i].発注バラ数,
+            納品日: this.exportExcelData[i].納品日,
+            取込区分: this.exportExcelData[i].取込区分,
+            発注区分: this.exportExcelData[i].発注区分,
+            更新担当者: this.exportExcelData[i].更新担当者, // created a state for user and then always check with the mounted
+            更新日時: this.exportExcelData[i].更新日時,
+          }).then((response) => {
+              this.insertedData.push(this.exportExcelData[i]);
+              // changed rows
+          });
 
+          console.log(this.exportExcelData[i]);
+        }
 
-            }
-            // @TODO : - what to do if person selects　上書き
-            if (this.modelValue === '上書き') {
-              for(let i=0; i<this.exportExcelData.length; i++){
-                  this.exportExcelData[i]= {...this.exportExcelData[i],"取込区分":"上書き"}
-                }
-                this.$emit('excelData', this.exportExcelData)
-                this.fileName=""
-                this.exportExcelData=[]
+        this.$emit("excelData", this.insertedData);
+        this.$emit("stringType発注バラ数" , this.typeOf発注バラ数)
 
+        this.fileName = "";
+        this.exportExcelData = [];
 
-                // Use to null the value of file once loaded
-                // document.getElementById('emptyFileName').value = ''
-            }
-            else {
-                console.log("Without selecting an option you can't proceed")
-            }
-    }
+        // Use to null the modelValue of file once loaded
+        // document.getElementById('emptyFileName').modelValue = ''
+      }
+      // @TODO : - what to do if person selects　上書き
+      if (this.modelValue === "上書き") {
+        for (let i = 0; i < this.exportExcelData.length; i++) {
+          this.exportExcelData[i] = {
+            ...this.exportExcelData[i],
+            取込区分: "上書き",
+          };
+        }
+        this.$emit("excelData", this.exportExcelData);
+        this.fileName = "";
+        this.exportExcelData = [];
+
+        // Use to null the value of file once loaded
+        // document.getElementById('emptyFileName').value = ''
+      } else {
+        console.log("Without selecting an option you can't proceed");
+      }
+    },
   },
-  components: { Button }
+  components: { Button },
 };
 </script>
 

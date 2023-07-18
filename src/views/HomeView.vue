@@ -2,7 +2,8 @@
   <div>
     <!-- <InputTable/> -->
     <!-- <Register/> -->
-    <Login/>
+   <Login/>
+
   </div>
 </template>
 
