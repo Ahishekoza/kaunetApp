@@ -7,4 +7,4 @@ services:
     volumes:
       - ./httpd.conf:/usr/local/apache2/conf/httpd.conf:ro
     ports:
-      - "8081:8080"
+      - "8080:8080"
