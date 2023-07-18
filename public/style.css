@@ -58,7 +58,7 @@ input::-webkit-inner-spin-button {
 
 /* --reduced the margin for P tag   */
 p{
-    margin: 0px 0px 1px;
+    margin: 0px 0px 1px !important;
 }
 
 
