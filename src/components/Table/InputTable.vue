@@ -740,7 +740,6 @@ export default {
       if (this.checkDate.length === 0) {
         await this.handleDelete();
         await this.handleUpdate();
-        await this.handleInsert();
         await this.handleFileData();
       } else {
         this.noChange = false;
@@ -957,40 +956,40 @@ export default {
       // }
     },
 
-    async handleInsert() {
-      this.dataExcel.map(async (row) => {
-        // ---check if the data in the row of 発注バラ数 is number or word
-        if (typeof(row.発注バラ数) === String) {
-          // collect the rows and then display it with the common msg
-          // ----create a new array to display not update rows number
+    // async handleInsert() {
+    //   this.dataExcel.map(async (row) => {
+    //     // ---check if the data in the row of 発注バラ数 is number or word
+    //     if (typeof(row.発注バラ数) === String) {
+    //       // collect the rows and then display it with the common msg
+    //       // ----create a new array to display not update rows number
 
-          this.typeOf発注バラ数.push(row)
+    //       this.typeOf発注バラ数.push(row)
 
-        } else {
-          await updateApi({
-            登録: "登録",
-            倉庫: row.倉庫,
-            sku: row.sku,
-            仕入先名: row.仕入先名,
-            単価: row.単価,
-            発注バラ数: row.発注バラ数,
-            納品日: row.納品日,
-            取込区分: row.取込区分,
-            発注区分: row.発注区分,
-            更新担当者: row.更新担当者,
-            更新日時: row.更新日時,
-          }).then((response) => {
-            if (response.data.message) {
-              this.baseCheck.push(response.data.message);
-            } else {
-              this.insertedData.push(row)
-            }
-          });
-        }
-      });
-      // this.checkExcelData = false;
-      this.show = false;
-    },
+    //     } else {
+    //       await updateApi({
+    //         登録: "登録",
+    //         倉庫: row.倉庫,
+    //         sku: row.sku,
+    //         仕入先名: row.仕入先名,
+    //         単価: row.単価,
+    //         発注バラ数: row.発注バラ数,
+    //         納品日: row.納品日,
+    //         取込区分: row.取込区分,
+    //         発注区分: row.発注区分,
+    //         更新担当者: row.更新担当者,
+    //         更新日時: row.更新日時,
+    //       }).then((response) => {
+    //         if (response.data.message) {
+    //           this.baseCheck.push(response.data.message);
+    //         } else {
+    //           this.insertedData.push(row)
+    //         }
+    //       });
+    //     }
+    //   });
+    //   // this.checkExcelData = false;
+    //   this.show = false;
+    // },
 
     // ------ Calling Api on the bases of Name (POPUP handleClose and handlePopUp)
     async handlePopUp() {
@@ -1280,6 +1279,7 @@ export default {
       this.changedRowData = [];
       this.baseCheck = [];
       this.insertedData = [];
+      this.typeOf発注バラ数=[]
       this.MatchDate;
     },
 
