@@ -117,6 +117,7 @@ export default {
     const showPassword = ref(false);
     const show = ref(false)
     const showerror = ref(false)
+    const error = ref("")
 
     return {
       loginUser,
