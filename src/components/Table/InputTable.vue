@@ -81,6 +81,22 @@
               </div>
               <q-separator />
               <div
+                class="q-mb-md"
+                v-if="this.typeOf発注バラ数.length"
+                style="overflow-y: scroll; height: 160px"
+              >
+                <p class="text-h7">発注バラ数は文字になっているんです</p>
+                <q-separator />
+                <ul>
+                  <li v-for="row in this.typeOf発注バラ数">
+                    倉庫:<span>{{ row.倉庫 }}</span> SKU:<span>{{
+                      row.sku
+                    }}</span>
+                  </li>
+                </ul>
+              </div>
+              <q-separator />
+              <div
                 v-if="this.deletedRows.length"
                 style="overflow-y: scroll; height: 160px"
               >
@@ -1312,7 +1328,8 @@ export default {
       if (
         this.showChangedRowData.length > 0 ||
         this.insertedData.length > 0 ||
-        this.deletedRows.length > 0
+        this.deletedRows.length > 0||
+        this.typeOf発注バラ数.length>0
       ) {
         return "displayToast";
       } else {
