@@ -17,7 +17,7 @@ const routes = [
   {
     path: '/main',
     name: 'InputTable',
-    beforeEnter: guardRoute,
+    // beforeEnter: guardRoute,
     component: InputTable
   },
 ]

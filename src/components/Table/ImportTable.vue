@@ -200,10 +200,11 @@ export default {
                 for(let i=0; i<this.exportExcelData.length; i++){
                   
                   this.exportExcelData[i]= {...this.exportExcelData[i],"取込区分":"追加"}
+                  // ---perform the UpdateApi Function call
                   console.log(this.exportExcelData[i])
                 }
 
-                // ---perform the UpdateApi Function call
+                
                 this.$emit('excelData', this.exportExcelData)
                 
                 this.fileName=""
