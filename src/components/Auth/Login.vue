@@ -75,10 +75,8 @@
                   class="routerlink"
                   :to="{ name: 'Register' }"
                   style="text-decoration: none"
-                  ><span
-                    >まだ、登録をやっていない場いは、最初やりましょう</span
-                  ></router-link
-                >
+                  ><span>（開発・検証用）ユーザIDの登録がない場合、事前にこのリンクをクリックしてください</span>
+                </router-link>
               </div>
               <q-card-actions align="center" style="height: 40%">
                 <div>
@@ -90,7 +88,7 @@
                     style="font-size: large"
                   />
                   <q-btn
-                    label="レセト"
+                    label="リセット"
                     type="reset"
                     color="primary"
                     glossy

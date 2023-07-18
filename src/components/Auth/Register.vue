@@ -20,7 +20,7 @@
                 </q-input>
               </q-card-section>
               <div class="text-center q-mt-lg">
-                <router-link class="routerlink" :to="{name:'home'}" style="text-decoration: none;"><span>もう登録されていますか。ログインしましょう</span></router-link>
+                <router-link class="routerlink" :to="{name:'home'}" style="text-decoration: none;"><span>ログイン画面に戻る</span></router-link>
               </div>
               <q-card-actions align="center" style="height: 30%;">
                 <div>
@@ -32,7 +32,7 @@
                     style="font-size: large"
                   />
                   <q-btn
-                    label="レセト"
+                    label="リセット"
                     type="reset"
                     color="primary"
                     glossy

@@ -22,7 +22,7 @@ export default{
     props:{
       title:{
         type:String,
-        default:()=> "KOLOR-FIX"
+        default:()=> "Kolor-Fix"
       }
     },
     setup(){
