@@ -2,10 +2,11 @@
   <div>
     <Layout>
       <template v-slot:body>
+
         <q-dialog v-model="this.showerror"  >
           <q-card>
             <q-card-section class="q-py-sm">
-              {{ this.error }}
+              <span class="text-red">{{ this.error }}</span>
             </q-card-section>
 
             <q-card-actions align="right">
@@ -19,6 +20,8 @@
             </q-card-actions>
           </q-card>
         </q-dialog>
+
+
         <div class="row justify-center items-center">
           <q-card style="height: 400px; width: 500px ;overflow: hidden;" class="q-my-md bg-grey-6">
             <q-card-section>
@@ -149,19 +152,22 @@ export default {
 
             this.$router.push({ name: "InputTable" });
           }
-          else{
+          else if(response.data.statusCode == 404){  // if password and userId is wrong it will throw an error
             this.showerror=true;
             this.error = response.data.message
             this.show=false
           }
         })
         .catch((error) => {
+          this.showerror=true;
           this.error=error.message
+          this.show=false
         });
     },
     handleReset() {
       this.loginUser = {};
       this.showPassword = false;
+      this.show=false
     },
   },
   computed: {
