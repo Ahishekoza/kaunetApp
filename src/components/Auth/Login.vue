@@ -23,7 +23,7 @@
 
 
         <div class="row justify-center items-center">
-          <q-card style="height: 400px; width: 500px ;overflow: hidden;" class="q-my-md bg-grey-6">
+          <q-card style="height: 500px; width: 500px ;overflow: hidden;" class="q-my-md bg-grey-6">
             <q-card-section>
               <div class="text-h5">ログイン</div>
             </q-card-section>
@@ -40,7 +40,7 @@
             <q-form
               @submit.prevent="handleSubmit"
               @reset="handleReset"
-              style="height: 90%"
+              style="height: 60%"
               
             >
               <q-card-section>
