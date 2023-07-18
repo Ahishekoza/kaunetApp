@@ -179,6 +179,7 @@ export default {
               if (response.status === 200) {
                 let parsedData = JSON.parse(response.data.body)[0];
 
+                console.log(typeof(obj.発注バラ数))
                 if (typeof(obj.発注バラ数) === String) {
                   this.typeOf発注バラ数.push({ 倉庫: obj.倉庫, sku: obj.sku });
                   console.log(this.typeOf発注バラ数)

@@ -1338,7 +1338,7 @@ export default {
       }
     },
     insertedData(newValue){
-      if(newValue){
+      if(newValue.length > 0){
         this.handleFileData()
       }
     }
