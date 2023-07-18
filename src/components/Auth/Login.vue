@@ -132,7 +132,7 @@ export default {
       this.show=true
       await authApi({ ...this.loginUser })
         .then((response) => {
-          if (response.status === 200) {
+          if (response.data.statusCode === 200) {
             const user = JSON.parse(response.data.body);
             const parsedUser = { ...user[0], パスワード: "" };
             this.loginUser = { ユーザid: "", パスワード: "" } // empty the values onces logined In
@@ -145,6 +145,9 @@ export default {
             this.show=false
 
             this.$router.push({ name: "InputTable" });
+          }
+          else{
+            this.error = response.data.message
           }
         })
         .catch((error) => {
