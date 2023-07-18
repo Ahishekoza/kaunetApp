@@ -75,7 +75,7 @@
                   class="routerlink"
                   :to="{ name: 'Register' }"
                   style="text-decoration: none"
-                  ><span>（開発・検証用）ユーザIDの登録がない場合、事前にこのリンクをクリックしてください</span>
+                  ><span>（開発・検証用）ユーザIDの登録がない場合、事前にこちらをクリック</span>
                 </router-link>
               </div>
               <q-card-actions align="center" style="height: 40%">
