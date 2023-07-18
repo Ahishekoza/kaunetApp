@@ -1271,7 +1271,7 @@ export default {
         (this.InputClass.サプライヤ品番 = []),
         (this.InputClass.商品名 = []),
         (this.InputClass.混載グループ名称 = []);
-      this.InputClass.未達混載グループ名称 = [];
+      // this.InputClass.未達混載グループ名称 = [];
     },
 
     handleselectedDelete() {
