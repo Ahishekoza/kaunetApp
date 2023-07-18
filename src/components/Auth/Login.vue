@@ -23,7 +23,7 @@
 
 
         <div class="row justify-center items-center">
-          <q-card style="height: 480px; width: 500px ;overflow: hidden;" class="q-my-md bg-grey-6">
+          <q-card style="height: 450px; width: 500px ;overflow: hidden;" class="q-my-md bg-grey-6">
             <q-card-section>
               <div class="text-h5">ログイン</div>
             </q-card-section>
@@ -82,7 +82,7 @@
                   ></router-link
                 >
               </div>
-              <q-card-actions align="center" style="height: 40%">
+              <q-card-actions align="center" style="height: 45%">
                 <div>
                   <q-btn
                     label="ログイン"
