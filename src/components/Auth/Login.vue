@@ -50,6 +50,7 @@
                   outlined
                   square
                   class="q-mb-sm"
+                  :rules="[ val => val && val.length > 0 || 'ユーザーIDが必要です']"
                 />
 
                 <q-input
@@ -58,6 +59,7 @@
                   :type="this.showPassword ? 'text' : 'password'"
                   outlined
                   square
+                  :rules="[ val => val && val.length > 0 || 'パスワードが必要です']"
                 >
                   <template v-slot:append>
                     <q-icon
