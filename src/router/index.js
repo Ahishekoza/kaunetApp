@@ -5,7 +5,7 @@ import InputTable from '../components/Table/InputTable.vue'
 import { authApi } from '@/services/apiCreation'
 const routes = [
   {
-    path: '/login',
+    path: '/',
     name: 'home',
     component: HomeView
   },

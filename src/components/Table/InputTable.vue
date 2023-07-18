@@ -1088,15 +1088,15 @@ export default {
       read.readAsBinaryString(this.xlsxfileread);
     },
 
-    handleExcelData(event) {
-      if (event.length > 0) {
-        this.dataExcel = [...this.dataExcel, ...event];
-        console.log(this.dataExcel);
-        // this.rows = [...this.rows, ...event];
-        // this.rowIndex;
-        // this.checkExcelData = true;
-      }
-    },
+    // handleExcelData(event) {
+    //   if (event.length > 0) {
+    //     this.dataExcel = [...this.dataExcel, ...event];
+    //     console.log(this.dataExcel);
+    //     // this.rows = [...this.rows, ...event];
+    //     // this.rowIndex;
+    //     // this.checkExcelData = true;
+    //   }
+    // },
 
     // 検索ボタンを押した後でこのfunctionが動けます
     async handleFileData() {
@@ -1338,6 +1338,11 @@ export default {
         this.noChange = newValue;
       }
     },
+    insertedData(newValue){
+      if(newValue){
+        this.handleFileData()
+      }
+    }
   },
 };
 </script>
