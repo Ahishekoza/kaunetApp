@@ -2,7 +2,7 @@
   <div>
     <Layout>
       <template v-slot:body>
-        <q-dialog v-if="this.showerror"  >
+        <q-dialog v-model="this.showerror"  >
           <q-card>
             <q-card-section class="q-py-sm">
               {{ this.error }}
