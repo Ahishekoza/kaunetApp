@@ -2,6 +2,23 @@
   <div>
     <Layout>
       <template v-slot:body>
+        <q-dialog v-if="this.error"  >
+          <q-card>
+            <q-card-section class="q-py-sm">
+              
+            </q-card-section>
+
+            <q-card-actions align="right">
+              <q-btn
+                label="はい"
+                color="cyan"
+                text-color="black"
+                glossy
+                v-close-popup
+              />
+            </q-card-actions>
+          </q-card>
+        </q-dialog>
         <div class="row justify-center items-center">
           <q-card style="height: 400px; width: 500px ;overflow: hidden;" class="q-my-md bg-grey-6">
             <q-card-section>
@@ -99,11 +116,13 @@ export default {
     const loginUser = ref({ ユーザid: "", パスワード: "" });
     const showPassword = ref(false);
     const show = ref(false)
+    const error = ref('')
 
     return {
       loginUser,
       showPassword,
-      show
+      show,
+      error
     };
   },
   methods: {
@@ -116,19 +135,20 @@ export default {
           if (response.status === 200) {
             const user = JSON.parse(response.data.body);
             const parsedUser = { ...user[0], パスワード: "" };
-
+            this.loginUser = { ユーザid: "", パスワード: "" } // empty the values onces logined In
             localStorage.setItem("kaunet_user_token", response.data.token);
 
             localStorage.setItem(
               "kaunet_user_data",
               JSON.stringify(parsedUser)
             );
-            this.show=false    
+            this.show=false
+
             this.$router.push({ name: "InputTable" });
           }
         })
         .catch((error) => {
-          console.log(error);
+          this.error=error.message
         });
     },
     handleReset() {
