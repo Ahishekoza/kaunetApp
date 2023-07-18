@@ -434,7 +434,6 @@ import { Management } from "../../InputClass";
 import { isDateValid } from "../../InputClass";
 import { commonApi } from "../../services/apiCreation";
 import { checkApi } from "../../services/apiCreation";
-import { updateApi } from "../../services/apiCreation";
 import { deleteApi } from "../../services/apiCreation";
 import { ref } from "vue";
 import { mapState } from "vuex";
