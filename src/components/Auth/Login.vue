@@ -150,7 +150,7 @@ export default {
             );
             this.show=false
 
-            // this.$router.push({ name: "InputTable" });
+            this.$router.push({ name: "InputTable" });
           }
           else if(response.data.statusCode == 404){  // if password and userId is wrong it will throw an error
             this.showerror=true;

@@ -117,6 +117,7 @@ export default {
     const fileName = ref(null);
     const exportExcelData = ref([]);
     const typeOf発注バラ数 = ref([]);
+    const insertedData = ref([]);
     return {
       columns,
       rows,
@@ -127,6 +128,7 @@ export default {
         rowsPerPage: 0,
       }),
       typeOf発注バラ数,
+      insertedData
     };
   },
   async mounted() {
@@ -178,6 +180,7 @@ export default {
 
                 if (typeof(obj.発注バラ数) === String) {
                   this.typeOf発注バラ数.push({ 倉庫: obj.倉庫, sku: obj.sku });
+                  console.log(this.typeOf発注バラ数)
                 } else {
                   parsedData = {
                     ...parsedData,
@@ -228,6 +231,9 @@ export default {
 
         this.$emit("excelData", this.insertedData);
         this.$emit("stringType発注バラ数" , this.typeOf発注バラ数)
+
+        this.insertedData=[];
+        this.typeOf発注バラ数=[]
 
         this.fileName = "";
         this.exportExcelData = [];

@@ -35,7 +35,7 @@
         </q-dialog>
 
         <div :class="customClass">
-          <q-card style="height: fit-content; " >
+          <q-card style="height: 500px; width: 100%; overflow-y: scroll;" >
             <q-card-section
               style="
                 height: 90%;
@@ -398,7 +398,9 @@
           v-if="showMiddleBody"
           :model-value="this.InputClass.輸出データ"
           @update:model-value="this.InputClass.輸出データ = $event"
-          @excelData="handleExcelData($event)"
+          @excelData="this.insertedData=$event"
+          @stringType発注バラ数="this.typeOf発注バラ数=$event"
+
         />
       </template>
       <template v-slot:displayBody>
