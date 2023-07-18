@@ -35,7 +35,7 @@
         </q-dialog>
 
         <div :class="customClass">
-          <q-card style="height: fit-content; " >
+          <q-card style="height: 500px; width: 100%; overflow-y: scroll;" >
             <q-card-section
               style="
                 height: 90%;
@@ -398,7 +398,9 @@
           v-if="showMiddleBody"
           :model-value="this.InputClass.輸出データ"
           @update:model-value="this.InputClass.輸出データ = $event"
-          @excelData="handleExcelData($event)"
+          @excelData="this.insertedData=$event"
+          @stringType発注バラ数="this.typeOf発注バラ数=$event"
+
         />
       </template>
       <template v-slot:displayBody>
@@ -432,7 +434,6 @@ import { Management } from "../../InputClass";
 import { isDateValid } from "../../InputClass";
 import { commonApi } from "../../services/apiCreation";
 import { checkApi } from "../../services/apiCreation";
-import { updateApi } from "../../services/apiCreation";
 import { deleteApi } from "../../services/apiCreation";
 import { ref } from "vue";
 import { mapState } from "vuex";
@@ -1086,15 +1087,15 @@ export default {
       read.readAsBinaryString(this.xlsxfileread);
     },
 
-    handleExcelData(event) {
-      if (event.length > 0) {
-        this.dataExcel = [...this.dataExcel, ...event];
-        console.log(this.dataExcel);
-        // this.rows = [...this.rows, ...event];
-        // this.rowIndex;
-        // this.checkExcelData = true;
-      }
-    },
+    // handleExcelData(event) {
+    //   if (event.length > 0) {
+    //     this.dataExcel = [...this.dataExcel, ...event];
+    //     console.log(this.dataExcel);
+    //     // this.rows = [...this.rows, ...event];
+    //     // this.rowIndex;
+    //     // this.checkExcelData = true;
+    //   }
+    // },
 
     // 検索ボタンを押した後でこのfunctionが動けます
     async handleFileData() {
@@ -1336,6 +1337,11 @@ export default {
         this.noChange = newValue;
       }
     },
+    insertedData(newValue){
+      if(newValue.length > 0){
+        this.handleFileData()
+      }
+    }
   },
 };
 </script>

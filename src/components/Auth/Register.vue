@@ -70,7 +70,7 @@ export default {
         this.user= {...this.user,登録:"登録"}
       await authApi({...this.user}).then((response)=>{
         if(response.status === 200) {
-            this.$router.push({name: 'Login'})
+            this.$router.push({name: 'home'})
         }
       }).catch((error)=>{
         console.log(error);
