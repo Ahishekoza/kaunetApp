@@ -537,10 +537,10 @@ export default {
     const typeOf発注バラ数  = ref([]);
 
     const baseCheck = ref([]); // base check will check whether the person doing the editing, deleting and updating is same as in the database
-
     return {
       // showMiddleBody
       showMiddleBody,
+      
 
       // --spinner
       spinner,
@@ -613,7 +613,7 @@ export default {
       showDialog,
 
       data,
-    };
+    }
   },
   async mounted() {
     // if(localStorage.getItem("kaunet_user_data") && localStorage.getItem("kaunet_user_token")){
@@ -1286,9 +1286,7 @@ export default {
         this.handleFileData()
       }
     },
-    InputClass(newValue){
-      console.log(newValue.担当者)
-    }
+   
     
   },
 };

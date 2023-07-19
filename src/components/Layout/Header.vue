@@ -36,6 +36,8 @@ export default{
         localStorage.removeItem('kaunet_user_data')
         localStorage.removeItem('kaunet_user_token')
 
+        window.location.reload()
+
         this.$router.push({name:'home'})
       }
     },
