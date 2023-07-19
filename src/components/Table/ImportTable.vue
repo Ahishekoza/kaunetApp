@@ -119,6 +119,7 @@ export default {
     const exportExcelData = ref([]);
     const typeOf発注バラ数 = ref([]);
     const insertedData = ref([]);
+    const user_data = ref({});
     return {
       columns,
       rows,
@@ -129,12 +130,14 @@ export default {
         rowsPerPage: 0,
       }),
       typeOf発注バラ数,
-      insertedData
+      insertedData,
+      user_data
     };
   },
   async mounted() {
 
-   console.log( JSON.parse(localStorage.getItem('kaunet_user_data')).パスワード);
+   this.user_data=JSON.parse(localStorage.getItem('kaunet_user_data'));
+   console.log(this.user_data.担当者)
   
     await commonApi("v_発注管理_発注情報", "GET", {})
       .then((response) => {
