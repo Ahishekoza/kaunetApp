@@ -35,7 +35,7 @@
         </q-dialog>
 
         <div :class="customClass">
-          <q-card style="height: 500px; width: 100%; overflow-y: scroll;" >
+          <q-card style="height: 500px; width: 100%; overflow-y: scroll">
             <q-card-section
               style="
                 height: 90%;
@@ -124,7 +124,7 @@
             </q-card-actions>
           </q-card>
         </div>
-        
+
         <Toast
           label="入力に誤りがあります。"
           show="true"
@@ -204,7 +204,7 @@
             <q-card class="card">
               <div class="col-md-12 flex-row q-pa-sm">
                 <div>
-                  <p style="font-size: 1.1rem; font-weight: 500;">検索条件</p>
+                  <p style="font-size: 1.1rem; font-weight: 500">検索条件</p>
                 </div>
                 <div>
                   <Button
@@ -413,9 +413,8 @@
           v-if="showMiddleBody"
           :model-value="this.InputClass.輸出データ"
           @update:model-value="this.InputClass.輸出データ = $event"
-          @excelData="this.insertedData=$event"
-          @stringType発注バラ数="this.typeOf発注バラ数=$event"
-
+          @excelData="this.insertedData = $event"
+          @stringType発注バラ数="this.typeOf発注バラ数 = $event"
         />
       </template>
       <template v-slot:displayBody>
@@ -534,13 +533,12 @@ export default {
     const data = ref([]);
 
     const dataExcel = ref([]);
-    const typeOf発注バラ数  = ref([]);
+    const typeOf発注バラ数 = ref([]);
 
     const baseCheck = ref([]); // base check will check whether the person doing the editing, deleting and updating is same as in the database
     return {
       // showMiddleBody
       showMiddleBody,
-      
 
       // --spinner
       spinner,
@@ -613,11 +611,11 @@ export default {
       showDialog,
 
       data,
-    }
+    };
   },
   async mounted() {
     // if(localStorage.getItem("kaunet_user_data") && localStorage.getItem("kaunet_user_token")){
-      this.layoutSpinner = true;
+    this.layoutSpinner = true;
     // ---担当者
     await commonApi("v_発注管理_担当者", "GET", {})
       .then((response) => {
@@ -744,8 +742,6 @@ export default {
       } else {
         this.noChange = false;
       }
-
-   
     },
 
     async handleDelete() {
@@ -915,8 +911,6 @@ export default {
       //   }
       // }
     },
-
-  
 
     // ------ Calling Api on the bases of Name (POPUP handleClose and handlePopUp)
     async handlePopUp() {
@@ -1206,7 +1200,7 @@ export default {
       this.changedRowData = [];
       this.baseCheck = [];
       this.insertedData = [];
-      this.typeOf発注バラ数=[]
+      this.typeOf発注バラ数 = [];
       this.MatchDate;
     },
 
@@ -1255,8 +1249,8 @@ export default {
       if (
         this.showChangedRowData.length > 0 ||
         this.insertedData.length > 0 ||
-        this.deletedRows.length > 0||
-        this.typeOf発注バラ数.length>0
+        this.deletedRows.length > 0 ||
+        this.typeOf発注バラ数.length > 0
       ) {
         return "displayToast";
       } else {
@@ -1264,12 +1258,28 @@ export default {
       }
     },
 
-    handle担当者(){
-      if(this.InputClass.担当者){
-        this.InputClass.未達混載グループ名称=[]
-      }
-    }
+    async handle担当者() {
+      if (this.InputClass.担当者) {
+        this.InputClass.未達混載グループ名称 = [];
 
+        await commonApi("v_発注管理_混載未達", "UndeliveredMixedGroupName", {
+          担当者: this.InputClass.担当者,
+        })
+          .then((response) => {
+            if (response.status === 200) {
+              let parsedData = JSON.parse(response.data.body);
+
+              const joinAndPush = parsedData
+                .map((item) => item.value)
+                .join("\n");
+              this.InputClass.未達混載グループ名称.push(joinAndPush);
+            }
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+      }
+    },
   },
   watch: {
     error(newValue) {
@@ -1288,16 +1298,12 @@ export default {
         this.noChange = newValue;
       }
     },
-    insertedData(newValue){
-      if(newValue.length > 0){
-        this.handleFileData()
+    insertedData(newValue) {
+      if (newValue.length > 0) {
+        this.handleFileData();
       }
     },
-    handle担当者(newValue){
-
-    }
-   
-    
+    handle担当者(newValue) {},
   },
 };
 </script>
