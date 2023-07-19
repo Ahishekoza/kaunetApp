@@ -38,7 +38,7 @@
           <q-card style="height: 300px; width: 100%; overflow-y: scroll">
             <q-card-section
               style="
-                height: 90%;
+                height: 80%;
                 width: 700px;
                 box-sizing: border-box;
                 overflow-wrap: break-word;
@@ -49,7 +49,7 @@
                 v-if="this.showChangedRowData.length"
                 style="overflow-y: scroll; height: 160px"
               >
-                <p class="text-h7">更新したデータ</p>
+                <p class="text-h7">更新されたデータ</p>
                 <q-separator />
                 <ul>
                   <li v-for="row in this.showChangedRowData">
@@ -67,12 +67,12 @@
                 v-if="this.insertedData.length"
                 style="overflow-y: scroll; height: 160px"
               >
-                <p class="text-h7">登録したデータ</p>
+                <p class="text-h7">登録されたデータ</p>
                 <q-separator />
                 <ul>
                   <li v-for="row in this.insertedData">
                     <span>{{ row.index }}</span
-                    >行目 倉庫:<span>{{ row.倉庫 }}</span> SKU:<span>{{
+                    >倉庫:<span>{{ row.倉庫 }}</span> SKU:<span>{{
                       row.sku
                     }}</span>
                     品名:<span>"{{ row.品名 }}"</span>
@@ -85,7 +85,7 @@
                 v-if="this.typeOf発注バラ数.length"
                 style="overflow-y: scroll; height: 160px"
               >
-                <p class="text-h7">発注バラ数は文字になっているんです</p>
+                <p class="text-h7">発注バラ数が数値ではありません</p>
                 <q-separator />
                 <ul>
                   <li v-for="row in this.typeOf発注バラ数">
@@ -99,7 +99,7 @@
                 v-if="this.deletedRows.length"
                 style="overflow-y: scroll; height: 160px"
               >
-                <p class="text-h7">削除したデータ</p>
+                <p class="text-h7">削除されたデータ</p>
                 <q-separator />
                 <ul>
                   <li v-for="row in this.deletedRows">
@@ -126,7 +126,7 @@
         </div>
 
         <Toast
-          label="入力に誤りがあります。"
+          label="入力に誤りがあります"
           show="true"
           :itemsArray="this.MatchDate"
         >
@@ -154,7 +154,7 @@
           <q-card style="height: 120px; width: 500px">
             <q-card-section style="margin: 0 auto">
               <div class="text-h6 text-center">
-                変更されたデータがありません。
+                変更されたデータがありません
               </div>
             </q-card-section>
             <q-card-actions align="right">
