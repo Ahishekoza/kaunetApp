@@ -95,7 +95,7 @@ export default{
         }
     },
     mounted(){
-        console.log(route.params.ユーザid)
+        console.log(this.route.params.ユーザid)
     },
     components:{
         Layout
