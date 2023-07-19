@@ -1216,6 +1216,7 @@ export default {
         (this.InputClass.商品名 = []),
         (this.InputClass.混載グループ名称 = []);
       // this.InputClass.未達混載グループ名称 = [];
+      this.handle担当者
     },
 
     handleselectedDelete() {
@@ -1259,6 +1260,7 @@ export default {
     },
     
     async handle担当者() {
+      console.log(this.InputClass.担当者)
       if(this.InputClass.担当者 === null){
         this.InputClass.未達混載グループ名称 = [];
         await commonApi("v_発注管理_混載未達", "GET", {})
