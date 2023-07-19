@@ -141,7 +141,7 @@ export default {
             const user = JSON.parse(response.data.body);
             
             console.log(user[0].パスワード有効フラグ)
-            console.log(user[0].パスワード有効フラグ=== '1')
+            console.log(user[0].パスワード有効フラグ=== 1)
             if(user[0].パスワード有効フラグ=== '1'){
               this.$router.push({name:"ResetPassword"})
             }
