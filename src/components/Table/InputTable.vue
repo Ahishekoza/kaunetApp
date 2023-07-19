@@ -1279,6 +1279,21 @@ export default {
             console.log(error);
           });
       }
+      else{
+        console.log("hi its working ")
+        await commonApi("v_発注管理_混載未達", "GET", {})
+      .then((response) => {
+        if (response.status === 200) {
+          let parsedData = JSON.parse(response.data.body);
+
+          const joinAndPush = parsedData.map((item) => item.value).join("\n");
+          this.InputClass.未達混載グループ名称.push(joinAndPush);
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+      }); 
+      }
     },
   },
   watch: {
