@@ -35,9 +35,9 @@ export default{
       handleLogout(){
         localStorage.removeItem('kaunet_user_data')
         localStorage.removeItem('kaunet_user_token')
-
-        
-
+ 
+        // we need to reload the page once the user is logged out so that we can delete the data which user used to search the result
+        // window.location.reload()
         this.$router.push({name:'home'})
       }
     },
