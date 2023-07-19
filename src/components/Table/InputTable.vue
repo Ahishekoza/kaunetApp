@@ -1344,11 +1344,11 @@ export default {
         this.noChange = newValue;
       }
     },
-    insertedData(newValue) {
-      if (newValue.length=== 0) {
-        this.handleFileData();
-      }
-    },
+    // insertedData(newValue) {
+    //   if (newValue.length=== 0) {
+    //     this.handleFileData();
+    //   }
+    // },
     handle担当者(newValue) {},
   },
 };
