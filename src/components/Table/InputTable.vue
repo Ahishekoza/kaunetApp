@@ -1345,7 +1345,7 @@ export default {
       }
     },
     insertedData(newValue) {
-      if (newValue.length > 0) {
+      if (newValue.length=== 0) {
         this.handleFileData();
       }
     },
