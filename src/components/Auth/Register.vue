@@ -77,6 +77,8 @@
               </q-card-actions>
             </q-form>
           </q-card>
+
+          <q-tooltip v-model="this.show">新しいユーザ登録されました</q-tooltip>
         </div>
       </template>
     </Layout>
@@ -92,10 +94,11 @@ export default {
   setup() {
     const user = ref(User);
     const showPassword = ref(false);
-
+    const show = ref(false);
     return {
       user,
       showPassword,
+      show
     };
   },
   methods: {
@@ -105,7 +108,7 @@ export default {
       const regex = /^(?=.*[a-zA-Z])(?=.*\d).{8,}$/
 
       if(!regex.test(this.user.パスワード)){
-        return "Password must contain Both letters and numbers and should be less than 8 "
+        return "パスワードは文字と数字の両方を含み、8文字以下でなければならない。"
       }
       else{
         return true
@@ -118,12 +121,15 @@ export default {
       await authApi({ ...this.user })
         .then((response) => {
           if (response.status === 200) {
-            this.$router.push({ name: "home" });
+            setInterval(()=>{
+              this.show=true
+            },1000)
           }
         })
         .catch((error) => {
           console.log(error);
         });
+      this.show=false
     },
     handleReset() {
       this.user = [];
