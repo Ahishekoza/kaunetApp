@@ -435,6 +435,7 @@
           @update:model-value="this.InputClass.輸出データ = $event"
           @excelData="this.insertedData = $event"
           @stringType発注バラ数="this.typeOf発注バラ数 = $event"
+          @baseCheck = "this.baseCheck=$event"
         />
       </template>
       <template v-slot:displayBody>

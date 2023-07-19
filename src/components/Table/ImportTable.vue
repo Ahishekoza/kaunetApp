@@ -116,6 +116,7 @@ export default {
     ]);
     const rows = ref([]);
     const fileName = ref(null);
+    const baseCheck = ref([])
     const exportExcelData = ref([]);
     const typeOf発注バラ数 = ref([]);
     const insertedData = ref([]);
@@ -131,7 +132,8 @@ export default {
       }),
       typeOf発注バラ数,
       insertedData,
-      user_data
+      user_data,
+      baseCheck
     };
   },
   async mounted() {
@@ -228,8 +230,14 @@ export default {
             更新担当者: this.user_data.担当者, // login user value
             更新日時: this.exportExcelData[i].更新日時,
           }).then((response) => {
-              this.insertedData.push(this.exportExcelData[i]);
-              console.log(response)
+
+              if(response.data.statusCode === 404){
+                this.baseCheck.push(response.data.message)
+              }else{
+
+                this.insertedData.push(this.exportExcelData[i]);
+                console.log(response)
+              }
               // changed rows
           });
 
@@ -238,9 +246,11 @@ export default {
 
         this.$emit("excelData", this.insertedData);
         this.$emit("stringType発注バラ数" , this.typeOf発注バラ数)
+        this.$emit("baseCheck", this.baseCheck)
 
         this.insertedData=[];
         this.typeOf発注バラ数=[]
+        this.baseCheck=[]
 
         this.fileName = "";
         this.exportExcelData = [];
@@ -269,7 +279,13 @@ export default {
             更新担当者: this.user_data.担当者, // created a state for user and then always check with the mounted
             更新日時: this.exportExcelData[i].更新日時,
           }).then((response) => {
-              this.insertedData.push(this.exportExcelData[i]);
+            if(response.data.statusCode === 404){
+                this.baseCheck.push(response.data.message)
+              }else{
+
+                this.insertedData.push(this.exportExcelData[i]);
+                console.log(response)
+              }
               // changed rows
           });
 
@@ -278,10 +294,12 @@ export default {
 
         this.$emit("excelData", this.insertedData);
         this.$emit("stringType発注バラ数" , this.typeOf発注バラ数)
+        this.$emit("baseCheck", this.baseCheck)
 
 
         this.insertedData=[];
         this.typeOf発注バラ数=[]
+        this.baseCheck=[]
 
         this.fileName = "";
         this.exportExcelData = [];
