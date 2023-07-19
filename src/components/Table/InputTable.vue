@@ -1259,7 +1259,7 @@ export default {
     },
 
     async handle担当者() {
-      if (this.InputClass.担当者) {
+      if (this.InputClass.担当者 !== "") {
         this.InputClass.未達混載グループ名称 = [];
 
         await commonApi("v_発注管理_混載未達", "UndeliveredMixedGroupName", {
@@ -1280,7 +1280,7 @@ export default {
           });
       }
       else{
-        console.log("hi its working ")
+        this.InputClass.未達混載グループ名称 = [];
         await commonApi("v_発注管理_混載未達", "GET", {})
       .then((response) => {
         if (response.status === 200) {
