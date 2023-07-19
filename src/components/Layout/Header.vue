@@ -4,8 +4,8 @@
       <q-toolbar-title>
         {{ title }}
       </q-toolbar-title>
-      <div v-if="user" class="row justify-evenly items-center">
-      <p class="q-mr-md">Welcome , {{ user.担当者 }}</p>
+      <div v-if="user" class="row items-center">
+      <span class="q-mr-md">{{ user.担当者 }}</span>
       <Button color="deep-orange" :handleEffect="handleLogout" label="ログアウト" textColor="white"/>
       </div>
     </q-toolbar>

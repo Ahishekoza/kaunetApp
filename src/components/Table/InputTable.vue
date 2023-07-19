@@ -204,7 +204,7 @@
             <q-card class="card">
               <div class="col-md-12 flex-row q-pa-sm">
                 <div>
-                  <p class="bfsize">検索条件</p>
+                  <p style="font-size: 1.1rem; font-weight: 500;">検索条件</p>
                 </div>
                 <div>
                   <Button

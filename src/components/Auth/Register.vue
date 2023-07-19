@@ -127,16 +127,18 @@ export default {
       await authApi({ ...this.user })
         .then((response) => {
           if (response.status === 200) {
-            setInterval(()=>{
-              this.show=true
-            },1000)
+            this.show=true;
           }
         })
         .catch((error) => {
           console.log(error);
         });
-
-      this.show=false;
+      this.user.パスワード="",
+      this.user.ユーザid="",
+      this.user.担当者=""
+      setInterval(()=>{
+        this.show=false;
+      },500)
     },
     handleReset() {
       this.user = [];
