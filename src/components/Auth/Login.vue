@@ -143,7 +143,7 @@ export default {
             console.log(user[0].パスワード有効フラグ)
             console.log(user[0].パスワード有効フラグ=== 1)
             if(user[0].パスワード有効フラグ=== '1'){
-              this.$router.push({name:"ResetPassword"})
+             return this.$router.push({name:"ResetPassword"})
             }
 
             const parsedUser = { ...user[0], パスワード: "" ,有効期限:"",ユーザid:"",パスワード有効フラグ:"",更新日時:""};
