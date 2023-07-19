@@ -99,17 +99,6 @@ export default {
     };
   },
   methods: {
-    validatePassword(rule,value,callback){
-      const regex = /^(?=.*[a-zA-Z])(?=.*\d).{8,}$/
-
-      if(!regex.test(value)){
-        callback(new Error ('Pasword Of 8 letters is required'))
-      }
-      else{
-        callback()
-      }
-
-    },
     async handleSubmit() {
       this.user = { ...this.user, 登録: "登録" };
       await authApi({ ...this.user })
@@ -126,11 +115,27 @@ export default {
       this.user = [];
       this.showPassword = false;
     }
+    
   },
 
 
 
   computed: {
+
+
+    validatePassword(){
+      const regex = /^(?=.*[a-zA-Z])(?=.*\d).{8,}$/
+
+      if(!regex.test(this.user.パスワード)){
+        return "Password must contain Both letters and numbers and should be less than 8 "
+      }
+      else{
+        return true
+      }
+
+    },
+
+
     // showPasswordIcon() {
     //   return this.showPassword ? "visibility" : "visibility";
     // },
