@@ -488,6 +488,8 @@ export default {
     Toast,
   },
   setup() {
+
+    const user_data = ref({})
     // show middleBody
     const showMiddleBody = ref(true);
     // show spinners
@@ -557,6 +559,9 @@ export default {
 
     const baseCheck = ref([]); // base check will check whether the person doing the editing, deleting and updating is same as in the database
     return {
+
+      user_data,
+
       // showMiddleBody
       showMiddleBody,
 
@@ -634,6 +639,9 @@ export default {
     };
   },
   async mounted() {
+
+    this.user_data =  JSON.parse(localStorage.getItem('kaunet_user_data'));
+
     // if(localStorage.getItem("kaunet_user_data") && localStorage.getItem("kaunet_user_token")){
     this.layoutSpinner = true;
     // ---担当者
@@ -773,7 +781,7 @@ export default {
             倉庫: row.倉庫,
             sku: row.sku,
             発注区分: row.発注区分,
-            更新担当者: "abhishek",
+            更新担当者: this.user_data.担当者,
             更新日時: row.更新日時,
           })
             .then((response) => {
@@ -813,7 +821,7 @@ export default {
             倉庫: row.倉庫,
             sku: row.sku,
             発注区分: row.発注区分,
-            更新担当者: "abhishek",
+            更新担当者: this.user_data.担当者,
             更新日時: row.更新日時,
           }).then((response) => {
             if (response.data.message) {
@@ -855,7 +863,7 @@ export default {
       //           倉庫: row.倉庫,
       //           sku: row.sku,
       //           発注区分: row.発注区分,
-      //           更新担当者: "abhishek",
+      //           更新担当者: this.user_data.担当者,
       //           更新日時: row.更新日時,
       //         }).then((response) => {
 
@@ -899,7 +907,7 @@ export default {
       //           倉庫: row.倉庫,
       //           sku: row.sku,
       //           発注区分: row.発注区分,
-      //           更新担当者: "abhishek",
+      //           更新担当者: this.user_data.担当者,
       //           更新日時: row.更新日時,
       //         }).then((response) => {
       //           if(response.data.message){

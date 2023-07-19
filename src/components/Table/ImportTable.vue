@@ -135,10 +135,7 @@ export default {
     };
   },
   async mounted() {
-
    this.user_data=JSON.parse(localStorage.getItem('kaunet_user_data'));
-   console.log(this.user_data.担当者)
-  
     await commonApi("v_発注管理_発注情報", "GET", {})
       .then((response) => {
         if (response.status === 200) {
@@ -228,7 +225,7 @@ export default {
             納品日: this.exportExcelData[i].納品日,
             取込区分: this.exportExcelData[i].取込区分,
             発注区分: this.exportExcelData[i].発注区分,
-            更新担当者: this.exportExcelData[i].更新担当者, // created a state for user and then always check with the mounted
+            更新担当者: this.user_data.担当者, // login user value
             更新日時: this.exportExcelData[i].更新日時,
           }).then((response) => {
               this.insertedData.push(this.exportExcelData[i]);
@@ -268,7 +265,7 @@ export default {
             納品日: this.exportExcelData[i].納品日,
             取込区分: this.exportExcelData[i].取込区分,
             発注区分: this.exportExcelData[i].発注区分,
-            更新担当者: this.exportExcelData[i].更新担当者, // created a state for user and then always check with the mounted
+            更新担当者: this.user_data.担当者, // created a state for user and then always check with the mounted
             更新日時: this.exportExcelData[i].更新日時,
           }).then((response) => {
               this.insertedData.push(this.exportExcelData[i]);
