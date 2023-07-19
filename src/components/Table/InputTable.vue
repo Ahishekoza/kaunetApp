@@ -72,11 +72,7 @@
                 <q-separator />
                 <ul>
                   <li v-for="row in this.baseCheck">
-                    <span>{{ row.index }}</span
-                    >行目 倉庫:<span>{{ row.倉庫 }}</span> SKU:<span>{{
-                      row.sku
-                    }}</span>
-                    品名:<span>"{{ row.品名 }}"</span>
+                    <span>{{ row }}</span>
                   </li>
                 </ul>
               </div>
