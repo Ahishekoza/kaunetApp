@@ -35,7 +35,7 @@
         </q-dialog>
 
         <div :class="customClass">
-          <q-card style="height: 500px; width: 100%; overflow-y: scroll">
+          <q-card style="height: 300px; width: 100%; overflow-y: scroll">
             <q-card-section
               style="
                 height: 90%;
@@ -1215,8 +1215,8 @@ export default {
         (this.InputClass.サプライヤ品番 = []),
         (this.InputClass.商品名 = []),
         (this.InputClass.混載グループ名称 = []);
-      // this.InputClass.未達混載グループ名称 = [];
-      this.handle担当者
+      // we have called a computed class here which will keep eye on 担当者value and will back the value of 未達混載グループ
+      this.handle担当者;
     },
 
     handleselectedDelete() {
@@ -1258,25 +1258,26 @@ export default {
         return "displayNAN";
       }
     },
-    
+
     async handle担当者() {
-      console.log(this.InputClass.担当者)
-      if(this.InputClass.担当者 === null || this.InputClass.担当者 === "" ){
+      console.log(this.InputClass.担当者);
+      if (this.InputClass.担当者 === null || this.InputClass.担当者 === "") {
         this.InputClass.未達混載グループ名称 = [];
         await commonApi("v_発注管理_混載未達", "GET", {})
-      .then((response) => {
-        if (response.status === 200) {
-          let parsedData = JSON.parse(response.data.body);
-  
-          const joinAndPush = parsedData.map((item) => item.value).join("\n");
-          this.InputClass.未達混載グループ名称.push(joinAndPush);
-        }
-      })
-      .catch((error) => {
-        console.log(error);
-      }); 
-      }
-      else if (this.InputClass.担当者 !== "") {
+          .then((response) => {
+            if (response.status === 200) {
+              let parsedData = JSON.parse(response.data.body);
+
+              const joinAndPush = parsedData
+                .map((item) => item.value)
+                .join("\n");
+              this.InputClass.未達混載グループ名称.push(joinAndPush);
+            }
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+      } else if (this.InputClass.担当者 !== "") {
         this.InputClass.未達混載グループ名称 = [];
 
         await commonApi("v_発注管理_混載未達", "UndeliveredMixedGroupName", {
@@ -1285,7 +1286,7 @@ export default {
           .then((response) => {
             if (response.status === 200) {
               let parsedData = JSON.parse(response.data.body);
-              console.log(parsedData)
+              console.log(parsedData);
               const joinAndPush = parsedData
                 .map((item) => item.value)
                 .join("\n");

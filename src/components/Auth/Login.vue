@@ -140,7 +140,9 @@ export default {
           if (response.data.statusCode === 200) {
             const user = JSON.parse(response.data.body);
 
-            
+            if(user[0].パスワード有効フラグ=== '1'){
+              this.$router.push({name:"ResetPassword"})
+            }
 
             const parsedUser = { ...user[0], パスワード: "" ,有効期限:"",ユーザid:"",パスワード有効フラグ:"",更新日時:""};
             this.loginUser = { ユーザid: "", パスワード: "" } // empty the values onces logined In
@@ -173,9 +175,9 @@ export default {
     },
   },
   computed: {
-    showPasswordIcon() {
-      return this.showPassword ? "visibility" : "visibility";
-    },
+    // showPasswordIcon() {
+    //   return this.showPassword ? "visibility" : "visibility";
+    // },
     
   },
 };

@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 import Register from  '../components/Auth/Register.vue'
+import ResetPassword from  '../components/Auth/ResetPassword.vue'
 import InputTable from '../components/Table/InputTable.vue'
 import { authApi } from '@/services/apiCreation'
 const routes = [
@@ -13,6 +14,11 @@ const routes = [
     path: '/register',
     name: 'Register',
     component: Register
+  },
+  {
+    path: '/resetPassword',
+    name: 'ResetPassword',
+    component: ResetPassword
   },
   {
     path: '/main',
