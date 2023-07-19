@@ -95,7 +95,6 @@
                   </li>
                 </ul>
               </div>
-              <q-separator />
               <div
                 v-if="this.deletedRows.length"
                 style="overflow-y: scroll; height: 160px"

@@ -8,21 +8,55 @@
               <div class="text-h5">登録</div>
             </q-card-section>
             <q-separator class="bg-white" style="width: 90%; margin: 0 auto" />
-            <q-form @submit.prevent="handleSubmit" @reset="handleReset" style="height: 80%;" >
-              <q-card-section >
-                
-                <q-input v-model="this.user.ユーザid"  label="ユーザーID" outlined square class="q-mb-sm" />
-                <q-input v-model="this.user.担当者"  label="担当者" outlined square class="q-mb-sm" />
-                <q-input v-model="this.user.パスワード" label="パスワード" :type="this.showPassword ?  'text' : 'password' "  outlined square >
-                <template v-slot:append>
-                    <q-icon @click="()=>this.showPassword=!this.showPassword" :name="this.showPassword ? 'visibility' : 'visibility_off'"/>
-                </template>
+            <q-form
+              @submit.prevent="handleSubmit"
+              @reset="handleReset"
+              style="height: 80%"
+            >
+              <q-card-section>
+                <q-input
+                  v-model="this.user.ユーザid"
+                  label="ユーザーID"
+                  outlined
+                  square
+                  class="q-mb-sm"
+                  :rules="[ val => val && val.length > 0 || 'ユーザーIDが必要です']"
+                />
+                <q-input
+                  v-model="this.user.担当者"
+                  label="担当者"
+                  outlined
+                  square
+                  class="q-mb-sm"
+                  :rules="[ val => val && val.length > 0 || '担当者が必要です']"
+                />
+                <q-input
+                  v-model="this.user.パスワード"
+                  label="パスワード"
+                  :type="this.showPassword ? 'text' : 'password'"
+                  outlined
+                  square
+                  :rules="[validatePassword]"
+                >
+                  <template v-slot:append>
+                    <q-icon
+                      @click="() => (this.showPassword = !this.showPassword)"
+                      :name="
+                        this.showPassword ? 'visibility' : 'visibility_off'
+                      "
+                    />
+                  </template>
                 </q-input>
               </q-card-section>
               <div class="text-center q-mt-lg">
-                <router-link class="routerlink" :to="{name:'home'}" style="text-decoration: none;"><span>ログイン画面に戻る</span></router-link>
+                <router-link
+                  class="routerlink"
+                  :to="{ name: 'home' }"
+                  style="text-decoration: none"
+                  ><span>ログイン画面に戻る</span></router-link
+                >
               </div>
-              <q-card-actions align="center" style="height: 30%;">
+              <q-card-actions align="center" style="height: 30%">
                 <div>
                   <q-btn
                     label="登録"
@@ -55,40 +89,55 @@ import { User } from "../../InputClass";
 import { ref } from "vue";
 export default {
   name: "Register",
-  setup(){
-   
-    const user = ref(User)
-    const showPassword = ref(false)
+  setup() {
+    const user = ref(User);
+    const showPassword = ref(false);
 
-    return{
-        user,
-        showPassword
-    }
+    return {
+      user,
+      showPassword,
+    };
   },
   methods: {
-    async handleSubmit() {
-        this.user= {...this.user,登録:"登録"}
-      await authApi({...this.user}).then((response)=>{
-        if(response.status === 200) {
-            this.$router.push({name: 'home'})
-        }
-      }).catch((error)=>{
-        console.log(error);
-      })
+    validatePassword(rule,value,callback){
+      const regex = /^(?=.*[a-zA-Z])(?=.*\d).{8,}$/
+
+      if(!regex.test(value)){
+        callback(new Error ('Pasword Of 8 letters is required'))
+      }
+      else{
+        callback()
+      }
+
     },
-    handleReset(){
-        this.user = []
-        this.showPassword=false
+    async handleSubmit() {
+      this.user = { ...this.user, 登録: "登録" };
+      await authApi({ ...this.user })
+        .then((response) => {
+          if (response.status === 200) {
+            this.$router.push({ name: "home" });
+          }
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    },
+    handleReset() {
+      this.user = [];
+      this.showPassword = false;
     }
   },
-  computed:{
-    showPasswordIcon(){
-        return this.showPassword ? 'visibility' : 'visibility' 
-    }
+
+
+
+  computed: {
+    // showPasswordIcon() {
+    //   return this.showPassword ? "visibility" : "visibility";
+    // },
   },
   components: {
     Layout,
   },
 };
 </script>
-<style scoped></style>
+
