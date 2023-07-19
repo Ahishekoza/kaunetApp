@@ -1279,7 +1279,7 @@ export default {
             console.log(error);
           });
       }
-      else{
+      else if(this.InputClass.担当者 === null){
         this.InputClass.未達混載グループ名称 = [];
         await commonApi("v_発注管理_混載未達", "GET", {})
       .then((response) => {
