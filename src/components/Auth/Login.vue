@@ -130,8 +130,8 @@ export default {
       showerror
     };
   },
-  mounted:{
-    reloadWindow
+  mounted(){
+   this.reloadWindow
   },
   methods: {
     async handleSubmit() {
@@ -180,7 +180,7 @@ export default {
       return this.showPassword ? "visibility" : "visibility";
     },
     reloadWindow(){
-      return window.location.reload
+      return window.location.reload()
     }
   },
 };
