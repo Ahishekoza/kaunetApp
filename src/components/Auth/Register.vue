@@ -1,9 +1,10 @@
 <template>
-  <div>
-    <Layout>
+  <div >
+    <Layout >
       <template v-slot:body>
-        <div class="row justify-center items-center">
-          <q-card style="height: 500px; width: 500px" class="q-my-md bg-grey-6">
+        <div class="column  items-center" style="position: relative;">
+          <div>
+            <q-card style="height: 500px; width: 500px" class="q-my-md bg-grey-6">
             <q-card-section>
               <div class="text-h5">登録</div>
             </q-card-section>
@@ -77,11 +78,16 @@
               </q-card-actions>
             </q-form>
           </q-card>
-
-          <q-tooltip v-model="this.show">新しいユーザ登録されました</q-tooltip>
+          </div>
+          <div :class="[this.show? 'displayUser' : 'displayNoUser']" >
+            <q-card style="height: 64px; width: 338px">
+            <q-card-section class="text-center" style="background-color: rgb(185, 212, 203); height: 100%;">新規ユーザーが正常に追加されました</q-card-section>
+          </q-card>
+          </div>
         </div>
       </template>
     </Layout>
+
   </div>
 </template>
 <script>
@@ -129,7 +135,8 @@ export default {
         .catch((error) => {
           console.log(error);
         });
-      this.show=false
+
+      this.show=false;
     },
     handleReset() {
       this.user = [];
