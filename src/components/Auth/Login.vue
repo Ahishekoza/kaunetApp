@@ -140,7 +140,7 @@ export default {
           if (response.data.statusCode === 200) {
             const user = JSON.parse(response.data.body);
             
-
+            console.log(user[0].ユーザid)
             if(user[0].パスワード有効フラグ=== '1'){
              return this.$router.push({name:"ResetPassword", params:{ユーザid:user[0].ユーザid}})
             }

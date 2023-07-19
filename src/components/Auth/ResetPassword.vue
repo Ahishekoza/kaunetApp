@@ -99,7 +99,7 @@ export default{
     },
     mounted(){
         const route = useRoute()
-        console.log(route.params)
+        console.log(route.params.ユーザid)
     },
     components:{
         Layout
