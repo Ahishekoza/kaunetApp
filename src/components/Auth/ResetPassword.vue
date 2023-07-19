@@ -85,17 +85,21 @@ import { useRoute } from 'vue-router';
 export default{
     name:"ResetPassword",
     setup(){
-        const route = useRoute()
+       
         const showPasswordOriginal = ref(false);
         const showPasswordNew = ref(false);
+
+     
+
         return{
             showPasswordOriginal ,
             showPasswordNew,
-            route,
+            
         }
     },
     mounted(){
-        console.log(this.route.params.ユーザid)
+        const route = useRoute()
+        console.log(route.params)
     },
     components:{
         Layout
