@@ -130,6 +130,9 @@ export default {
       showerror
     };
   },
+  mounted:{
+    reloadWindow
+  },
   methods: {
     async handleSubmit() {
       
@@ -176,6 +179,9 @@ export default {
     showPasswordIcon() {
       return this.showPassword ? "visibility" : "visibility";
     },
+    reloadWindow(){
+      return window.location.reload
+    }
   },
 };
 </script>
