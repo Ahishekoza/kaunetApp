@@ -1263,12 +1263,12 @@ export default {
         this.InputClass.未達混載グループ名称 = [];
 
         await commonApi("v_発注管理_混載未達", "UndeliveredMixedGroupName", {
-          担当者: this.InputClass.担当者,
+          value: this.InputClass.担当者,
         })
           .then((response) => {
             if (response.status === 200) {
               let parsedData = JSON.parse(response.data.body);
-
+              console.log(parsedData)
               const joinAndPush = parsedData
                 .map((item) => item.value)
                 .join("\n");
