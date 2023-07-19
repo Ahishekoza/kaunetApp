@@ -134,7 +134,7 @@ export default {
   },
   async mounted() {
 
-   console.log( JSON.parse(localStorage.getItem('kaunet_user_data')));
+   console.log( JSON.parse(localStorage.getItem('kaunet_user_data')).パスワード);
   
     await commonApi("v_発注管理_発注情報", "GET", {})
       .then((response) => {
