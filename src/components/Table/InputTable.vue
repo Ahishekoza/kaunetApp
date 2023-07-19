@@ -62,6 +62,26 @@
                 </ul>
               </div>
               <q-separator />
+
+              <div
+                class="q-mb-md"
+                v-if="this.baseCheck.length"
+                style="overflow-y: scroll; height: 160px"
+              >
+                <p class="text-h7">すでに更新されていません </p>
+                <q-separator />
+                <ul>
+                  <li v-for="row in this.baseCheck">
+                    <span>{{ row.index }}</span
+                    >行目 倉庫:<span>{{ row.倉庫 }}</span> SKU:<span>{{
+                      row.sku
+                    }}</span>
+                    品名:<span>"{{ row.品名 }}"</span>
+                  </li>
+                </ul>
+              </div>
+              <q-separator />
+
               <div
                 class="q-mb-md"
                 v-if="this.insertedData.length"

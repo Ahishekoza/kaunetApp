@@ -133,6 +133,9 @@ export default {
     };
   },
   async mounted() {
+
+   console.log( JSON.parse(localStorage.getItem('kaunet_user_data')));
+  
     await commonApi("v_発注管理_発注情報", "GET", {})
       .then((response) => {
         if (response.status === 200) {
@@ -171,6 +174,7 @@ export default {
           // we have to add two parameters in to an object which and then  push it in to exportExcelData array
 
           if (obj.sku === undefined && obj.倉庫 === undefined) {
+          
           } else {
             await commonApi("v_発注管理_all", "EXCELDATA", {
               倉庫: obj.倉庫,
@@ -179,7 +183,8 @@ export default {
               if (response.status === 200) {
                 let parsedData = JSON.parse(response.data.body)[0];
 
-                if (typeof(obj.発注バラ数)=== "string" ) {
+                // ---- check if the 納品日 is a validate
+                if (typeof(obj.発注バラ数)=== "string"  ) {
                   this.typeOf発注バラ数.push({ 倉庫: obj.倉庫, sku: obj.sku });
                   console.log(this.typeOf発注バラ数)
                 } else {
@@ -190,8 +195,8 @@ export default {
                   };
                   this.exportExcelData.push(parsedData);
                 }
+                // --- write else condition if you get the response message
 
-                // ---check the type of 発注バラ数 type here and if string  type is present then store the sku of that row in an array
               }
             });
           }
