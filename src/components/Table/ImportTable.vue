@@ -229,6 +229,7 @@ export default {
             更新日時: this.exportExcelData[i].更新日時,
           }).then((response) => {
               this.insertedData.push(this.exportExcelData[i]);
+              console.log(response)
               // changed rows
           });
 
