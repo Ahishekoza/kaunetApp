@@ -81,15 +81,21 @@
 <script>
 import Layout from '../Layout/Layout.vue';
 import { ref } from 'vue';
+import { useRoute } from 'vue-router';
 export default{
     name:"ResetPassword",
     setup(){
+        const route = useRoute()
         const showPasswordOriginal = ref(false);
         const showPasswordNew = ref(false);
         return{
             showPasswordOriginal ,
-            showPasswordNew 
+            showPasswordNew,
+            route,
         }
+    },
+    mounted(){
+        console.log(route.params.ユーザid)
     },
     components:{
         Layout

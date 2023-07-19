@@ -140,10 +140,9 @@ export default {
           if (response.data.statusCode === 200) {
             const user = JSON.parse(response.data.body);
             
-            console.log(user[0].パスワード有効フラグ)
-            console.log(user[0].パスワード有効フラグ=== 1)
-            if(user[0].パスワード有効フラグ=== '1'){
-             return this.$router.push({name:"ResetPassword"})
+
+            if(user[0].パスワード有効フラグ=== '0'){
+             return this.$router.push({name:"ResetPassword", params:{ユーザid:user[0].ユーザid}})
             }
 
             const parsedUser = { ...user[0], パスワード: "" ,有効期限:"",ユーザid:"",パスワード有効フラグ:"",更新日時:""};
