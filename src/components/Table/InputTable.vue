@@ -38,7 +38,7 @@
           <q-card style="height: 300px; width: 100%; overflow-y: scroll">
             <q-card-section
               style="
-                height: 80%;
+                height: fit-content;
                 width: 700px;
                 box-sizing: border-box;
                 overflow-wrap: break-word;
