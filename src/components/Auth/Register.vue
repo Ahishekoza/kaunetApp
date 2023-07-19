@@ -2,8 +2,8 @@
   <div >
     <Layout >
       <template v-slot:body>
-        <div class="column  items-center" style="position: relative;">
-          <div>
+        <div class="column  items-center" >
+       
             <q-card style="height: 500px; width: 500px" class="q-my-md bg-grey-6">
             <q-card-section>
               <div class="text-h5">登録</div>
@@ -78,12 +78,6 @@
               </q-card-actions>
             </q-form>
           </q-card>
-          </div>
-          <div :class="[this.show? 'displayUser' : 'displayNoUser']" >
-            <q-card style="height: 64px; width: 338px">
-            <q-card-section class="text-center" style="background-color: rgb(185, 212, 203); height: 100%;">新規ユーザーが正常に追加されました</q-card-section>
-          </q-card>
-          </div>
         </div>
       </template>
     </Layout>
@@ -127,18 +121,12 @@ export default {
       await authApi({ ...this.user })
         .then((response) => {
           if (response.status === 200) {
-            this.show=true;
+            this.$router.push({name:'home'})
           }
         })
         .catch((error) => {
           console.log(error);
         });
-      this.user.パスワード="",
-      this.user.ユーザid="",
-      this.user.担当者=""
-      setInterval(()=>{
-        this.show=false;
-      },500)
     },
     handleReset() {
       this.user = [];
@@ -150,11 +138,6 @@ export default {
 
 
   computed: {
-
-
-   
-
-
     // showPasswordIcon() {
     //   return this.showPassword ? "visibility" : "visibility";
     // },

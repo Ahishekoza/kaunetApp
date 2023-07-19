@@ -132,15 +132,16 @@ export default {
   },
   methods: {
     async handleSubmit() {
-      console.log(this.loginUser);
+      
       this.loginUser = { ...this.loginUser, ログイン: "ログイン" };
       this.show=true
       await authApi({ ...this.loginUser })
         .then((response) => {
-          console.log(response)
           if (response.data.statusCode === 200) {
             const user = JSON.parse(response.data.body);
-            console.log(user[0].パスワード有効フラグ)
+
+            
+
             const parsedUser = { ...user[0], パスワード: "" ,有効期限:"",ユーザid:"",パスワード有効フラグ:"",更新日時:""};
             this.loginUser = { ユーザid: "", パスワード: "" } // empty the values onces logined In
             localStorage.setItem("kaunet_user_token", response.data.token);

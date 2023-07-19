@@ -56,23 +56,6 @@ input::-webkit-inner-spin-button {
 
 
 
-/* display New user inserted */
-.displayUser{
-    position: absolute;
-    top: 100%;
-    transition: all 0.9s ease-in-out;
-    z-index: 1;
-    visibility: visible;
-
-}
-.displayNoUser{
-    visibility: hidden;
-    top: 50%;
-    z-index: -1;
-    position: absolute;
-
-}
-
 /* --reduced the margin for P tag   */
 p{
     margin: 0px 0px 1px !important;
