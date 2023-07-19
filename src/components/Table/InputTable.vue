@@ -1263,6 +1263,11 @@ export default {
         return "displayNAN";
       }
     },
+
+    handle担当者(){
+      console.log(this.InputClass.担当者)
+    }
+
   },
   watch: {
     error(newValue) {
@@ -1286,6 +1291,9 @@ export default {
         this.handleFileData()
       }
     },
+    handle担当者(newValue){
+
+    }
    
     
   },
