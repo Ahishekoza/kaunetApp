@@ -56,7 +56,7 @@
                   ><span>ログイン画面に戻る</span></router-link
                 >
               </div>
-              <q-card-actions align="center" style="height: 30%">
+              <q-card-actions align="center" style="height: 25%">
                 <div>
                   <q-btn
                     label="登録"
@@ -99,6 +99,20 @@ export default {
     };
   },
   methods: {
+
+
+    validatePassword(){
+      const regex = /^(?=.*[a-zA-Z])(?=.*\d).{8,}$/
+
+      if(!regex.test(this.user.パスワード)){
+        return "Password must contain Both letters and numbers and should be less than 8 "
+      }
+      else{
+        return true
+      }
+
+    },
+
     async handleSubmit() {
       this.user = { ...this.user, 登録: "登録" };
       await authApi({ ...this.user })
@@ -123,17 +137,7 @@ export default {
   computed: {
 
 
-    validatePassword(){
-      const regex = /^(?=.*[a-zA-Z])(?=.*\d).{8,}$/
-
-      if(!regex.test(this.user.パスワード)){
-        return "Password must contain Both letters and numbers and should be less than 8 "
-      }
-      else{
-        return true
-      }
-
-    },
+   
 
 
     // showPasswordIcon() {
