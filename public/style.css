@@ -34,8 +34,11 @@ body{
     left: 30% !important;
 }
 
-.input_error{
+.input_error_発注バラ数{
     background-color: yellow
+}
+.input_error_納品日{
+    background-color: red;
 }
 
 .scrollbar{

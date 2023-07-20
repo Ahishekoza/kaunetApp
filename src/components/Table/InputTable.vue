@@ -982,7 +982,9 @@ export default {
 
               const joinAndPush = parseData
                 .map((item) => item.value)
-                .join("\n");
+                // .join("\n");
+
+              console.log(joinAndPush.join("\n"));
               this.InputClass.商品名.push(joinAndPush);
 
               this.$store.dispatch("setShowUp", false);

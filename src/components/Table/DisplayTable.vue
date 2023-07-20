@@ -64,7 +64,7 @@
                   style="max-width: 70px"
                   v-model="props.row.発注バラ数"
                   :class="{
-                    input_error: props.row.発注バラ数%props.row.発注ロット !==0,
+                    input_error_発注バラ数: props.row.発注バラ数%props.row.発注ロット !==0,
                   }"
                   
                 />
@@ -84,7 +84,7 @@
                 style="max-width: 80px"
                 v-model="props.row.納品日"
                 :class="{
-                    input_error: ! isDateValid(props.row.納品日) ,
+                    input_error_納品日: ! isDateValid(props.row.納品日) ,
                 }"
               />
             </q-td>
