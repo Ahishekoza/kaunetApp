@@ -240,6 +240,7 @@ export default {
 
               if(response.data.statusCode === 404){
                 this.baseCheck.push(response.data.message)
+                console.log(this.baseCheck)
               }else{
 
                 this.insertedData.push(this.exportExcelData[i]);
@@ -250,7 +251,7 @@ export default {
 
           console.log(this.exportExcelData[i]);
         }
-
+        console.log(this.baseCheck)
         this.$emit("excelData", this.insertedData);
         this.$emit("stringType発注バラ数" , this.typeOf発注バラ数)
         this.$emit("baseCheck", this.baseCheck)

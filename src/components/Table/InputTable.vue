@@ -44,6 +44,21 @@
                 overflow-wrap: break-word;
               "
             >
+            <div
+              class="q-mb-md"
+              v-if="this.baseCheck.length"
+              style="overflow-y: scroll; height: 160px"
+            >
+              <p class="text-h7">すでに更新されていません </p>
+              <q-separator />
+              <ul>
+                <li v-for="row in this.baseCheck">
+                  <span>{{ row }}</span>
+                </li>
+              </ul>
+            </div>
+            <q-separator />
+            
               <div
                 class="q-mb-md"
                 v-if="this.showChangedRowData.length"
@@ -63,20 +78,6 @@
               </div>
               <q-separator />
 
-              <div
-                class="q-mb-md"
-                v-if="this.baseCheck.length"
-                style="overflow-y: scroll; height: 160px"
-              >
-                <p class="text-h7">すでに更新されていません </p>
-                <q-separator />
-                <ul>
-                  <li v-for="row in this.baseCheck">
-                    <span>{{ row }}</span>
-                  </li>
-                </ul>
-              </div>
-              <q-separator />
 
               <div
                 class="q-mb-md"
