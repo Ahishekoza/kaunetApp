@@ -955,8 +955,7 @@ export default {
 
               const joinAndPush = parseData
                 .map((item) => item.value)
-                .join("\n");
-              this.InputClass.サプライヤ品番.push(joinAndPush);
+              this.InputClass.サプライヤ品番=joinAndPush.join("\n");
 
               this.$store.dispatch("setShowUp", false);
               this.$store.dispatch("setName", "");
@@ -982,10 +981,8 @@ export default {
 
               const joinAndPush = parseData
                 .map((item) => item.value)
-                // .join("\n");
 
-              console.log(joinAndPush.join("\n"));
-              this.InputClass.商品名.push(joinAndPush);
+              this.InputClass.商品名=joinAndPush.join("\n");
 
               this.$store.dispatch("setShowUp", false);
               this.$store.dispatch("setName", "");
@@ -1010,8 +1007,7 @@ export default {
               console.log(parseData);
               const joinAndPush = parseData
                 .map((item) => item.value)
-                .join("\n");
-              this.InputClass.混載グループ名称.push(joinAndPush);
+              this.InputClass.混載グループ名称=joinAndPush.join("\n");
               this.$store.dispatch("setShowUp", false);
               this.$store.dispatch("setName", "");
               this.popInput = "";
@@ -1116,13 +1112,13 @@ export default {
       if (this.InputClass.サプライヤ品番.length) {
         this.body = {
           ...this.body,
-          サプライヤ品番: this.InputClass.サプライヤ品番[0].split("\n"),
+          サプライヤ品番: this.InputClass.サプライヤ品番.split("\n"),
         };
       }
       if (this.InputClass.商品名.length.length) {
         this.body = {
           ...this.body,
-          商品名: this.InputClass.商品名[0].split("\n"),
+          商品名: this.InputClass.商品名.split("\n"),
         };
       }
       if (
@@ -1132,8 +1128,8 @@ export default {
         this.body = {
           ...this.body,
           混載グループ名: [
-            ...this.InputClass.混載グループ名称[0].split("\n"),
-            ...this.InputClass.未達混載グループ名称[0].split("\n"),
+            ...this.InputClass.混載グループ名称.split("\n"),
+            ...this.InputClass.未達混載グループ名称.split("\n"),
           ],
         };
       }
@@ -1144,7 +1140,7 @@ export default {
         this.body = {
           ...this.body,
           混載グループ名: [
-            ...this.InputClass.未達混載グループ名称[0].split("\n"),
+            ...this.InputClass.未達混載グループ名称.split("\n"),
           ],
         };
       }
@@ -1154,7 +1150,7 @@ export default {
       ) {
         this.body = {
           ...this.body,
-          混載グループ名: [...this.InputClass.混載グループ名称[0].split("\n")],
+          混載グループ名: [...this.InputClass.混載グループ名称.split("\n")],
         };
       }
 
