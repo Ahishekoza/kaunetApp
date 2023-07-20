@@ -1282,7 +1282,8 @@ export default {
         this.showChangedRowData.length > 0 ||
         this.insertedData.length > 0 ||
         this.deletedRows.length > 0 ||
-        this.typeOf発注バラ数.length > 0
+        this.typeOf発注バラ数.length > 0 ||
+        this.baseCheck.length > 0 
       ) {
         return "displayToast";
       } else {
@@ -1329,6 +1330,7 @@ export default {
           });
       }
     },
+
   },
   watch: {
     error(newValue) {
