@@ -428,6 +428,7 @@
         <ImportTable
           v-if="showMiddleBody"
           :model-value="this.InputClass.輸出データ"
+          :dispMessage="this.dispMessage"
           @update:model-value="this.InputClass.輸出データ = $event"
           @excelData="this.insertedData = $event"
           @stringType発注バラ数="this.typeOf発注バラ数 = $event"
@@ -520,6 +521,8 @@ export default {
     // --Rows
     const rows = ref([]);
     const proxyRows = ref([]);
+    
+    const dispMessage = ref("");
 
     const checkDate = ref([]); //---For checking the date format and the 発注バラ数 number present in the table as we need only
     // one aaray for both the date and the number we will go with already configured checkDate
@@ -568,6 +571,7 @@ export default {
       // ---display rows
       rows,
       proxyRows,
+      dispMessage,
       changedRowData,
       showChangedRowData,
 
@@ -1166,6 +1170,7 @@ export default {
               let parsedData = JSON.parse(response.data.body);
               console.log(JSON.parse(response.data.body));
               this.proxyRows = JSON.parse(response.data.body); // proxyRowsは発注バラ数と納品日に受けた変更を計るために作った変数
+              this.dispMessage = response.data.message;
 
               if (parsedData.length === 0) {
                 (this.error = true),

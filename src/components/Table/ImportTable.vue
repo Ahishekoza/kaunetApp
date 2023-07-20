@@ -61,6 +61,9 @@
         </div>
       </div>
     </div>
+    <div class="row q-ma-sm">
+      {{dispMessage}}
+    </div>
   </div>
 </template>
 <script>
@@ -76,6 +79,10 @@ export default {
       type: String,
       default: "",
     },
+    dispMessage:{
+      type: String,
+      default: "【表示されている発注情報】商品：",
+    }
   },
   setup() {
     const options = ref([
