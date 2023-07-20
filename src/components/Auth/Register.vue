@@ -108,7 +108,7 @@ export default {
       const regex = /^(?=.*[a-zA-Z])(?=.*\d).{8,}$/
 
       if(!regex.test(this.user.パスワード)){
-        return "パスワードは文字と数字の両方を含み、8文字以下でなければならない。"
+        return "パスワードは8文字以上、アルファベットと数字を含める必要があります。"
       }
       else{
         return true
