@@ -826,7 +826,7 @@ export default {
             更新担当者: this.user_data.担当者,
             更新日時: row.更新日時,
           }).then((response) => {
-            if (response.data.message) {
+            if (response.data.statusCode === 404) {
               this.baseCheck.push(response.data.message);
             } else {
               const updatedRow = JSON.parse(response.data.body)[0];
