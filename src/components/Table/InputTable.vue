@@ -766,15 +766,27 @@ export default {
       });
 
       if (this.checkDate.length === 0) {
-        await this.handleDelete();
-        await this.handleUpdate();
-        await this.handleFileData();
+        const promise1 = new Promise(async(resolve,reject)=>{
+         await this.handleDelete((resolve,reject));
+        })
+
+
+        const promise2 =  new Promise(async(resolve,reject)=>{
+         await this.handleUpdate((resolve,reject))
+        })
+
+
+       Promise.all([promise1,promise2]).then((response)=>{
+        console.log(response)
+        this.handleFileData();
+       })
+        
       } else {
         this.noChange = false;
       }
     },
 
-    async handleDelete() {
+    async handleDelete(resolve,reject) {
       this.selectedRows = this.selectRows;
       if (this.selectedRows.length) {
         this.selectedRows.map(async (row) => {
@@ -792,6 +804,7 @@ export default {
               } else {
                 this.deletedRows.push(row);
               }
+              resolve()
             })
             .catch((error) => {
               console.log(error);
@@ -805,7 +818,7 @@ export default {
       }
     },
 
-    async handleUpdate() {
+    async handleUpdate(resolve,reject) {
       for (let i = 0; i < this.rows.length; i++) {
         if (
           this.rows[i].発注バラ数 !== this.proxyRows[i].発注バラ数 ||
@@ -826,6 +839,7 @@ export default {
             更新担当者: this.user_data.担当者,
             更新日時: row.更新日時,
           }).then((response) => {
+            
             if (response.data.statusCode === 404) {
               this.baseCheck.push(response.data.message);
             } else {
@@ -833,6 +847,8 @@ export default {
               console.log("更新した行", updatedRow);
               this.changedRowData.push(row);
             }
+
+            resolve()
           });
         });
         console.log(this.changedRowData);
